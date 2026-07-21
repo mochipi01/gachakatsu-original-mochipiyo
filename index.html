@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffe8f2">
-<title>ガチャ司令室 v0.57</title>
+<title>ガチャ司令室 v0.59</title>
 <style>
 :root{
  --bg:#fff8fd;--bg2:#f4fbff;--panel:#ffffff;--panel2:#fff2f8;--ink:#443c58;--muted:#7d748b;--line:#eaddea;
@@ -1573,7 +1573,36 @@ html[data-theme="dark"] .auth-card{background:rgba(38,36,58,.92)}
 .weather-source-line .pill{font-size:11px}
 .weather-live-note{font-size:12px;color:var(--muted);line-height:1.55;margin-top:8px}
 
+
+/* v0.59 product merge/delete safety */
+.product-danger-zone{
+ border:1px solid #ffd0d0;
+ background:#fff5f5;
+ border-radius:18px;
+ padding:12px;
+ margin-top:12px;
+}
+.product-danger-zone h3{margin-top:0;color:#9d3441}
+.merge-note{
+ border:1px solid var(--line);
+ border-radius:16px;
+ padding:10px;
+ background:var(--panel2);
+ margin-bottom:10px;
+}
+html[data-theme="dark"] .product-danger-zone{background:#3b2430;border-color:#8f5964}
+html[data-theme="dark"] .merge-note{background:#30273f;border-color:#78678b}
+
 </style>
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#ff9fcb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ガチャ司令室">
+<meta name="application-name" content="ガチャ司令室">
 </head>
 <body>
 <div id="authGate" class="auth-gate">
@@ -1589,7 +1618,7 @@ html[data-theme="dark"] .auth-card{background:rgba(38,36,58,.92)}
 </div>
 <div class="app">
 <header class="top">
- <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.57</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
+ <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.59</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
  <div class="top-actions"><div class="bubble"><div id="clock" class="clock">--:--</div><div id="dateMode" class="small">判定中</div></div><button id="themeQuick" class="btn">🌙 ダーク</button></div>
 </header>
 <main>
@@ -2719,7 +2748,7 @@ function openProductEditor(encoded){
  const name=decodeURIComponent(encoded),items=(collectionSeries()[name]||[]).map(x=>({...x})),meta=productMeta(name);
  const aliasText=meta.aliases||productAllNames(name).filter(x=>x!==name).join('、');
  document.getElementById('modalTitle').textContent='商品情報を編集';
- document.getElementById('modalBody').innerHTML=`<div class="note">現在ランク：${rankLineHtml(name)}<br>単価：${esc(unitPriceText(name))}。単価はガチャ活中のげと金額の自動計算に使います。</div><div class="edit-panel"><input type="hidden" id="editOldProductName" value="${esc(name)}"><div class="form-grid"><div><label>商品名・シリーズ名</label><input id="editProductName" value="${esc(name)}"></div><div><label>追跡状態</label><select id="editProductStatus"><option>未設定</option><option>ほしい</option><option>げと済み</option><option>交換待ち</option><option>分析用だけ</option><option>保留</option><option>追わない</option></select></div><div><label>判定方法</label><select id="editProductRankMode" class="rank-mode-select"><option value="auto">自動</option><option value="manual">手動固定</option></select></div><div><label>手動ランク</label><select id="editProductRank"><option value="">未設定</option><option>S</option><option>A</option><option>B</option><option>C</option></select></div><div><label>欲しい数</label><input id="editProductWant" type="number" min="0" value="${esc(meta.want||'')}"></div><div>${priceChipsHtml('editProductUnitPrice',meta.unitPrice)}</div></div><label>別名・表記ゆれ</label><input id="editProductAliases" value="${esc(aliasText)}" placeholder="例：よっし、よっしー"><label>商品メモ <span class="small">任意</span></label><textarea id="editProductNote">${esc(meta.note||'')}</textarea><h3>所持内訳</h3><div id="editItems" class="edit-item-grid">${items.length?items.map((x,i)=>editItemRow(x,i)).join(''):'<div class="empty">所持内訳はまだありません。必要なら下のボタンで追加できます。</div>'}</div><div class="row"><button class="mini" onclick="addEditItemRow()">内訳を追加</button><button class="btn primary" onclick="openGetAddModal('${encodeURIComponent(name)}')">このシリーズのげと追加</button></div><div class="row between"><button class="mini danger" onclick="deleteProductSettings('${encodeURIComponent(name)}')">商品設定だけ削除</button><button class="mini" onclick="openSeries('${encodeURIComponent(name)}')">詳細に戻る</button><button class="btn primary" onclick="saveProductEditor()">商品情報を保存</button></div></div>`;
+ document.getElementById('modalBody').innerHTML=`<div class="note">現在ランク：${rankLineHtml(name)}<br>単価：${esc(unitPriceText(name))}。単価はガチャ活中のげと金額の自動計算に使います。</div><div class="edit-panel"><input type="hidden" id="editOldProductName" value="${esc(name)}"><div class="form-grid"><div><label>商品名・シリーズ名</label><input id="editProductName" value="${esc(name)}"></div><div><label>追跡状態</label><select id="editProductStatus"><option>未設定</option><option>ほしい</option><option>げと済み</option><option>交換待ち</option><option>分析用だけ</option><option>保留</option><option>追わない</option></select></div><div><label>判定方法</label><select id="editProductRankMode" class="rank-mode-select"><option value="auto">自動</option><option value="manual">手動固定</option></select></div><div><label>手動ランク</label><select id="editProductRank"><option value="">未設定</option><option>S</option><option>A</option><option>B</option><option>C</option></select></div><div><label>欲しい数</label><input id="editProductWant" type="number" min="0" value="${esc(meta.want||'')}"></div><div>${priceChipsHtml('editProductUnitPrice',meta.unitPrice)}</div></div><label>別名・表記ゆれ</label><input id="editProductAliases" value="${esc(aliasText)}" placeholder="例：よっし、よっしー"><label>商品メモ <span class="small">任意</span></label><textarea id="editProductNote">${esc(meta.note||'')}</textarea><h3>所持内訳</h3><div id="editItems" class="edit-item-grid">${items.length?items.map((x,i)=>editItemRow(x,i)).join(''):'<div class="empty">所持内訳はまだありません。必要なら下のボタンで追加できます。</div>'}</div><div class="row"><button class="mini" onclick="addEditItemRow()">内訳を追加</button><button class="btn primary" onclick="openGetAddModal('${encodeURIComponent(name)}')">このシリーズのげと追加</button></div><div class="row between"><button class="mini danger" onclick="deleteProductSettings('${encodeURIComponent(name)}')">設定をリセット（ログは残す）</button><button class="mini" onclick="openProductMergeModal('${encodeURIComponent(name)}')">他の商品へ統合</button><button class="mini" onclick="openSeries('${encodeURIComponent(name)}')">詳細に戻る</button><button class="btn primary" onclick="saveProductEditor()">商品情報を保存</button></div><div class="product-danger-zone"><h3>危険ゾーン</h3><div class="small">商品を完全削除すると、観測・げと帳面・写真・設定・関連するガチャ活内げと記録まで消えます。</div><button class="mini danger" style="margin-top:8px" onclick="deleteProductCompletely('${encodeURIComponent(name)}')">商品を完全削除</button></div></div>`;
  document.getElementById('editProductStatus').value=meta.status||'未設定';
  document.getElementById('editProductRank').value=meta.manualRank||'';
  document.getElementById('editProductRankMode').value=meta.rankMode||'auto';
@@ -3253,7 +3282,7 @@ function renderDataProducts(el){
    <div><label>別名</label><input id="dpAliases-${enc}" value="${esc(aliases)}"></div>
    <div style="grid-column:1/-1"><label>商品メモ</label><textarea id="dpNote-${enc}">${esc(m.note||'')}</textarea></div>
   </div>
-  <div class="data-edit-actions"><button class="mini" onclick="openProductEditor('${enc}')">本編集</button><button class="mini danger" onclick="deleteProductSettings('${enc}')">商品設定だけ削除</button><button class="btn primary" onclick="saveDataProduct('${enc}')">保存</button></div>
+  <div class="data-edit-actions"><button class="mini" onclick="openProductEditor('${enc}')">本編集</button><button class="mini" onclick="openProductMergeModal('${enc}')">統合</button><button class="mini danger" onclick="deleteProductSettings('${enc}')">設定リセット</button><button class="mini danger" onclick="deleteProductCompletely('${enc}')">完全削除</button><button class="btn primary" onclick="saveDataProduct('${enc}')">保存</button></div>
  </div></details>`}).join('')||'<div class="empty">商品データはまだありません</div>'}</div>`;
  names.forEach(name=>{const enc=encodeURIComponent(name),m=productMeta(name);const st=document.getElementById(`dpStatus-${enc}`),rk=document.getElementById(`dpRank-${enc}`),mode=document.getElementById(`dpRankMode-${enc}`);if(st)st.value=m.status||'未設定';if(rk)rk.value=m.manualRank||'';if(mode)mode.value=m.rankMode||'auto'});
 }
@@ -3269,13 +3298,110 @@ function saveDataProduct(enc){
  m.aliases.split(/[、,]/).map(x=>x.trim()).filter(Boolean).forEach(a=>{if(a!==name)state.aliases.product[a]=name});
  touchProduct(name,'データ編集');save();renderAll();dataEditTab='products';renderDataEditor();toast('商品データを保存しました');celebrate('save','保存ぴこん');
 }
+function productNameSet(name){
+ const set=new Set([name]);
+ productAllNames(name).forEach(x=>set.add(x));
+ Object.entries(state.aliases?.product||{}).forEach(([a,b])=>{if(b===name||a===name){set.add(a);set.add(b)}});
+ return set
+}
+function productMatchesName(value,names){
+ const v=value||'';
+ return names.has(v)||names.has(canonical('product',v))
+}
+function mergeImageBuckets(target,source){
+ state.images||={};
+ if(!state.images[source])return;
+ state.images[target]||={official:[],owned:[],itemOwned:{}};
+ state.images[target].official=[...(state.images[target].official||[]),...(state.images[source].official||[])];
+ state.images[target].owned=[...(state.images[target].owned||[]),...(state.images[source].owned||[])];
+ state.images[target].itemOwned={...(state.images[target].itemOwned||{}),...(state.images[source].itemOwned||{})};
+ delete state.images[source];
+}
+function mergeMetaBuckets(target,source,aliasList=[]){
+ state.productMeta||={};
+ const sm=state.productMeta[source]||{},tm=state.productMeta[target]||{};
+ state.productMeta[target]={
+  status:tm.status||sm.status||'未設定',
+  manualRank:tm.manualRank||sm.manualRank||'',
+  rankMode:tm.rankMode||sm.rankMode||'auto',
+  want:tm.want||sm.want||'',
+  unitPrice:tm.unitPrice||sm.unitPrice||'',
+  note:[tm.note,sm.note].filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).join('\n'),
+  aliases:[tm.aliases,sm.aliases,...aliasList.filter(x=>x!==target)].filter(Boolean).join('、')
+ };
+ delete state.productMeta[source];
+}
+function replaceProductEverywhere(source,target){
+ const names=productNameSet(source);
+ names.add(source);
+ state.aliases||={product:{},store:{}};
+ state.aliases.product||={};
+ state.observations.forEach(o=>{
+  if(productMatchesName(o.product,names))o.product=target;
+  if(productMatchesName(o.productOriginal,names))o.productOriginal=target;
+ });
+ state.collection.forEach(c=>{if(productMatchesName(c.series,names))c.series=target});
+ const fixActivity=a=>{
+  if(!a)return;
+  (a.gets||[]).forEach(g=>{if(productMatchesName(g.series,names))g.series=target});
+  (a.spins||[]).forEach(g=>{if(productMatchesName(g.series||g.product,names)){if(g.series!=null)g.series=target;if(g.product!=null)g.product=target}});
+ };
+ fixActivity(state.activeActivity);
+ (state.activityLogs||[]).forEach(fixActivity);
+ [...names].forEach(n=>{if(n&&n!==target)state.aliases.product[n]=target});
+ Object.keys(state.aliases.product||{}).forEach(k=>{if(names.has(state.aliases.product[k]))state.aliases.product[k]=target});
+ [...names].forEach(n=>mergeImageBuckets(target,n));
+ mergeMetaBuckets(target,source,[...names]);
+ state.productRecent=(state.productRecent||[]).map(x=>typeof x==='string'?(names.has(x)?target:x):({...x,name:names.has(x.name)?target:x.name})).filter((x,i,a)=>{
+  const n=typeof x==='string'?x:x.name;
+  return n&&a.findIndex(y=>(typeof y==='string'?y:y.name)===n)===i
+ });
+}
+function openProductMergeModal(enc){
+ const source=decodeURIComponent(enc);
+ const options=allProductNames().filter(n=>n!==source).sort((a,b)=>a.localeCompare(b,'ja')).map(n=>`<option value="${esc(n)}"></option>`).join('');
+ document.getElementById('modalTitle').textContent='商品を統合';
+ document.getElementById('modalBody').innerHTML=`<div class="merge-note"><b>${esc(source)}</b> を、別の商品名へ寄せます。<br><span class="small">観測・げと帳面・写真・設定・ガチャ活内げと記録を、指定した商品名にまとめます。元の商品名は別名として残します。</span></div><label>統合先の商品名</label><input id="mergeProductTarget" list="mergeProductTargets" placeholder="例：サンリオクリスタル"><datalist id="mergeProductTargets">${options}</datalist><div class="row between" style="margin-top:14px"><button class="btn" onclick="closeModal()">やめる</button><button class="btn primary" onclick="saveProductMerge('${encodeURIComponent(source)}')">統合する</button></div>`;
+ document.getElementById('modal').classList.add('show');
+}
+function saveProductMerge(sourceEnc){
+ const source=decodeURIComponent(sourceEnc);
+ const target=document.getElementById('mergeProductTarget')?.value.trim();
+ if(!target){toast('統合先の商品名を入れてください');return}
+ if(target===source){toast('同じ商品名です');return}
+ if(!confirm(`${source} を ${target} に統合しますか？\n観測・げと帳面・写真・設定をまとめます。`))return;
+ replaceProductEverywhere(source,target);
+ save();renderAll();toast('商品を統合しました');openSeries(encodeURIComponent(target));
+}
 function deleteProductSettings(enc){
  const name=decodeURIComponent(enc);
- if(!confirm(`${name} の商品設定だけ削除しますか？\n帳面・観測ログ・写真は消しません。`))return;
+ if(!confirm(`${name} の商品設定をリセットしますか？\n消えるもの：ランク固定・単価・追跡状態・欲しい数・別名・商品メモ\n残るもの：観測ログ・げと帳面・写真・ガチャ活日誌`))return;
  delete state.productMeta[name];
  Object.keys(state.aliases.product||{}).forEach(k=>{if(k===name||state.aliases.product[k]===name)delete state.aliases.product[k]});
- save();renderAll();closeModal();toast('商品設定だけ削除しました');
+ save();renderAll();closeModal();toast('商品設定をリセットしました');
 }
+function deleteProductCompletely(enc){
+ const name=decodeURIComponent(enc),names=productNameSet(name);
+ const obsCount=state.observations.filter(o=>productMatchesName(o.product,names)||productMatchesName(o.productOriginal,names)).length;
+ const colCount=state.collection.filter(c=>productMatchesName(c.series,names)).length;
+ if(!confirm(`${name} を完全削除しますか？\n観測 ${obsCount}件・げと帳面 ${colCount}件・写真・設定・関連するガチャ活内げと記録が消えます。\nこの操作は戻せません。先にバックアップ保存推奨です。`))return;
+ const word=prompt('完全削除するには「削除」と入力してください');
+ if(word!=='削除'){toast('完全削除をキャンセルしました');return}
+ state.observations=state.observations.filter(o=>!(productMatchesName(o.product,names)||productMatchesName(o.productOriginal,names)));
+ state.collection=state.collection.filter(c=>!productMatchesName(c.series,names));
+ [...names].forEach(n=>{delete state.productMeta[n];delete state.images[n]});
+ Object.keys(state.aliases.product||{}).forEach(k=>{if(names.has(k)||names.has(state.aliases.product[k]))delete state.aliases.product[k]});
+ const filterActivity=a=>{
+  if(!a)return;
+  a.gets=(a.gets||[]).filter(g=>!productMatchesName(g.series,names));
+  a.spins=(a.spins||[]).filter(g=>!productMatchesName(g.series||g.product,names));
+ };
+ filterActivity(state.activeActivity);
+ (state.activityLogs||[]).forEach(filterActivity);
+ state.productRecent=(state.productRecent||[]).filter(x=>!names.has(typeof x==='string'?x:x.name));
+ save();renderAll();closeModal();toast('商品を完全削除しました');
+}
+
 function renderDataStores(el){
  const names=dataStoreNames();
  el.innerHTML=`<div class="note">店舗名の五十音順です。扱いだけを素早く整えます。</div>${dataEditToolbar('店舗 '+names.length+'件')}<div class="data-edit-list">${names.map(name=>{const enc=encodeURIComponent(name),obs=state.observations.filter(o=>canonical('store',o.store)===name),exact=sessions().filter(s=>s.store===name).map(exactDuration).filter(x=>x!=null),role=storeRole(name);return `<details class="data-edit-row compact"><summary><div class="data-edit-summary-main"><div class="data-edit-summary-title">🏬 ${esc(name)}</div><div class="data-edit-summary-meta">${esc(dataAreasForStore(name))}｜扱い ${esc(role||'未設定')}｜観測${obs.length}件${exact.length?`｜中央値 ${median(exact)}分`:''}</div></div></summary><div class="data-edit-body">
@@ -3551,7 +3677,7 @@ function deleteCheckedManualLogs(){
  openBulkDeleteConfirm(ids);
 }
 
-function exportData(){const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='gacha-command-v057-backup.json';a.click();URL.revokeObjectURL(a.href)}
+function exportData(){const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='gacha-command-v059-backup.json';a.click();URL.revokeObjectURL(a.href)}
 function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{state=JSON.parse(r.result);save();renderAll();toast('読み込みました')}catch(x){toast('読み込み失敗')}};r.readAsText(f)}
 function resetSeed(){if(!confirm('入力内容を消して、内蔵データに戻しますか？'))return;state=seed();save();applyTheme(state.theme);renderAll()}
 function updateClock(){const d=new Date();document.getElementById('clock').textContent=`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;document.getElementById('dateMode').textContent=`${dateLabel(d.toISOString())}｜${dayType(d.toISOString())}`;updateActivityTick()}
