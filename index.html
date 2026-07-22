@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffe8f2">
-<title>ガチャ司令室 v0.72</title>
+<title>ガチャ司令室 v0.73</title>
 <style>
 :root{
  --bg:#fff8fd;--bg2:#f4fbff;--panel:#ffffff;--panel2:#fff2f8;--ink:#443c58;--muted:#7d748b;--line:#eaddea;
@@ -1845,7 +1845,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 }
 
 
-/* v0.72 tabs, tracking, data table */
+/* v0.73 tabs, tracking, data table */
 .nav{display:flex;grid-template-columns:none;overflow-x:auto;scrollbar-width:none;gap:6px;align-items:stretch}
 .nav::-webkit-scrollbar{display:none}
 .nav button{min-width:58px;flex:0 0 auto;line-height:1.25}
@@ -1867,7 +1867,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 .item .thumb.product-icon-thumb{font-size:22px}
 
 
-/* v0.72 fixes */
+/* v0.73 fixes */
 .choice-input-wrap{
  display:flex;
  flex-direction:column;
@@ -1974,7 +1974,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 .dark .choice-input-chips button{background:var(--panel2)}
 
 
-/* v0.72 delete safety */
+/* v0.73 delete safety */
 .delete-action-summary{display:grid;gap:10px}
 .delete-action-target{border:1px solid var(--line);border-radius:16px;padding:12px;background:var(--panel2);font-weight:800}
 .delete-action-warning{border:1px solid rgba(255,122,122,.35);border-radius:16px;padding:12px;background:rgba(255,122,122,.08);color:var(--text)}
@@ -2007,7 +2007,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 </div>
 <div class="app">
 <header class="top">
- <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.72</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
+ <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.73</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
  <div class="top-actions"><div class="bubble"><div id="clock" class="clock">--:--</div><div id="dateMode" class="small">判定中</div></div><button id="themeQuick" class="btn">🌙 ダーク</button></div>
 </header>
 <main>
@@ -3702,7 +3702,8 @@ function openProductEditor(encoded){
  document.getElementById('modal').classList.add('show')
 }
 
-function editItemRow(x={},i=0){return `<div class="edit-item-row" data-edit-row="${i}"><div><label>キャラ・種類</label><input class="editItemName" value="${esc(x.item||'')}"></div><div><label>所持</label><input class="editItemOwned" type="number" min="0" value="${esc(x.owned??'')}"></div><div><label>状態</label><input class="editItemStatus" value="${esc(x.status||'所持')}"></div><div><label>備考</label><input class="editItemMemo" value="${esc(x.memo||'')}"></div><button class="mini" onclick="this.closest('.edit-item-row').remove()">削除</button></div>`}
+function editItemRow(x={},i=0){return `<div class="edit-item-row" data-edit-row="${i}"><input type="hidden" class="editItemId" value="${esc(x.id||'')}"><div><label>キャラ・種類</label><input class="editItemName" value="${esc(x.item||'')}"></div><div><label>所持</label><input class="editItemOwned" type="number" min="0" value="${esc(x.owned??'')}"></div><div><label>状態</label><input class="editItemStatus" value="${esc(x.status||'所持')}"></div><div><label>備考</label><input class="editItemMemo" value="${esc(x.memo||'')}"></div><button class="mini" onclick="this.closest('.edit-item-row').remove()">削除</button></div>`}
+
 function addEditItemRow(){const box=document.getElementById('editItems');if(box.querySelector('.empty'))box.innerHTML='';const i=box.querySelectorAll('.edit-item-row').length;box.insertAdjacentHTML('beforeend',editItemRow({},i))}
 async function saveProductEditor(){
  const oldName=document.getElementById('editOldProductName').value,newName=document.getElementById('editProductName').value.trim()||oldName;
@@ -3726,13 +3727,25 @@ async function saveProductEditor(){
   state.collection.forEach(c=>{if(c.series===oldName)c.series=newName});
   state.observations.forEach(o=>{if(canonical('product',o.product)===oldName||o.product===oldName)o.product=newName;if(o.productOriginal===oldName)o.productOriginal=newName});
   if(state.images[oldName]){state.images[newName]=state.images[newName]||{official:[],owned:[],itemOwned:{}};state.images[newName].official=[...(state.images[newName].official||[]),...(state.images[oldName].official||[])];state.images[newName].owned=[...(state.images[newName].owned||[]),...(state.images[oldName].owned||[])];state.images[newName].itemOwned={...(state.images[oldName].itemOwned||{}),...(state.images[newName].itemOwned||{})};delete state.images[oldName]}
-  state.aliases.product[oldName]=newName;Object.keys(state.aliases.product).forEach(k=>{if(state.aliases.product[k]===oldName)state.aliases.product[k]=newName})
+  state.aliases.product[oldName]=newName;Object.keys(state.aliases.product).forEach(k=>{if(state.aliases.product[k]===oldName)state.aliases.product[k]=newName});
+  syncActivityProductName(oldName,newName);
  }
  meta.aliases.split(/[、,]/).map(x=>x.trim()).filter(Boolean).forEach(a=>{if(a!==newName)state.aliases.product[a]=newName});
  const rows=[...document.querySelectorAll('.edit-item-row')];
+ const existing=state.collection.filter(c=>c.series===oldName||c.series===newName);
+ const existingById=new Map(existing.filter(c=>c.id).map(c=>[c.id,c]));
+ const keptIds=new Set();
  const oldItems=state.collection.filter(c=>c.series!==oldName&&c.series!==newName);
- const edited=rows.map((row,i)=>({id:'edit-c-'+Date.now()+'-'+i,series:newName,item:row.querySelector('.editItemName').value.trim()||'名称未設定',cumulative:parseInt(row.querySelector('.editItemOwned').value||'0',10)||0,cumulativeExact:true,owned:parseInt(row.querySelector('.editItemOwned').value||'0',10)||0,ownedExact:true,method:'編集',status:row.querySelector('.editItemStatus').value.trim()||'所持',memo:row.querySelector('.editItemMemo').value.trim()}));
+ const edited=rows.map((row,i)=>{
+  const id=row.querySelector('.editItemId')?.value||'edit-c-'+Date.now()+'-'+i;
+  keptIds.add(id);
+  const prev=existingById.get(id)||{};
+  const owned=parseInt(row.querySelector('.editItemOwned').value||'0',10)||0;
+  return {...prev,id,series:newName,item:row.querySelector('.editItemName').value.trim()||'名称未設定',cumulative:owned,cumulativeExact:true,owned,ownedExact:true,method:prev.method||'編集',status:row.querySelector('.editItemStatus').value.trim()||'所持',memo:row.querySelector('.editItemMemo').value.trim()};
+ });
+ existing.filter(c=>c.id&&!keptIds.has(c.id)).forEach(c=>removeActivityGetsForCollectionId(c.id));
  if(edited.length)state.collection=[...oldItems,...edited];
+ edited.forEach(c=>syncActivityGetFromCollection(c));
  const imgs=await saveProductImageFiles(newName,'editOfficialFiles','editOwnedFiles');touchProduct(newName,'商品編集');save();renderAll();toast(imgs.official||imgs.owned?`商品情報と画像を保存しました（商品写真${imgs.official}枚 / げと写真${imgs.owned}枚）`:'商品情報を保存しました');celebrate('save','保存ぴこん');openSeries(encodeURIComponent(newName))
 }
 
@@ -4172,9 +4185,10 @@ async function quickAddCollectionItem(){
   if(!item)continue;
   const owned=parseInt(row.querySelector('.newOwnedCount')?.value||'0',10)||0;
   const method=row.querySelector('.newMethod')?.value||'自引き';
-  state.collection.push({id:'quick-c-'+uid(),series,item,cumulative:owned,cumulativeExact:true,owned,ownedExact:true,method,status:owned>0?'所持':'未所持',memo,createdAt:new Date().toISOString()});
+  const rec={id:'quick-c-'+uid(),series,item,cumulative:owned,cumulativeExact:true,owned,ownedExact:true,method,status:owned>0?'所持':'未所持',memo,createdAt:new Date().toISOString(),unitPrice};
+  state.collection.push(rec);
   if(pm.status==='未設定'&&owned>0)pm.status='げと済み';
-  recordActivityGet(series,item,owned,method);
+  recordActivityGet(series,item,owned,method,{unitPrice,collectionId:rec.id});
   const files=[...(row.querySelector('.newItemFiles')?.files||[])];
   if(files.length){
    state.images[series]||={official:[],owned:[],itemOwned:{}};
@@ -4676,8 +4690,10 @@ function saveDataCollection(enc){
  c.source=document.getElementById(`dcSource-${enc}`)?.value.trim()||'';
  if(c.unitPrice)productMeta(c.series).unitPrice=c.unitPrice;
  c.memo=document.getElementById(`dcMemo-${enc}`)?.value.trim();
- touchProduct(c.series,'帳面編集');save();renderAll();dataEditTab='collection';renderDataEditor();toast('げと帳面を保存しました');celebrate('get','げと帳面ぴこん');
+ const synced=syncActivityGetFromCollection(c);
+ touchProduct(c.series,'帳面編集');save();renderAll();dataEditTab='collection';renderDataEditor();toast(synced?`げと帳面を保存し、日誌も同期しました（${synced}件）`:'げと帳面を保存しました');celebrate('get','げと帳面ぴこん');
 }
+
 function deleteCollectionRecord(enc){
  stopInlineEvent(window.event);
  const id=decodeURIComponent(enc),c=state.collection.find(x=>(x.id||'')===id);
@@ -4685,9 +4701,14 @@ function deleteCollectionRecord(enc){
  return openAppConfirm({
   title:'げと記録削除',
   target:`${esc(c.series)}｜${esc(c.item)}`,
-  warning:'この1件をげと帳面から削除します。観測ログは消しません。',
+  warning:'この1件をげと帳面から削除します。紐づいている日誌内のげと記録も一緒に削除します。観測ログは消しません。',
   confirmLabel:'げと記録を削除する',
-  action:()=>{state.collection=state.collection.filter(x=>(x.id||'')!==id);save();renderAll();dataEditTab='collection';renderDataEditor();closeModal();toast('げと記録を削除しました')}
+  action:()=>{
+   state.collection=state.collection.filter(x=>(x.id||'')!==id);
+   const removed=removeActivityGetsForCollectionId(id);
+   save();renderAll();dataEditTab='collection';renderDataEditor();closeModal();
+   toast(removed?`げと記録を削除し、日誌も同期しました（${removed}件）`:'げと記録を削除しました');
+  }
  })
 }
 
@@ -4736,6 +4757,101 @@ function recordActivityObservation(obs){
  if(!state.activeActivity||!obs?.id)return;
  state.activeActivity.observationIds||=[];
  if(!state.activeActivity.observationIds.includes(obs.id))state.activeActivity.observationIds.push(obs.id)
+}
+
+function activityCollectionCount(c){
+ const owned=parseInt(c?.owned??'',10);
+ if(Number.isFinite(owned))return Math.max(0,owned);
+ const cumulative=parseInt(c?.cumulative??'',10);
+ return Number.isFinite(cumulative)?Math.max(0,cumulative):0;
+}
+function refreshActivityTotals(a){
+ if(!a)return;
+ a.estimatedSpent=activityEstimatedSpent(a);
+ if(!a.spentSource||a.spentSource==='自動概算'||a.spent==null){
+  a.spent=a.estimatedSpent;
+  a.spentSource='自動概算';
+ }
+}
+function syncActivityGetFromCollection(c){
+ if(!c||!c.id)return 0;
+ let updated=0;
+ const apply=a=>{
+  if(!a||!Array.isArray(a.gets))return;
+  a.gets.forEach(g=>{
+   if(g.collectionId===c.id){
+    g.series=c.series||g.series||'';
+    g.item=c.item||g.item||'';
+    g.count=activityCollectionCount(c);
+    g.method=c.method||g.method||'';
+    g.unitPrice=parseInt(c.unitPrice||g.unitPrice||'0',10)||productUnitPrice(c.series||g.series);
+    g.store=c.store||c.storeOriginal||g.store||'';
+    g.area=c.area||g.area||'';
+    g.ts=c.getTs||g.ts||new Date().toISOString();
+    g.spent=parseInt(c.spent||'0',10)||0;
+    g.relatedSessionId=c.relatedSessionId||g.relatedSessionId||'';
+    updated++;
+   }
+  });
+  refreshActivityTotals(a);
+ };
+ apply(state.activeActivity);
+ (state.activityLogs||[]).forEach(apply);
+ return updated;
+}
+function removeActivityGetsForCollectionId(id){
+ if(!id)return 0;
+ let removed=0;
+ const apply=a=>{
+  if(!a||!Array.isArray(a.gets))return;
+  const before=a.gets.length;
+  a.gets=a.gets.filter(g=>g.collectionId!==id);
+  removed+=before-a.gets.length;
+  refreshActivityTotals(a);
+ };
+ apply(state.activeActivity);
+ (state.activityLogs||[]).forEach(apply);
+ return removed;
+}
+function syncActivityProductName(oldName,newName){
+ if(!oldName||!newName||oldName===newName)return 0;
+ let updated=0;
+ const apply=a=>{
+  if(!a)return;
+  (a.gets||[]).forEach(g=>{if(g.series===oldName||canonical('product',g.series)===oldName){g.series=newName;updated++}});
+  (a.spins||[]).forEach(g=>{if(g.series===oldName||canonical('product',g.series)===oldName){g.series=newName;updated++}});
+  refreshActivityTotals(a);
+ };
+ apply(state.activeActivity);
+ (state.activityLogs||[]).forEach(apply);
+ return updated;
+}
+function syncAllLinkedActivityGets(){
+ const byId=new Map((state.collection||[]).filter(c=>c.id).map(c=>[c.id,c]));
+ let updated=0;
+ const apply=a=>{
+  if(!a||!Array.isArray(a.gets))return;
+  a.gets.forEach(g=>{
+   const c=g.collectionId?byId.get(g.collectionId):null;
+   if(c){
+    g.series=c.series||g.series||'';
+    g.item=c.item||g.item||'';
+    g.count=activityCollectionCount(c);
+    g.method=c.method||g.method||'';
+    g.unitPrice=parseInt(c.unitPrice||g.unitPrice||'0',10)||productUnitPrice(c.series||g.series);
+    g.store=c.store||c.storeOriginal||g.store||'';
+    g.area=c.area||g.area||'';
+    g.ts=c.getTs||g.ts||'';
+    g.spent=parseInt(c.spent||'0',10)||0;
+    g.relatedSessionId=c.relatedSessionId||g.relatedSessionId||'';
+    updated++;
+   }
+  });
+  refreshActivityTotals(a);
+ };
+ apply(state.activeActivity);
+ (state.activityLogs||[]).forEach(apply);
+ return updated;
 }
 function recordActivityGet(series,item,count,method,extra={}){
  if(!state.activeActivity||!count)return;
@@ -4924,7 +5040,7 @@ function deleteCheckedManualLogs(){
  openBulkDeleteConfirm(ids);
 }
 
-function exportData(){const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='gacha-command-v072-backup.json';a.click();URL.revokeObjectURL(a.href)}
+function exportData(){const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='gacha-command-v073-backup.json';a.click();URL.revokeObjectURL(a.href)}
 function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{state=JSON.parse(r.result);normalizeV66Data();save();renderAll();toast('読み込みました')}catch(x){toast('読み込み失敗')}};r.readAsText(f)}
 
 function resetSeed(){
