@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffe8f2">
-<title>ガチャ司令室 v0.66</title>
+<title>ガチャ司令室 v0.72</title>
 <style>
 :root{
  --bg:#fff8fd;--bg2:#f4fbff;--panel:#ffffff;--panel2:#fff2f8;--ink:#443c58;--muted:#7d748b;--line:#eaddea;
@@ -1845,7 +1845,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 }
 
 
-/* v0.66 tabs, tracking, data table */
+/* v0.72 tabs, tracking, data table */
 .nav{display:flex;grid-template-columns:none;overflow-x:auto;scrollbar-width:none;gap:6px;align-items:stretch}
 .nav::-webkit-scrollbar{display:none}
 .nav button{min-width:58px;flex:0 0 auto;line-height:1.25}
@@ -1867,7 +1867,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 .item .thumb.product-icon-thumb{font-size:22px}
 
 
-/* v0.66 fixes */
+/* v0.72 fixes */
 .choice-input-wrap{
  display:flex;
  flex-direction:column;
@@ -1973,6 +1973,15 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 }
 .dark .choice-input-chips button{background:var(--panel2)}
 
+
+/* v0.72 delete safety */
+.delete-action-summary{display:grid;gap:10px}
+.delete-action-target{border:1px solid var(--line);border-radius:16px;padding:12px;background:var(--panel2);font-weight:800}
+.delete-action-warning{border:1px solid rgba(255,122,122,.35);border-radius:16px;padding:12px;background:rgba(255,122,122,.08);color:var(--text)}
+.delete-action-list{display:grid;gap:6px;max-height:230px;overflow:auto}
+.delete-action-list .mini-row{border:1px solid var(--line);border-radius:12px;padding:8px;background:var(--card);font-size:12px;color:var(--muted)}
+.item.session-card-safe{cursor:default}
+
 </style>
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
@@ -1998,7 +2007,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 </div>
 <div class="app">
 <header class="top">
- <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.66</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
+ <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.72</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
  <div class="top-actions"><div class="bubble"><div id="clock" class="clock">--:--</div><div id="dateMode" class="small">判定中</div></div><button id="themeQuick" class="btn">🌙 ダーク</button></div>
 </header>
 <main>
@@ -2015,7 +2024,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 
 <section id="page-input" class="page"><div class="grid"><div>
  <div class="card"><div class="row between"><div><div class="kicker">quick observation</div><h2 class="title">状態をぽん</h2></div><div id="observeMascot" class="mascot-small"></div></div><div class="quick"><button onclick="pickStatus('🐜')">🐜<small>在庫ありを開始</small></button><button onclick="pickStatus('補充🐜')">補充🐜<small>補充・再開</small></button></div><div class="note" style="margin-top:10px">🍂・残少・まだありは、進行中カードから追加します。ここは基本「在庫あり開始」用です。</div><div data-cinna-strip></div></div>
- <div class="card"><h2 class="title">観測を追加</h2><div class="form-grid"><div><label>状態</label><select id="oStatus"><option>🐜</option><option>🍂</option><option>残少</option><option>満タン</option><option>まだあり</option><option>補充🐜</option><option>列切り</option><option>未確認</option></select></div><div><label>情報源</label><select id="oSource" onchange="autoObservationVisitType()"><option>もちぴさん現地</option><option>オプチャ</option><option>X通知</option><option>公式</option><option>店員確認</option><option>その他</option></select></div><div class="observe-mode-box"><label>行動記録への扱い</label><select id="oVisitType"><option value="現地">現地で見た</option><option value="情報だけ">情報だけ</option></select><div class="small">現地で見た＝ガチャ活日誌のルートに使います。情報だけ＝分析には使うけど、移動ルートには入れません。</div></div><div class="observation-flag-row"><div class="observation-flag-title">特殊フラグ</div><label class="anomaly-toggle clean"><input id="oBigStock" type="checkbox"><span>🏢 異様な在庫として見る</span></label><div class="small">たくさん積んでいたのに速く🍂した時用。通常ランクとは別に、需要補正として使います。</div></div><div class="picker-block"><div class="row between"><label>商品</label><span class="small">最近使った順＋検索</span></div><div id="oProductRecent" class="choice-chips"></div><input id="oProductSearch" placeholder="商品を検索。よっし/ペコなど別名もOK" oninput="renderProductChoices()"><select id="oProductSelect" onchange="document.getElementById('oProductText').value=''"></select><input id="oProductText" placeholder="候補にない商品を直接入力"></div><div class="picker-block"><div class="row between"><label>いまどこ？</label><span class="small">エリアを押すと店舗候補を絞ります</span></div><div id="oAreaChips" class="choice-chips area-chips"></div><input id="oArea" placeholder="池袋など" oninput="state.quickArea=this.value.trim();renderAreaChips();renderStoreChoices()"></div><div class="picker-block"><div class="row between"><label>店舗</label><span class="small">選んだエリア内を最近順＋50音順</span></div><div id="oStoreRecent" class="choice-chips"></div><input id="oStoreSearch" placeholder="店舗名を検索" oninput="renderStoreChoices()"><select id="oStoreSelect" onchange="document.getElementById('oStoreText').value=''"></select><input id="oStoreText" placeholder="候補にない店舗を直接入力。仮名でもOK"></div><div class="time-now-row"><div><label>時刻</label><input id="oDatetime" type="datetime-local"></div><button type="button" class="mini" onclick="setNowValue(\'oDatetime\')">現在時刻</button></div>${choiceInputHtml('oMachines','台数','',MACHINE_CHOICES)}${choiceInputHtml('oLimit','回数制限','',LIMIT_CHOICES)}${choiceInputHtml('oRequeue','並び直し','',REQUEUE_CHOICES)}</div><label>メモ</label><textarea id="oMemo"></textarea><div class="row between" style="margin-top:12px"><span class="small">現地では、状態→商品→いまどこ→店舗の順でぽんぽん保存できます。</span><button class="btn primary save-observation-btn" onclick="saveObservation()">ぽこんと保存</button></div></div>
+ <div class="card"><h2 class="title">観測を追加</h2><div class="form-grid"><div><label>状態</label><select id="oStatus"><option>🐜</option><option>🍂</option><option>残少</option><option>満タン</option><option>まだあり</option><option>補充🐜</option><option>列切り</option><option>未確認</option></select></div><div><label>情報源</label><select id="oSource" onchange="autoObservationVisitType()"><option>もちぴさん現地</option><option>オプチャ</option><option>X通知</option><option>公式</option><option>店員確認</option><option>その他</option></select></div><div class="observe-mode-box"><label>行動記録への扱い</label><select id="oVisitType"><option value="現地">現地で見た</option><option value="情報だけ">情報だけ</option></select><div class="small">現地で見た＝ガチャ活日誌のルートに使います。情報だけ＝分析には使うけど、移動ルートには入れません。</div></div><div class="observation-flag-row"><div class="observation-flag-title">特殊フラグ</div><label class="anomaly-toggle clean"><input id="oBigStock" type="checkbox"><span>🏢 異様な在庫として見る</span></label><div class="small">たくさん積んでいたのに速く🍂した時用。通常ランクとは別に、需要補正として使います。</div></div><div class="picker-block"><div class="row between"><label>商品</label><span class="small">最近使った順＋検索</span></div><div id="oProductRecent" class="choice-chips"></div><input id="oProductSearch" placeholder="商品を検索。よっし/ペコなど別名もOK" oninput="renderProductChoices()"><select id="oProductSelect" onchange="document.getElementById('oProductText').value=''"></select><input id="oProductText" placeholder="候補にない商品を直接入力"></div><div class="picker-block"><div class="row between"><label>いまどこ？</label><span class="small">エリアを押すと店舗候補を絞ります</span></div><div id="oAreaChips" class="choice-chips area-chips"></div><input id="oArea" placeholder="池袋など" oninput="state.quickArea=this.value.trim();renderAreaChips();renderStoreChoices()"></div><div class="picker-block"><div class="row between"><label>店舗</label><span class="small">選んだエリア内を最近順＋50音順</span></div><div id="oStoreRecent" class="choice-chips"></div><input id="oStoreSearch" placeholder="店舗名を検索" oninput="renderStoreChoices()"><select id="oStoreSelect" onchange="document.getElementById('oStoreText').value=''"></select><input id="oStoreText" placeholder="候補にない店舗を直接入力。仮名でもOK"></div><div class="time-now-row"><div><label>時刻</label><input id="oDatetime" type="datetime-local"></div><button type="button" class="mini" onclick="setNowValue('oDatetime')">現在時刻</button></div><div class="choice-input-wrap"><label>台数</label><div class="choice-input-chips"><button type="button" onclick="setChoiceInput('oMachines','1台',this)">1台</button><button type="button" onclick="setChoiceInput('oMachines','2台',this)">2台</button><button type="button" onclick="setChoiceInput('oMachines','3台',this)">3台</button><button type="button" onclick="setChoiceInput('oMachines','4台',this)">4台</button><button type="button" onclick="setChoiceInput('oMachines','5台',this)">5台</button><button type="button" onclick="setChoiceInput('oMachines','6台',this)">6台</button><button type="button" onclick="setChoiceInput('oMachines','8台',this)">8台</button><button type="button" onclick="setChoiceInput('oMachines','10台',this)">10台</button><button type="button" onclick="setChoiceInput('oMachines','11台',this)">11台</button><button type="button" onclick="setChoiceInput('oMachines','複数台',this)">複数台</button><button type="button" onclick="setChoiceInput('oMachines','数台',this)">数台</button><button type="button" onclick="setChoiceInput('oMachines','不明',this)">不明</button><button type="button" onclick="setChoiceInput('oMachines','ー',this)">ー</button></div><input id="oMachines" value="" placeholder="その他はここに入力"></div><div class="choice-input-wrap"><label>回数制限</label><div class="choice-input-chips"><button type="button" onclick="setChoiceInput('oLimit','なし',this)">なし</button><button type="button" onclick="setChoiceInput('oLimit','1回まで',this)">1回まで</button><button type="button" onclick="setChoiceInput('oLimit','2回まで',this)">2回まで</button><button type="button" onclick="setChoiceInput('oLimit','3回まで',this)">3回まで</button><button type="button" onclick="setChoiceInput('oLimit','5回まで',this)">5回まで</button><button type="button" onclick="setChoiceInput('oLimit','10回まで',this)">10回まで</button><button type="button" onclick="setChoiceInput('oLimit','不明',this)">不明</button><button type="button" onclick="setChoiceInput('oLimit','ー',this)">ー</button></div><input id="oLimit" value="" placeholder="その他はここに入力"></div><div class="choice-input-wrap"><label>並び直し</label><div class="choice-input-chips"><button type="button" onclick="setChoiceInput('oRequeue','あり',this)">あり</button><button type="button" onclick="setChoiceInput('oRequeue','不可',this)">不可</button><button type="button" onclick="setChoiceInput('oRequeue','並び直し不可',this)">並び直し不可</button><button type="button" onclick="setChoiceInput('oRequeue','制限あり',this)">制限あり</button><button type="button" onclick="setChoiceInput('oRequeue','不明',this)">不明</button><button type="button" onclick="setChoiceInput('oRequeue','ー',this)">ー</button></div><input id="oRequeue" value="" placeholder="その他はここに入力"></div></div><label>メモ</label><textarea id="oMemo"></textarea><div class="row between" style="margin-top:12px"><span class="small">現地では、状態→商品→いまどこ→店舗の順でぽんぽん保存できます。</span><button class="btn primary save-observation-btn" onclick="saveObservation()">ぽこんと保存</button></div></div>
  </div><div>
  <div class="card"><div class="row between"><div><div class="kicker">quick input</div><h2 class="title">入力だけの場所</h2></div><div class="mascot-small">✍️</div></div>
   <div class="note">ここは入力専用です。見るものは「追跡」「帳面」「商品」「店舗」「予定」「分析」に分けました。</div>
@@ -2091,7 +2100,15 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
     <div><label>げと写真（実物写真）</label><input id="newOwnedFiles" type="file" accept="image/*" multiple></div>
    </div>
    <h3>げと帳面に内訳も追加する場合</h3>
-   <div id="newItemRows">${productItemRowHtml(0)}</div>
+   <div id="newItemRows"><div class="product-item-add-row">
+  <div class="product-item-row-head"><b>内訳 1</b><span class="small">任意</span></div>
+  <div class="form-grid">
+   <div><label>キャラ・種類 <span class="small">任意</span></label><input class="newItemName" placeholder="例：しなもん" value=""></div>
+   <div><label>所持数</label><input class="newOwnedCount" type="number" min="0" value="1"></div>
+   <div><label>入手方法</label><select class="newMethod"><option selected>自引き</option><option>交換</option><option>購入</option><option>譲受</option><option>不明</option></select></div>
+   <div><label>内訳写真 <span class="small">任意</span></label><input class="newItemFiles" type="file" accept="image/*" multiple></div>
+  </div>
+ </div></div>
    <div class="row" style="margin-top:8px"><button type="button" class="mini" onclick="addProductItemRow()">内訳をもう1つ追加</button></div>
    <div class="product-add-help">内訳は複数入れられます。キャラ・種類を入れた行だけ、げと帳面と内訳写真に保存します。</div>
    <div id="newProductPreview" class="product-register-preview"><div class="thumb product-icon-thumb">🫧</div><div><b>商品名を入れるとここに保存対象が出ます</b><br><span class="small">画像は保存後に商品アイコンになります</span></div></div>
@@ -2315,6 +2332,7 @@ function normalizeV66Data(){
   if(!o.visitType)o.visitType=visitTypeFromSource(o.source||'');
   if(!o.kind)o.kind=statusKind(o.status||'',o.memo||'');
   if(!o.dayType&&o.ts)o.dayType=dayType(o.ts);
+  if(o.product)productMeta(canonical('product',o.product));
  });
  state.activityLogs||=[];
  state.activityLogs.forEach(a=>{a.gets||=[];a.spins||=[];a.observationIds||=[];a.routeLabel=routeLabelForActivity(a)});
@@ -2531,10 +2549,18 @@ async function submitAuth(e){
 }
 function isDeviceAuthed(){return localStorage.getItem(AUTH_KEY)==='ok'}
 function clearDeviceAuth(){
- if(!confirm('この端末の認証を解除しますか？\n記録データは消しません。'))return;
- localStorage.removeItem(AUTH_KEY);
- showAuthGate();
- const msg=document.getElementById('authError');if(msg)msg.textContent='この端末の認証を解除しました';
+ return openAppConfirm({
+  title:'端末認証を解除',
+  target:'この端末の認証を解除します',
+  warning:'記録データは消しません。次回この端末で開く時に合言葉入力が必要になります。',
+  confirmLabel:'認証を解除する',
+  action:()=>{
+   localStorage.removeItem(AUTH_KEY);
+   closeModal();
+   showAuthGate();
+   const msg=document.getElementById('authError');if(msg)msg.textContent='この端末の認証を解除しました';
+  }
+ })
 }
 
 function load(){try{state=JSON.parse(localStorage.getItem(KEY))||seed()}catch(e){state=seed()}state.weatherDemo||='rain';state.quickArea||='';state.images||={};Object.values(state.images).forEach(v=>{if(v&&typeof v==='object'){v.official||=[];v.owned||=[];v.itemOwned||={}}});state.productMeta||={};Object.values(state.productMeta).forEach(m=>{if(!m.rankMode)m.rankMode='auto';if(m.unitPrice==null)m.unitPrice=''});state.storeMeta||={};state.sessionFlags||={};state.migrations||={};state.productRecent||=[];state.activityLogs||=[];state.activeActivity||=null;if(state.activeActivity){state.activeActivity.gets||=[];state.activeActivity.spins||=[];state.activeActivity.observationIds||=[]}state.activityLogs.forEach(a=>{a.gets||=[];a.spins||=[];a.observationIds||=[]});state.lastJoyCommand||=null;state.weatherCache||=null;state.aliases||=JSON.parse(JSON.stringify(BASE_ALIASES));collectionView=state.collectionView||collectionView||'series';normalizeV66Data();applyMigration20260720();}
@@ -2562,7 +2588,7 @@ function sessionFlag(id){state.sessionFlags||={};state.sessionFlags[id]||={bigSt
 function isBigStockSession(s){return !!state.sessionFlags?.[s.id]?.bigStock}
 function bigStockPill(s){return isBigStockSession(s)?'<span class="big-stock-pill">🏢異様な在庫</span>':''}
 function anomalyButtonHtml(s,small=false){
- return `<button class="${small?'anomaly-button-inline':'anomaly'} ${isBigStockSession(s)?'active':''}" onclick="event.stopPropagation();toggleBigStockSession('${s.id}')">${isBigStockSession(s)?'🏢異様ON':'🏢異様な在庫'}</button>`
+ return `<button class="${small?'anomaly-button-inline':'anomaly'} ${isBigStockSession(s)?'active':''}" onclick="stopInlineEvent(event);toggleBigStockSession('${s.id}')">${isBigStockSession(s)?'🏢異様ON':'🏢異様な在庫'}</button>`
 }
 function toggleBigStockSession(id){
  const f=sessionFlag(id);
@@ -2890,7 +2916,7 @@ function renderDailyLogs(){
  }).join('');
 }
 function dayLogRow(o){
- return `<div class="day-log-row" id="logrow-${esc(o.id)}"><div class="row between"><div class="day-log-main">${timeOnly(o.ts)}｜${esc(o.area||'ー')}｜${storeLinkHtml(canonical('store',o.store))}<br>${productLinkHtml(canonical('product',o.product))}｜${esc(o.status)}</div><span class="day-protected-badge">${logProtectionLabel(o)}</span></div><div>${getBadgeHtmlForProductAt(o.product,o.ts)}</div><div class="day-log-meta">台数 ${esc(o.machines||'ー')}｜回数 ${esc(o.limit||'ー')}｜並び直し ${esc(o.requeue||'ー')}｜${esc(o.source||'ー')}<br>${esc(o.memo||'メモなし')}</div><div class="day-log-actions">${logLinkHtml(o.id,'ログ詳細')}<button class="mini" onclick="openObservationEditor('${esc(o.id)}')">編集</button><button class="mini danger" onclick="deleteObservation('${esc(o.id)}')">削除</button></div></div>`
+ return `<div class="day-log-row" id="logrow-${esc(o.id)}"><div class="row between"><div class="day-log-main">${timeOnly(o.ts)}｜${esc(o.area||'ー')}｜${storeLinkHtml(canonical('store',o.store))}<br>${productLinkHtml(canonical('product',o.product))}｜${esc(o.status)}</div><span class="day-protected-badge">${logProtectionLabel(o)}</span></div><div>${getBadgeHtmlForProductAt(o.product,o.ts)}</div><div class="day-log-meta">台数 ${esc(o.machines||'ー')}｜回数 ${esc(o.limit||'ー')}｜並び直し ${esc(o.requeue||'ー')}｜${esc(o.source||'ー')}<br>${esc(o.memo||'メモなし')}</div><div class="day-log-actions">${logLinkHtml(o.id,'ログ詳細')}<button type="button" class="mini" onclick="openObservationEditor('${esc(o.id)}')">編集</button><button type="button" class="mini danger" onclick="return deleteObservation('${esc(o.id)}')">削除</button></div></div>`
 }
 function observationById(id){return state.observations.find(o=>o.id===id)}
 function sessionForObservation(o){
@@ -2914,7 +2940,7 @@ function openObservationEditor(id){
    <div><label>並び直し</label><input id="editObsRequeue" value="${esc(o.requeue||'ー')}"></div>
   </div>
   <label>メモ</label><textarea id="editObsMemo">${esc(o.memo||'')}</textarea>
-  <div class="row between"><button class="btn danger" onclick="deleteObservation('${esc(o.id)}')">このログを削除</button><button class="btn primary" onclick="saveObservationEdit('${esc(o.id)}')">保存</button></div>
+  <div class="row between"><button type="button" class="btn danger" onclick="return deleteObservation('${esc(o.id)}')">このログを削除</button><button class="btn primary" onclick="saveObservationEdit('${esc(o.id)}')">保存</button></div>
   <div class="note">🏢異様な在庫は、セッションカード側の🏢ボタンで調整できます。</div>
  </div>`;
  document.getElementById('modal').classList.add('show');
@@ -2923,61 +2949,134 @@ function cleanupSessionFlags(){
  const valid=new Set(sessions().map(s=>s.id));
  Object.keys(state.sessionFlags||{}).forEach(k=>{if(!valid.has(k))delete state.sessionFlags[k]});
 }
-function saveObservation(){
- const product=document.getElementById('oProductText').value.trim()||document.getElementById('oProductSelect').value||document.getElementById('oProductSearch')?.value.trim(),store=document.getElementById('oStoreText').value.trim()||document.getElementById('oStoreSelect').value||document.getElementById('oStoreSearch')?.value.trim(),area=document.getElementById('oArea').value.trim()||'ー';
- if(!product){toast('商品を選ぶか入力してください');return}
- const tsValue=document.getElementById('oDatetime').value;
- if(!tsValue){toast('時刻を入れてください');return}
- const ts=new Date(tsValue).toISOString(),status=document.getElementById('oStatus').value,memo=document.getElementById('oMemo').value;
- state.quickArea=area==='ー'?'':area;
- const visitType=document.getElementById('oVisitType')?.value||visitTypeFromSource(document.getElementById('oSource').value);
- const obs={id:uid(),date:'追加',time:fmtTs(ts),area,storeOriginal:store||'ー',store:store||'ー',productOriginal:product,product,status,kind:statusKind(status,memo),source:document.getElementById('oSource').value,visitType,machines:document.getElementById('oMachines').value||'ー',limit:document.getElementById('oLimit').value||'ー',requeue:document.getElementById('oRequeue').value||'ー',memo,ts,dayType:dayType(ts),approx:/確認|報告遅れ|頃|約|以内/.test(status+memo),excluded:false};
- state.observations.push(obs);recordActivityObservation(obs);touchProduct(product,'観測');
- if(document.getElementById('oBigStock')?.checked&&['available','restock_start'].includes(obs.kind)){const sid=sessionId(canonical('product',obs.product),canonical('store',obs.store),dateKey(obs.ts),obs.id);const f=sessionFlag(sid);f.bigStock=true;f.memo='🐜入力時に異様な在庫として登録';document.getElementById('oBigStock').checked=false}
- save();renderAll();toast('ぽこん。観測を保存しました');celebrate('observe','ぽこん')
+function saveObservationEdit(id){
+ try{
+  const o=observationById(id); if(!o){toast('ログが見つかりません');return}
+  const tsValue=document.getElementById('editObsTs')?.value;
+  if(!tsValue){toast('時刻を入れてください');return}
+  const ts=new Date(tsValue).toISOString();
+  const status=document.getElementById('editObsStatus')?.value.trim()||'未確認';
+  const memo=document.getElementById('editObsMemo')?.value||'';
+  const store=document.getElementById('editObsStore')?.value.trim()||'ー';
+  const product=document.getElementById('editObsProduct')?.value.trim();
+  if(!product){toast('商品名を入れてください');return}
+  o.ts=ts;o.time=fmtTs(ts);o.date='編集';o.dayType=dayType(ts);
+  o.status=status;o.memo=memo;o.kind=statusKind(status,memo);
+  o.area=document.getElementById('editObsArea')?.value.trim()||'ー';
+  o.storeOriginal=store;o.store=BASE_ALIASES.store[store]||store;
+  o.productOriginal=product;o.product=BASE_ALIASES.product[product]||product;
+  o.source=document.getElementById('editObsSource')?.value.trim()||'ー';
+  o.visitType=document.getElementById('editObsVisitType')?.value||visitTypeFromSource(o.source);
+  o.machines=document.getElementById('editObsMachines')?.value.trim()||'ー';
+  o.limit=document.getElementById('editObsLimit')?.value.trim()||'ー';
+  o.requeue=document.getElementById('editObsRequeue')?.value.trim()||'ー';
+  o.approx=/確認|報告遅れ|頃|約|以内|疑い|最大/.test(status+memo);
+  o.excluded=status.includes('統計除外')||o.kind==='excluded';
+  ensureProductKnown(product,'観測編集');cleanupSessionFlags();normalizeV66Data();save();renderAll();document.getElementById('modal').classList.remove('show');toast('ログを保存しました');celebrate('save','保存ぴこん');
+ }catch(err){
+  console.error(err);
+  toast('ログ編集の保存で止まりました');
+ }
 }
 
-function deleteObservation(id){
- const o=observationById(id); if(!o){toast('ログが見つかりません');renderAll();return}
- openDeleteObservationConfirm(id);
+function saveObservation(){
+ try{
+  const productRaw=document.getElementById('oProductText')?.value.trim()||document.getElementById('oProductSelect')?.value||document.getElementById('oProductSearch')?.value.trim();
+  const store=document.getElementById('oStoreText')?.value.trim()||document.getElementById('oStoreSelect')?.value||document.getElementById('oStoreSearch')?.value.trim();
+  const area=document.getElementById('oArea')?.value.trim()||'ー';
+  if(!productRaw){toast('商品を選ぶか入力してください');return}
+  const product=ensureProductKnown(productRaw,'観測');
+  const tsValue=document.getElementById('oDatetime')?.value;
+  if(!tsValue){toast('時刻を入れてください');return}
+  const source=document.getElementById('oSource')?.value||'もちぴさん現地';
+  const status=document.getElementById('oStatus')?.value||'🐜';
+  const memo=document.getElementById('oMemo')?.value||'';
+  const ts=new Date(tsValue).toISOString();
+  state.quickArea=area==='ー'?'':area;
+  const visitType=document.getElementById('oVisitType')?.value||visitTypeFromSource(source);
+  const obs={id:uid(),date:'追加',time:fmtTs(ts),area,storeOriginal:store||'ー',store:store||'ー',productOriginal:productRaw,product,status,kind:statusKind(status,memo),source,visitType,machines:document.getElementById('oMachines')?.value||'ー',limit:document.getElementById('oLimit')?.value||'ー',requeue:document.getElementById('oRequeue')?.value||'ー',memo,ts,dayType:dayType(ts),approx:/確認|報告遅れ|頃|約|以内/.test(status+memo),excluded:false};
+  state.observations.push(obs);recordActivityObservation(obs);
+  if(document.getElementById('oBigStock')?.checked&&['available','restock_start'].includes(obs.kind)){const sid=sessionId(canonical('product',obs.product),canonical('store',obs.store),dateKey(obs.ts),obs.id);const f=sessionFlag(sid);f.bigStock=true;f.memo='🐜入力時に異様な在庫として登録';document.getElementById('oBigStock').checked=false}
+  save();renderAll();toast('ぽこん。観測を保存しました');celebrate('observe','ぽこん')
+ }catch(err){
+  console.error(err);
+  toast('保存で止まりました');
+ }
 }
-function openDeleteObservationConfirm(id){
- const o=observationById(id); if(!o){toast('ログが見つかりません');return}
- document.getElementById('modalTitle').textContent='ログ削除の確認';
- document.getElementById('modalBody').innerHTML=`<div class="delete-confirm-box">
-  <div class="delete-target">${fmtTs(o.ts)}｜${esc(o.area||'ー')}｜${esc(canonical('store',o.store))}<br>${esc(canonical('product',o.product))}｜${esc(o.status)}</div>
-  <div class="delete-warning">この1行だけ削除します。削除後は日別ログ・セッション・分析をすぐ再計算します。</div>
-  <div class="row between"><button class="btn" onclick="closeModal()">やめる</button><button class="btn danger" onclick="performDeleteObservation('${esc(id)}')">削除する</button></div>
+
+
+function modalBody(){return document.getElementById('modalBody')}
+function openAppConfirm({title='確認',target='',warning='',details=[],confirmLabel='実行する',cancelLabel='やめる',danger=true,action=null}={}){
+ window.pendingAppAction=typeof action==='function'?action:null;
+ document.getElementById('modalTitle').textContent=title;
+ const detailHtml=(details||[]).length?`<div class="delete-action-list">${details.slice(0,12).map(x=>`<div class="mini-row">${esc(x)}</div>`).join('')}${details.length>12?`<div class="note">ほか ${details.length-12}件</div>`:''}</div>`:'';
+ modalBody().innerHTML=`<div class="delete-action-summary">
+  ${target?`<div class="delete-action-target">${target}</div>`:''}
+  ${warning?`<div class="delete-action-warning">${warning}</div>`:''}
+  ${detailHtml}
+  <div class="row between"><button type="button" class="btn" onclick="cancelPendingAction()">${esc(cancelLabel)}</button><button type="button" class="btn ${danger?'danger':'primary'}" onclick="runPendingAction()">${esc(confirmLabel)}</button></div>
  </div>`;
  document.getElementById('modal').classList.add('show');
+ return false
 }
-function performDeleteObservation(id){
- const before=state.observations.length;
- state.observations=state.observations.filter(x=>x.id!==id);
- cleanupSessionFlags();save();renderAll();document.getElementById('modal').classList.remove('show');
- toast(before===state.observations.length?'対象ログは見つかりませんでした':'ログを削除しました');
+function cancelPendingAction(){window.pendingAppAction=null;closeModal();return false}
+function runPendingAction(){
+ const action=window.pendingAppAction;
+ window.pendingAppAction=null;
+ if(typeof action!=='function'){toast('実行する処理が見つかりません');return false}
+ try{action()}catch(err){console.error(err);toast('処理で止まりました')}
+ return false
 }
-function openBulkDeleteConfirm(ids){
- window.pendingBulkDeleteIds=ids;
- const rows=ids.map(id=>observationById(id)).filter(Boolean);
- document.getElementById('modalTitle').textContent='まとめて削除の確認';
- document.getElementById('modalBody').innerHTML=`<div class="delete-confirm-box">
-  <div class="delete-target">${rows.length}件の手入力ログを削除します</div>
-  <div class="delete-warning">昨日取り込みログと内蔵ログは候補に出していません。選んだ手入力ログだけ削除します。</div>
-  <div class="list">${rows.slice(0,8).map(o=>`<div class="item"><div class="thumb">🗑️</div><div><div class="item-title">${fmtTs(o.ts)}｜${esc(o.product)}｜${esc(o.status)}</div><div class="meta">${esc(o.store)}｜${esc(o.memo||'')}</div></div></div>`).join('')}${rows.length>8?`<div class="note">ほか ${rows.length-8}件</div>`:''}</div>
-  <div class="row between"><button class="btn" onclick="closeModal()">やめる</button><button class="btn danger" onclick="performBulkDelete()">削除する</button></div>
- </div>`;
- document.getElementById('modal').classList.add('show');
-}
-function performBulkDelete(){
- const ids=window.pendingBulkDeleteIds||[];
- if(!ids.length){toast('削除対象がありません');closeModal();return}
- const idset=new Set(ids);
+function removeIdsFromObservations(ids){
+ const idset=new Set(ids||[]);
  const before=state.observations.length;
  state.observations=state.observations.filter(o=>!idset.has(o.id));
+ cleanupSessionFlags();normalizeV66Data();save();renderAll();closeModal();
+ return before-state.observations.length
+}
+function deleteObservation(id){
+ stopInlineEvent(window.event);
+ const o=observationById(id); if(!o){toast('ログが見つかりません');renderAll();return false}
+ return openDeleteObservationConfirm(id)
+}
+
+function openDeleteObservationConfirm(id){
+ const o=observationById(id); if(!o){toast('ログが見つかりません');return false}
+ return openAppConfirm({
+  title:'ログ削除の確認',
+  target:`${fmtTs(o.ts)}｜${esc(o.area||'ー')}｜${esc(canonical('store',o.store))}<br>${esc(canonical('product',o.product))}｜${esc(o.status)}`,
+  warning:'この1行だけ削除します。削除後は日別ログ・セッション・分析をすぐ再計算します。',
+  confirmLabel:'削除する',
+  action:()=>{const n=removeIdsFromObservations([id]);toast(n?'ログを削除しました':'対象ログは見つかりませんでした')}
+ })
+}
+
+function performDeleteObservation(id){
+ const n=removeIdsFromObservations([id]);
+ toast(n?'ログを削除しました':'対象ログは見つかりませんでした');
+ return false
+}
+
+function openBulkDeleteConfirm(ids){
+ const rows=(ids||[]).map(id=>observationById(id)).filter(Boolean);
+ if(!rows.length){toast('削除対象がありません');return false}
+ return openAppConfirm({
+  title:'まとめて削除の確認',
+  target:`${rows.length}件の手入力ログを削除します`,
+  warning:'選んだ手入力ログだけ削除します。削除後はセッション・分析も再計算します。',
+  details:rows.map(o=>`${fmtTs(o.ts)}｜${o.product}｜${o.status}｜${o.store}`),
+  confirmLabel:'まとめて削除する',
+  action:()=>{const n=removeIdsFromObservations(rows.map(o=>o.id));toast(`${n}件削除しました`)}
+ })
+}
+
+function performBulkDelete(){
+ const ids=window.pendingBulkDeleteIds||[];
+ if(!ids.length){toast('削除対象がありません');closeModal();return false}
+ const n=removeIdsFromObservations(ids);
  window.pendingBulkDeleteIds=[];
- cleanupSessionFlags();save();renderAll();document.getElementById('modal').classList.remove('show');
- toast(`${before-state.observations.length}件削除しました`);
+ toast(`${n}件削除しました`);
+ return false
 }
 
 function openDataSummary(type){
@@ -3002,7 +3101,14 @@ function openDataSummary(type){
  document.getElementById('modal').classList.add('show');
 }
 
-function renderHome(){const ss=sessions(),active=ss.filter(s=>!s.closed),low=active.filter(s=>s.events.at(-1)?.kind==='low');let action='司令室は待機中です',reason='進行中の在庫情報はありません。新着観測か、時間帯別の候補を確認できます。';if(!state.observations.length){action='追跡したいガチャを登録しよう';reason='まだデータがありません。'}else if(low.length){action='残少情報あり。移動判断の時間です';reason=`${low[0].product}｜${low[0].store}で残少が最新です。`}else if(active.length){action='新しい在庫情報があります';reason=`${active.length}件の観測セッションが進行中です。`}document.getElementById('homeAction').textContent=action;document.getElementById('homeReason').textContent=reason;document.getElementById('modePill').textContent=dayType(new Date().toISOString());document.getElementById('activePill').textContent=`進行中 ${active.length}件`;document.getElementById('qualityPill').textContent=`正確ペア ${ss.filter(s=>exactDuration(s)!=null).length}件`;renderWeatherWidget();renderCinnaCommand();const rec=recommendNow();document.getElementById('recommendList').innerHTML=rec.length?rec.map((r,i)=>`<div class="item click" onclick="openStoreDetail('${encodeURIComponent(r.store)}')"><div class="thumb">${['🎀','⭐','🫧'][i]||i+1}</div><div><div class="row"><span class="pill yellow">${i+1}位</span><span class="pill blue">${r.confidence}</span></div><div class="item-title store-link-title">${esc(r.store)}</div><div class="row" style="margin-top:4px">${storeRolePill(r.store)}</div><div class="meta">${esc(r.area)}｜今の時間帯の🐜系 ${r.avail}件｜🍂系 ${r.sold}件${r.median?`｜中央値 ${r.median}分`:''}<br>タップで店舗詳細</div></div></div>`).join(''):'<div class="empty">この時間帯の店舗データはまだ少ないです</div>';document.getElementById('activeSessions').innerHTML=active.length?active.slice(0,8).map(sessionCard).join(''):'<div class="empty">進行中の観測はありません</div>';const g=growth();document.getElementById('stageLabel').textContent=g.req[g.idx].label;document.getElementById('growthBar').style.width=g.pct+'%';document.getElementById('growthNote').textContent=g.idx===g.req.length-1?'最大段階です。':`${g.next.label}まで、いちばん不足している条件基準で ${g.pct}%`;document.getElementById('stageGrid').innerHTML=g.req.map((x,i)=>`<div class="stage ${i<=g.idx?'active':''}"><span>${x.label.split(' ')[0]}</span>${x.label.split(' ')[1]||''}</div>`).join('');const labels={logs:'観測',closed:'完了セッション',products:'商品種類',stores:'店舗',areas:'エリア',exact:'正確ペア'};document.getElementById('growthChecklist').innerHTML=Object.keys(g.next.r).filter(k=>g.next.r[k]>0).map(k=>`<div class="check"><span>${labels[k]}</span><b>${g.vals[k]}/${g.next.r[k]}</b></div>`).join('');document.getElementById('mLogs').textContent=state.observations.length;document.getElementById('mSessions').textContent=ss.length;document.getElementById('mOwned').textContent=state.collection.length;document.getElementById('mStores').textContent=new Set(state.observations.map(o=>canonical('store',o.store)).filter(x=>x!=='ー')).size}
+function renderHome(){
+ const ss=sessions(),active=trackingSessions(),low=active.filter(s=>s.events.at(-1)?.kind==='low');
+ let action='司令室は待機中です',reason='進行中の在庫情報はありません。新着観測か、時間帯別の候補を確認できます。';
+ if(!state.observations.length){action='追跡したいガチャを登録しよう';reason='まだデータがありません。'}
+ else if(low.length){action='残少情報あり。移動判断の時間です';reason=`${low[0].product}｜${low[0].store}で残少が最新です。`}
+ else if(active.length){action='新しい在庫情報があります';reason=`${active.length}件の観測セッションが進行中です。`}
+ document.getElementById('homeAction').textContent=action;document.getElementById('homeReason').textContent=reason;document.getElementById('modePill').textContent=dayType(new Date().toISOString());document.getElementById('activePill').textContent=`進行中 ${active.length}件`;document.getElementById('qualityPill').textContent=`正確ペア ${ss.filter(s=>exactDuration(s)!=null).length}件`;renderWeatherWidget();renderCinnaCommand();const rec=recommendNow();document.getElementById('recommendList').innerHTML=rec.length?rec.map((r,i)=>`<div class="item click" onclick="openStoreDetail('${encodeURIComponent(r.store)}')"><div class="thumb">${['🎀','⭐','🫧'][i]||i+1}</div><div><div class="row"><span class="pill yellow">${i+1}位</span><span class="pill blue">${r.confidence}</span></div><div class="item-title store-link-title">${esc(r.store)}</div><div class="row" style="margin-top:4px">${storeRolePill(r.store)}</div><div class="meta">${esc(r.area)}｜今の時間帯の🐜系 ${r.avail}件｜🍂系 ${r.sold}件${r.median?`｜中央値 ${r.median}分`:''}<br>タップで店舗詳細</div></div></div>`).join(''):'<div class="empty">この時間帯の店舗データはまだ少ないです</div>';document.getElementById('activeSessions').innerHTML=active.length?active.slice(0,8).map(sessionCard).join(''):'<div class="empty">進行中の観測はありません</div>';const g=growth();document.getElementById('stageLabel').textContent=g.req[g.idx].label;document.getElementById('growthBar').style.width=g.pct+'%';document.getElementById('growthNote').textContent=g.idx===g.req.length-1?'最大段階です。':`${g.next.label}まで、いちばん不足している条件基準で ${g.pct}%`;document.getElementById('stageGrid').innerHTML=g.req.map((x,i)=>`<div class="stage ${i<=g.idx?'active':''}"><span>${x.label.split(' ')[0]}</span>${x.label.split(' ')[1]||''}</div>`).join('');const labels={logs:'観測',closed:'完了セッション',products:'商品種類',stores:'店舗',areas:'エリア',exact:'正確ペア'};document.getElementById('growthChecklist').innerHTML=Object.keys(g.next.r).filter(k=>g.next.r[k]>0).map(k=>`<div class="check"><span>${labels[k]}</span><b>${g.vals[k]}/${g.next.r[k]}</b></div>`).join('');document.getElementById('mLogs').textContent=state.observations.length;document.getElementById('mSessions').textContent=ss.length;document.getElementById('mOwned').textContent=state.collection.length;document.getElementById('mStores').textContent=new Set(state.observations.map(o=>canonical('store',o.store)).filter(x=>x!=='ー')).size
+}
 
 function localInputValue(ts=new Date()){
  const d=new Date(ts);
@@ -3067,7 +3173,7 @@ function openSession(id){
  const tracking=isTrackingSession(s);
  const stateLabel=s.expired?'当日終了・翌日に持ち越しなし':s.orphan?'確認のみ':sessionEffectiveClosed(s)?'完了':'進行中';
  document.getElementById('modalTitle').textContent=s.product;
- document.getElementById('modalBody').innerHTML=`<div class="note">${rankLineHtml(s.product)}${storeLinkHtml(s.store)}｜${esc(s.area)}｜${s.sessionDate||'日付不明'}｜${stateLabel}${exactDuration(s)!=null?`｜正確 ${exactDuration(s)}分`:'｜正確ペア対象外'}</div><div class="entity-links">${productLinkHtml(s.product,'商品詳細','link-chip')} ${storeLinkHtml(s.store,'店舗詳細','link-chip')} <button class="link-chip" onclick="openProductEditor('${encodeURIComponent(s.product)}')">商品を編集</button><button class="link-chip" onclick="openSessionEditModal('${s.id}')">情報を編集</button></div><div style="margin-top:8px">${getBadgeHtmlForSession(s)}</div><div class="session-actions" style="margin-top:10px">${tracking?`<button class="btn primary" onclick="openGetAddFromSession('${s.id}')">🎀げと追加</button><button class="leaf" onclick="openSoldoutModal('${s.id}')">🍂を入力</button><button class="low" onclick="openSessionStatusModal('${s.id}','残少')">残少を追加</button><button class="still" onclick="openSessionStatusModal('${s.id}','まだあり')">まだあり/在庫継続</button>`:`<span class="pill yellow">追跡中ではありません</span>`}${anomalyButtonHtml(s)}<button class="mini session-danger" onclick="deleteSession('${s.id}')">このセッションを削除</button></div><div class="note" style="margin-top:8px">${tracking?'未🍂の今日分だけ追跡操作できます。':'🍂済み・日またぎ・確認のみのため、追跡操作は出しません。'} 🏢異様な在庫は需要補正として使います。</div><div class="list" style="margin-top:12px">${s.events.map(sessionEventRowHtml).join('')}${s.expired?'<div class="note">このセッションは日付が変わったため、自動的に観測中から外しています。翌日の確認情報とはつなげません。</div>':''}</div>`;
+ document.getElementById('modalBody').innerHTML=`<div class="note">${rankLineHtml(s.product)}${storeLinkHtml(s.store)}｜${esc(s.area)}｜${s.sessionDate||'日付不明'}｜${stateLabel}${exactDuration(s)!=null?`｜正確 ${exactDuration(s)}分`:'｜正確ペア対象外'}</div><div class="entity-links">${productLinkHtml(s.product,'商品詳細','link-chip')} ${storeLinkHtml(s.store,'店舗詳細','link-chip')} <button type="button" class="link-chip" onclick="openProductEditor('${encodeURIComponent(s.product)}')">商品を編集</button><button type="button" class="link-chip" onclick="openSessionEditModal('${s.id}')">情報を編集</button></div><div style="margin-top:8px">${getBadgeHtmlForSession(s)}</div><div class="session-actions" style="margin-top:10px">${tracking?`<button type="button" class="btn primary" onclick="return openSessionAction(event,'${s.id}','get')">🎀げと追加</button><button type="button" class="leaf" onclick="return openSessionAction(event,'${s.id}','soldout')">🍂を入力</button><button type="button" class="low" onclick="return openSessionAction(event,'${s.id}','status','残少')">残少を追加</button><button type="button" class="still" onclick="return openSessionAction(event,'${s.id}','status','まだあり')">まだあり/在庫継続</button>`:`<span class="pill yellow">追跡中ではありません</span>`}${anomalyButtonHtml(s)}<button type="button" class="mini session-danger" onclick="return openSessionAction(event,'${s.id}','delete')">このセッションを削除</button></div><div class="note" style="margin-top:8px">${tracking?'未🍂の今日分だけ追跡操作できます。':'🍂済み・日またぎ・確認のみのため、追跡操作は出しません。'} 🏢異様な在庫は需要補正として使います。</div><div class="list" style="margin-top:12px">${s.events.map(sessionEventRowHtml).join('')}${s.expired?'<div class="note">このセッションは日付が変わったため、自動的に観測中から外しています。翌日の確認情報とはつなげません。</div>':''}</div>`;
  document.getElementById('modal').classList.add('show')
 }
 
@@ -3079,16 +3185,19 @@ function openGetAddFromSession(id){
  openGetAddModal(encodeURIComponent(s.product),{store:s.store,area:s.area,ts:last.ts||new Date().toISOString(),relatedSessionId:s.id,source:last.source||'もちぴさん現地'})
 }
 function deleteSession(id){
- const s=sessionById(id);
- if(!s){toast('セッションが見つかりません');return}
- const count=s.events.length;
- if(!confirm(`${s.product}｜${s.store} の観測セッションを削除しますか？\n関連する観測ログ ${count}件を削除します。\nげと帳面は消しません。`))return;
- const ids=new Set(s.events.map(e=>e.id));
- state.observations=state.observations.filter(o=>!ids.has(o.id));
- if(state.sessionFlags&&state.sessionFlags[id])delete state.sessionFlags[id];
- save();renderAll();closeModal();toast('観測セッションを削除しました');
+ stopInlineEvent(window.event);
+ const s=sessionById(id)||sessions().find(x=>x.id===id);
+ if(!s){toast('セッションが見つかりません');return false}
+ const details=s.events.map(e=>`${fmtTs(e.ts)}｜${e.status}｜${e.source||'ー'}｜${e.memo||''}`);
+ return openAppConfirm({
+  title:'観測セッション削除',
+  target:`${esc(s.product)}｜${esc(s.store)}<br>${esc(s.sessionDate||'日付不明')}｜関連ログ ${s.events.length}件`,
+  warning:'このセッションを構成する観測ログを削除します。げと帳面は消しません。削除後は追跡・完了履歴・分析・商品履歴を再計算します。',
+  details,
+  confirmLabel:'このセッションを削除する',
+  action:()=>{const n=removeIdsFromObservations(s.events.map(e=>e.id));toast(n?`観測セッションを削除しました（${n}件）`:'削除対象ログが見つかりませんでした')}
+ })
 }
-
 
 function openSessionStatusModal(id,defaultStatus='残少'){
  const s=sessions().find(x=>x.id===id);
@@ -3194,12 +3303,27 @@ function saveSessionEdit(id){
  if(ns)openSession(ns.id);else closeModal();
 }
 function sessionEventRowHtml(e){
- return `<div class="item"><div class="thumb">${esc(e.status)}</div><div><div class="item-title">${fmtTs(e.ts)} ${logLinkHtml(e.id,'ログ詳細')} <button class="mini" onclick="openObservationEditor('${esc(e.id)}')">編集</button></div><div class="meta">${esc(e.source)}｜台数 ${esc(e.machines)}｜回数 ${esc(e.limit)}｜並び直し ${esc(e.requeue)}<br>${esc(e.memo)}</div></div></div>`
+ return `<div class="item"><div class="thumb">${esc(e.status)}</div><div><div class="item-title">${fmtTs(e.ts)} ${logLinkHtml(e.id,'ログ詳細')} <button type="button" class="mini" onclick="openObservationEditor('${esc(e.id)}')">編集</button></div><div class="meta">${esc(e.source)}｜台数 ${esc(e.machines)}｜回数 ${esc(e.limit)}｜並び直し ${esc(e.requeue)}<br>${esc(e.memo)}</div></div></div>`
 }
+
+function stopInlineEvent(e){
+ try{if(e){e.preventDefault?.();e.stopPropagation?.();}}catch(_){}
+ return false
+}
+function openSessionAction(e,id,action,arg=''){
+ stopInlineEvent(e);
+ if(action==='get')openGetAddFromSession(id);
+ else if(action==='edit')openSessionEditModal(id);
+ else if(action==='soldout')openSoldoutModal(id);
+ else if(action==='status')openSessionStatusModal(id,arg);
+ else if(action==='delete')deleteSession(id);
+ return false
+}
+
 function sessionCard(s){
  const d=exactDuration(s),tracking=isTrackingSession(s),label=d!=null?`｜${d}分`:s.expired?'｜当日終了・日またぎなし':s.orphan?'｜確認のみ':sessionEffectiveClosed(s)?'｜完了':'｜進行中',icon=s.expired?'🌙':s.orphan?'🧾':sessionEffectiveClosed(s)?'🍂':'🫧';
- const quick=`<div class="session-actions">${tracking?`<button class="btn primary" onclick="event.stopPropagation();openGetAddFromSession('${s.id}')">🎀げと追加</button><button class="mini" onclick="event.stopPropagation();openSessionEditModal('${s.id}')">追跡情報を編集</button><button class="leaf" onclick="event.stopPropagation();openSoldoutModal('${s.id}')">🍂を入力</button><button class="low" onclick="event.stopPropagation();openSessionStatusModal('${s.id}','残少')">残少</button><button class="still" onclick="event.stopPropagation();openSessionStatusModal('${s.id}','まだあり')">まだあり/在庫継続</button>`:`<button class="mini" onclick="event.stopPropagation();openSessionEditModal('${s.id}')">情報編集</button><span class="pill yellow">追跡外</span>`}${anomalyButtonHtml(s)}<button class="mini session-danger" onclick="event.stopPropagation();deleteSession('${s.id}')">削除</button></div>`;
- return `<div class="item click ${s.expired?'session-expired':''}" onclick="openSession('${s.id}')"><div class="thumb product-icon-thumb">${productIconHtml(s.product,icon)}</div><div><div class="item-title">${productLinkHtml(s.product)} ${bigStockPill(s)}</div><div class="meta">${storeLinkHtml(s.store)}｜${esc(s.area)}｜${s.sessionDate||'日付不明'}${label}</div>${sessionAgeHtml(s)}<div>${getBadgeHtmlForSession(s)}</div><div class="timeline">${s.events.map(e=>`<span class="event ${s.expired?'day-stop':''}">${fmtTs(e.ts)} ${esc(e.status)}</span>`).join('')}${s.expired?'<span class="event day-stop">その日で自動終了</span>':''}</div>${quick}</div></div>`
+ const quick=`<div class="session-actions"><button type="button" class="mini" onclick="openSession('${s.id}')">詳細</button>${tracking?`<button type="button" class="btn primary" onclick="return openSessionAction(event,'${s.id}','get')">🎀げと追加</button><button type="button" class="mini" onclick="return openSessionAction(event,'${s.id}','edit')">追跡情報を編集</button><button type="button" class="leaf" onclick="return openSessionAction(event,'${s.id}','soldout')">🍂を入力</button><button type="button" class="low" onclick="return openSessionAction(event,'${s.id}','status','残少')">残少</button><button type="button" class="still" onclick="return openSessionAction(event,'${s.id}','status','まだあり')">まだあり/在庫継続</button>`:`<button type="button" class="mini" onclick="return openSessionAction(event,'${s.id}','edit')">情報編集</button><span class="pill yellow">追跡外</span>`}${anomalyButtonHtml(s)}<button type="button" class="mini session-danger" onclick="return openSessionAction(event,'${s.id}','delete')">削除</button></div>`;
+ return `<div class="item session-card-safe ${s.expired?'session-expired':''}"><div class="thumb product-icon-thumb">${productIconHtml(s.product,icon)}</div><div><div class="item-title">${productLinkHtml(s.product)} ${bigStockPill(s)}</div><div class="meta">${storeLinkHtml(s.store)}｜${esc(s.area)}｜${s.sessionDate||'日付不明'}${label}</div>${sessionAgeHtml(s)}<div>${getBadgeHtmlForSession(s)}</div><div class="timeline">${s.events.map(e=>`<span class="event ${s.expired?'day-stop':''}">${fmtTs(e.ts)} ${esc(e.status)}</span>`).join('')}${s.expired?'<span class="event day-stop">その日で自動終了</span>':''}</div>${quick}</div></div>`
 }
 
 function sessionStart(s){return s.events.find(e=>['available','restock_start'].includes(e.kind))||s.events[0]}
@@ -3231,6 +3355,18 @@ function storeSessionBoard(){
 
 function latestNameList(rows,type,field){
  const out=[];[...rows].sort((a,b)=>(b.ts||'').localeCompare(a.ts||'')).forEach(o=>{const v=canonical(type,o[field]);if(v&&v!=='ー'&&!out.includes(v))out.push(v)});return out
+}
+
+function ensureProductKnown(name,reason='登録'){
+ const series=canonical('product',String(name||'').trim());
+ if(!series||series==='ー')return '';
+ productMeta(series);
+ touchProduct(series,reason);
+ return series;
+}
+function clearProductFiltersForVisibility(){
+ const input=document.getElementById('newSeriesName');
+ if(input&&input.dataset.keepSearch!=='1')input.value='';
 }
 function allProductNames(){
  const set=new Set();
@@ -3366,8 +3502,6 @@ function renderObserve(){
 }
 
 function pickStatus(s){document.getElementById('oStatus').value=s;toast(s+'を選びました')}
-function saveObservation(){const product=document.getElementById('oProductText').value.trim()||document.getElementById('oProductSelect').value||document.getElementById('oProductSearch')?.value.trim(),store=document.getElementById('oStoreText').value.trim()||document.getElementById('oStoreSelect').value||document.getElementById('oStoreSearch')?.value.trim(),area=document.getElementById('oArea').value.trim()||'ー';if(!product){toast('商品を選ぶか入力してください');return}const ts=new Date(document.getElementById('oDatetime').value).toISOString(),status=document.getElementById('oStatus').value,memo=document.getElementById('oMemo').value;state.quickArea=area==='ー'?'':area;const obs={id:uid(),date:'追加',time:fmtTs(ts),area,storeOriginal:store||'ー',store:store||'ー',productOriginal:product,product,status,kind:statusKind(status,memo),source:document.getElementById('oSource').value,machines:document.getElementById('oMachines').value||'ー',limit:document.getElementById('oLimit').value||'ー',requeue:document.getElementById('oRequeue').value||'ー',memo,ts,dayType:dayType(ts),approx:/確認|報告遅れ|頃|約|以内/.test(status+memo),excluded:false};state.observations.push(obs);recordActivityObservation(obs);touchProduct(product,'観測');if(document.getElementById('oBigStock')?.checked&&['available','restock_start'].includes(obs.kind)){const sid=sessionId(canonical('product',obs.product),canonical('store',obs.store),dateKey(obs.ts),obs.id);const f=sessionFlag(sid);f.bigStock=true;f.memo='🐜入力時に異様な在庫として登録';document.getElementById('oBigStock').checked=false}save();renderAll();toast('ぽこん。観測を保存しました');celebrate('observe','ぽこん')}
-
 
 function coverImage(series){
  const imgs=state.images?.[series]||{};
@@ -3392,9 +3526,7 @@ const JP_HOLIDAYS={
  '2026-01-01':'元日','2026-01-12':'成人の日','2026-02-11':'建国記念の日','2026-02-23':'天皇誕生日','2026-03-20':'春分の日','2026-04-29':'昭和の日','2026-05-03':'憲法記念日','2026-05-04':'みどりの日','2026-05-05':'こどもの日','2026-05-06':'休日','2026-07-20':'海の日','2026-08-11':'山の日','2026-09-21':'敬老の日','2026-09-22':'休日','2026-09-23':'秋分の日','2026-10-12':'スポーツの日','2026-11-03':'文化の日','2026-11-23':'勤労感謝の日',
  '2027-01-01':'元日','2027-01-11':'成人の日','2027-02-11':'建国記念の日','2027-02-23':'天皇誕生日','2027-03-21':'春分の日','2027-03-22':'休日','2027-04-29':'昭和の日','2027-05-03':'憲法記念日','2027-05-04':'みどりの日','2027-05-05':'こどもの日','2027-07-19':'海の日','2027-08-11':'山の日','2027-09-20':'敬老の日','2027-09-23':'秋分の日','2027-10-11':'スポーツの日','2027-11-03':'文化の日','2027-11-23':'勤労感謝の日'
 };
-const FUN_DAYS={
- '01-10':'帳面見直しの日','02-22':'にゃんにゃんの日','03-03':'ちいさきもの点検の日','05-05':'こどもガチャ警戒日','07-11':'夏のしなもん記念日','08-08':'まるいものの日','10-10':'めじるし整頓の日','11-11':'棒状チャームの日','12-12':'年末ガチャ棚卸しの日'
-};
+const FUN_DAYS={};
 function ymd(year,month,day){return `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`}
 function md(month,day){return `${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`}
 function parseYen(v){
@@ -3504,10 +3636,10 @@ function renderReleaseCalendar(){
   const row=2+week-1;
   return `<button class="release-week-bar" style="grid-column:${startCol}/8;grid-row:${row};" onclick="openSeries('${encodeURIComponent(r.name)}')">${rankMiniHtml(r.name)}${esc(r.name)}｜第${week}週〜</button>`;
  }).join('');
- const summaryHtml=monthEvents.length?`<div class="calendar-month-summary"><h3>今月の祝日・記念日・発売予定</h3>${monthEvents.sort((a,b)=>a.day-b.day||a.type.localeCompare(b.type,'ja')).map(e=>`<div class="calendar-summary-item"><div class="calendar-summary-date">${month}/${e.day}(${wd[new Date(year,month-1,e.day).getDay()]})</div><div class="calendar-summary-body"><b>${e.icon} ${esc(e.type)}</b>${e.product?`<button class="mini" onclick="openSeries('${encodeURIComponent(e.product)}')">${rankMiniHtml(e.product)}${esc(e.title)}</button>`:esc(e.title)}</div></div>`).join('')}</div>`:'<div class="empty">今月の祝日・記念日・発売予定はまだありません</div>';
+ const summaryHtml=monthEvents.length?`<div class="calendar-month-summary"><h3>今月の祝日・発売予定</h3>${monthEvents.sort((a,b)=>a.day-b.day||a.type.localeCompare(b.type,'ja')).map(e=>`<div class="calendar-summary-item"><div class="calendar-summary-date">${month}/${e.day}(${wd[new Date(year,month-1,e.day).getDay()]})</div><div class="calendar-summary-body"><b>${e.icon} ${esc(e.type)}</b>${e.product?`<button class="mini" onclick="openSeries('${encodeURIComponent(e.product)}')">${rankMiniHtml(e.product)}${esc(e.title)}</button>`:esc(e.title)}</div></div>`).join('')}</div>`:'<div class="empty">今月の祝日・発売予定はまだありません</div>';
  const monthOnlyHtml=monthOnly.length?`<div class="release-undated-line"><b>${month}月発売・日付未定</b><br>${monthOnly.map(r=>`<button class="mini" onclick="openSeries('${encodeURIComponent(r.name)}')">${rankMiniHtml(r.name)}${esc(r.name)}</button>`).join(' ')}</div>`:'';
  const unknownHtml=unknown.length?`<div class="release-undated-line"><b>発売時期未定</b><br>${unknown.slice(0,20).map(r=>`<button class="mini" onclick="openSeries('${encodeURIComponent(r.name)}')">${rankMiniHtml(r.name)}${esc(r.name)}</button>`).join(' ')}</div>`:'';
- el.innerHTML=`<div class="release-controls"><button class="mini" onclick="setReleaseMonth(-1)">← 前月</button><strong>${year}年${month}月</strong><button class="mini" onclick="setReleaseMonth(1)">翌月 →</button></div>${topHtml}<div class="release-calendar">${heads}${cells}${bars}</div><div class="calendar-legend"><span>🌸 ピンク＝祝日/休日</span><span>🎀 記念日</span><span>🫧 発売予定</span><span>※祝日は2026・2027年対応</span></div>${summaryHtml}<div class="release-undated">${monthOnlyHtml}${unknownHtml||''}</div>`;
+ el.innerHTML=`<div class="release-controls"><button class="mini" onclick="setReleaseMonth(-1)">← 前月</button><strong>${year}年${month}月</strong><button class="mini" onclick="setReleaseMonth(1)">翌月 →</button></div>${topHtml}<div class="release-calendar">${heads}${cells}${bars}</div><div class="calendar-legend"><span>🌸 ピンク＝祝日/休日</span><span>🫧 発売予定</span><span>※祝日は2026・2027年対応</span></div>${summaryHtml}<div class="release-undated">${monthOnlyHtml}${unknownHtml||''}</div>`;
 }
 
 function productSessionHistory(series){
@@ -3554,14 +3686,14 @@ function productAllNames(name){const set=new Set([name]);Object.entries(state.al
 function openProductEditor(encoded){
  const name=decodeURIComponent(encoded),items=(collectionSeries()[name]||[]).map(x=>({...x})),meta=productMeta(name);
  const aliasText=meta.aliases||productAllNames(name).filter(x=>x!==name).join('、');
- document.getElementById('modalTitle').textContent='商品情報を編集';
+ document.getElementById('modalTitle').textContent='商品情報を編集：'+name;
  document.getElementById('modalBody').innerHTML=`<div class="note">現在ランク：${rankLineHtml(name)}<br>単価：${esc(unitPriceText(name))}。ランクは自動優先です。自動判定が未確定の時だけ、手動ランクを仮表示します。</div><div class="edit-panel"><input type="hidden" id="editOldProductName" value="${esc(name)}">
  <details class="product-subsection" open><summary>基本情報</summary><div class="sub-body"><div class="form-grid"><div><label>商品名・シリーズ名</label><input id="editProductName" value="${esc(name)}"></div><div><label>追跡状態</label><select id="editProductStatus"><option>未設定</option><option>ほしい</option><option>げと済み</option><option>交換待ち</option><option>分析用だけ</option><option>保留</option><option>追わない</option></select></div><div><label>ランク補助</label><select id="editProductRankMode" class="rank-mode-select"><option value="auto">自動優先</option><option value="manual">自動未確定時だけ手動を仮表示</option></select></div><div><label>手動補助ランク</label><select id="editProductRank"><option value="">未設定</option><option>S</option><option>A</option><option>B</option><option>C</option></select></div><div><label>欲しい数</label><input id="editProductWant" type="number" min="0" value="${esc(meta.want||'')}"></div><div>${priceChipsHtml('editProductUnitPrice',meta.unitPrice)}</div></div><label>別名・表記ゆれ</label><input id="editProductAliases" value="${esc(aliasText)}" placeholder="例：よっし、よっしー"><label>商品メモ <span class="small">任意</span></label><textarea id="editProductNote">${esc(meta.note||'')}</textarea></div></details>
  <details class="product-subsection" open><summary>発売予定</summary><div class="sub-body"><div class="note">全部任意です。週まで分からない時は月だけ、日付まで分かる時だけ発売日を入れてください。</div><div class="form-grid"><div><label>発売年</label><input id="editReleaseYear" type="number" min="2020" max="2035" value="${esc(meta.releaseYear||'')}" placeholder="2026"></div><div><label>発売月</label><input id="editReleaseMonth" type="number" min="1" max="12" value="${esc(meta.releaseMonth||'')}" placeholder="7"></div><div><label>発売週</label><select id="editReleaseWeek"><option value="">未設定</option><option value="1">第1週</option><option value="2">第2週</option><option value="3">第3週</option><option value="4">第4週</option><option value="5">第5週</option></select></div><div><label>発売日</label><input id="editReleaseDate" type="date" value="${esc(meta.releaseDate||'')}"></div><div><label>追跡終了目安</label><input id="editTrackEndDate" type="date" value="${esc(meta.trackEndDate||'')}"></div></div><label>発売メモ</label><input id="editReleaseMemo" value="${esc(meta.releaseMemo||'')}" placeholder="週不明、再販、補充ありそう等"></div></details>
  <details class="product-subsection" open><summary>画像</summary><div class="sub-body"><div class="product-image-rule">商品写真＝商品アイコン用。げと写真＝帳面・所持用です。編集画面からも直接追加できます。</div><div class="form-grid"><div><label>商品写真を追加</label><input id="editOfficialFiles" type="file" accept="image/*" multiple></div><div><label>げと写真を追加</label><input id="editOwnedFiles" type="file" accept="image/*" multiple></div></div><h3>現在の商品写真</h3><div class="gallery editor-gallery-compact">${gallery(name,'official',(state.images[name]||{}).official||[])}</div><h3>現在のげと写真</h3><div class="gallery editor-gallery-compact">${gallery(name,'owned',(state.images[name]||{}).owned||[])}</div><div class="small">下の「商品情報を保存」で画像も保存されます。</div></div></details>
  <details class="product-subsection" open><summary>所持内訳・内訳写真</summary><div class="sub-body"><div class="note">内訳写真はシリーズ詳細から各内訳ごとに追加できます。この画面では内訳名・所持数を編集します。</div><div id="editItems" class="edit-item-grid">${items.length?items.map((x,i)=>editItemRow(x,i)).join(''):'<div class="empty">所持内訳はまだありません。必要なら下のボタンで追加できます。</div>'}</div><div class="row"><button class="mini" onclick="addEditItemRow()">内訳を追加</button><button class="btn primary" onclick="openGetAddModal('${encodeURIComponent(name)}')">このシリーズのげと追加</button></div></div></details>
  <details class="product-subsection" open><summary>観測履歴</summary><div class="sub-body">${productSessionHistoryHtml(name,12)}</div></details>
- <details class="product-subsection"><summary>統合・削除</summary><div class="sub-body"><div class="row between"><button class="mini danger" onclick="deleteProductSettings('${encodeURIComponent(name)}')">設定をリセット（ログは残す）</button><button class="mini" onclick="openProductMergeModal('${encodeURIComponent(name)}')">他の商品へ統合</button><button class="mini" onclick="openSeries('${encodeURIComponent(name)}')">詳細に戻る</button><button class="btn primary" onclick="saveProductEditor()">商品情報を保存</button></div><div class="product-danger-zone"><h3>危険ゾーン</h3><div class="small">商品を完全削除すると、観測・げと帳面・写真・設定・関連するガチャ活内げと記録まで消えます。</div><button class="mini danger" style="margin-top:8px" onclick="deleteProductCompletely('${encodeURIComponent(name)}')">商品を完全削除</button></div></div></details>
+ <details class="product-subsection"><summary>統合・削除</summary><div class="sub-body"><div class="row between"><button class="mini danger" onclick="return deleteProductSettings('${encodeURIComponent(name)}')">設定をリセット（ログは残す）</button><button class="mini" onclick="openProductMergeModal('${encodeURIComponent(name)}')">他の商品へ統合</button><button class="mini" onclick="openSeries('${encodeURIComponent(name)}')">詳細に戻る</button><button class="btn primary" onclick="saveProductEditor()">商品情報を保存</button></div><div class="product-danger-zone"><h3>危険ゾーン</h3><div class="small">商品を完全削除すると、観測・げと帳面・写真・設定・関連するガチャ活内げと記録まで消えます。</div><button class="mini danger" style="margin-top:8px" onclick="return deleteProductCompletely('${encodeURIComponent(name)}')">商品を完全削除</button></div></div></details>
  <div class="row" style="margin-top:12px"><button class="btn primary" onclick="saveProductEditor()">商品情報を保存</button></div></div>`;
  document.getElementById('editProductStatus').value=meta.status||'未設定';
  document.getElementById('editProductRank').value=meta.manualRank||'';
@@ -3632,7 +3764,7 @@ function rankMiniHtml(series){
 }
 function rankActionHtml(series){
  const enc=encodeURIComponent(series);
- return `<div class="rank-action-row"><button onclick="event.stopPropagation();openRankExplain('${enc}')">なぜ？</button><button class="primary-rank" onclick="event.stopPropagation();setProductRankFixed('${enc}','S')">S仮</button><button onclick="event.stopPropagation();setProductRankFixed('${enc}','A')">A仮</button><button onclick="event.stopPropagation();setProductRankAuto('${enc}')">仮を消す</button></div>`
+ return `<div class="rank-action-row"><button onclick="stopInlineEvent(event);openRankExplain('${enc}')">なぜ？</button><button class="primary-rank" onclick="stopInlineEvent(event);setProductRankFixed('${enc}','S')">S仮</button><button onclick="stopInlineEvent(event);setProductRankFixed('${enc}','A')">A仮</button><button onclick="stopInlineEvent(event);setProductRankAuto('${enc}')">仮を消す</button></div>`
 }
 
 function rankLineHtml(series){
@@ -3752,7 +3884,7 @@ function renderCollection(){
   let viewGroups=groups.filter(g=>(g.series+' '+g.items.map(x=>x.item).join(' ')).toLowerCase().includes(q));
   if(sort==='owned')viewGroups.sort((a,b)=>b.owned-a.owned);
   else viewGroups.sort((a,b)=>a.series.localeCompare(b.series,'ja'));
-  html=viewGroups.length?viewGroups.map(g=>`<div class="collection-card" onclick="openSeries('${encodeURIComponent(g.series)}')"><div class="collection-cover">${thumbHtml(g.series,'🎁')}</div><div class="collection-title">${rankMiniHtml(g.series)}${esc(g.series)}</div><div class="collection-sub">${g.items.length}種類｜現在所持 下限${g.owned}個<br>${g.items.slice(0,3).map(x=>esc(x.item)).join('、')}${g.items.length>3?'、ほか':''}</div>${collectionTagsHtml(collectionGroupTags(g))}<div class="day-log-actions"><button class="mini" onclick="event.stopPropagation();openProductEditor('${encodeURIComponent(g.series)}')">編集</button></div></div>`).join(''):'<div class="empty">検索に合うシリーズはありません</div>';
+  html=viewGroups.length?viewGroups.map(g=>`<div class="collection-card" onclick="openSeries('${encodeURIComponent(g.series)}')"><div class="collection-cover">${thumbHtml(g.series,'🎁')}</div><div class="collection-title">${rankMiniHtml(g.series)}${esc(g.series)}</div><div class="collection-sub">${g.items.length}種類｜現在所持 下限${g.owned}個<br>${g.items.slice(0,3).map(x=>esc(x.item)).join('、')}${g.items.length>3?'、ほか':''}</div>${collectionTagsHtml(collectionGroupTags(g))}<div class="day-log-actions"><button class="mini" onclick="stopInlineEvent(event);openProductEditor('${encodeURIComponent(g.series)}')">編集</button></div></div>`).join(''):'<div class="empty">検索に合うシリーズはありません</div>';
  }
  document.getElementById('collectionList').innerHTML=html;
 }
@@ -3872,16 +4004,21 @@ function renderProducts(){
  const rawKey=(document.getElementById('newSeriesName')?.value||'').trim().toLowerCase();
  const key=rawKey.length>=2?rawKey:'';
  const allSeries=allSeriesNames();
- const series=recentSeriesNames(allSeries).filter(s=>!key||productSearchBlob(s).includes(key)||s.toLowerCase().includes(key));
+ const matchedSeries=allSeries.filter(s=>!key||productSearchBlob(s).includes(key)||s.toLowerCase().includes(key));
+ const series=matchedSeries;
  const reg=document.getElementById('newSeriesRecent');
  if(reg){
   const regSeries=recentSeriesNames(allSeries).filter(s=>!key||productSearchBlob(s).includes(key)||s.toLowerCase().includes(key)).slice(0,8);
   reg.innerHTML=regSeries.map(s=>`<button type="button" class="choice-chip added" onclick="setNewSeriesName('${encodeURIComponent(s)}')">${rankMiniHtml(s)}<span>${esc(s)}</span></button>`).join('')||(rawKey?'<span class="small">新しいシリーズとして追加できます</span>':'<span class="small">最近追加・編集したシリーズがここに出ます</span>');
  }
  const cs=collectionSeries();
- const detailSeries=[...(key?series:allSeries)].sort((a,b)=>a.localeCompare(b,'ja'));
+ const recentFirst=rankedProductNames().filter(s=>allSeries.includes(s));
+ const alpha=allSeries.sort((a,b)=>a.localeCompare(b,'ja'));
+ const ordered=[];
+ [...recentFirst,...alpha].forEach(s=>{if(s&&!ordered.includes(s))ordered.push(s)});
+ const detailSeries=(key?matchedSeries.sort((a,b)=>a.localeCompare(b,'ja')):ordered);
  const list=document.getElementById('seriesQuickList');
- if(list)list.innerHTML=detailSeries.slice(0,30).map(s=>`<div class="item click" onclick="openSeries('${encodeURIComponent(s)}')"><div class="thumb product-icon-thumb">${productIconHtml(s,'🫧')}</div><div><div class="item-title">${rankMiniHtml(s)}${esc(s)}</div><div class="meta">${esc(unitPriceText(s))}｜${(cs[s]||[]).length}種類${recentAddedProductNames().includes(s)?'｜最近追加/編集':''}${state.observations.some(o=>canonical('product',o.product)===s)?'｜観測あり':''}<br>${rankLineHtml(s)}</div></div><div class="actions"><button class="mini" onclick="event.stopPropagation();openProductEditor('${encodeURIComponent(s)}')">編集</button></div></div>`).join('')||(key?'<div class="empty">検索に合うシリーズはありません</div>':'');
+ if(list)list.innerHTML=detailSeries.slice(0,80).map(s=>`<div class="item click" onclick="openSeries('${encodeURIComponent(s)}')"><div class="thumb product-icon-thumb">${productIconHtml(s,'🫧')}</div><div><div class="item-title">${rankMiniHtml(s)}${esc(s)}</div><div class="meta">${esc(unitPriceText(s))}｜${(cs[s]||[]).length}種類${recentAddedProductNames().includes(s)?'｜最近追加/編集':''}${state.observations.some(o=>canonical('product',o.product)===s)?'｜観測あり':''}<br>${rankLineHtml(s)}</div></div><div class="actions"><button type="button" class="mini" onclick="stopInlineEvent(event);openProductEditor('${encodeURIComponent(s)}')">編集</button></div></div>`).join('')||(key?'<div class="empty">検索に合うシリーズはありません</div>':'');
  const preview=document.getElementById('newProductPreview');
  if(preview){
   const name=(document.getElementById('newSeriesName')?.value||'').trim();
@@ -4057,15 +4194,19 @@ async function quickAddCollectionItem(){
 }
 
 function openProductEditorFromInput(){
- const series=document.getElementById('newSeriesName').value.trim();
- if(!series){toast('シリーズ名を入れてください');return}
- if(!collectionSeries()[series]){
-  const item=document.getElementById('newItemName').value.trim()||'名称未設定';
-  state.collection.push({id:'quick-c-'+uid(),series,item,cumulative:0,cumulativeExact:true,owned:0,ownedExact:true,method:'未設定',status:'未設定',memo:document.getElementById('newProductMemo').value.trim()});
-  const pm=productMeta(series),price=parseInt(document.getElementById('newUnitPrice')?.value||'0',10)||0;if(price)pm.unitPrice=price;
-  touchProduct(series,'商品追加');save();
- }else{touchProduct(series,'商品編集');save();}
- renderAll();openProductEditor(encodeURIComponent(series));
+ try{
+  const series=(document.getElementById('newSeriesName')?.value||'').trim();
+  if(!series){toast('シリーズ名を入れてください');return}
+  const canon=ensureProductKnown(series,'商品編集');
+  const pm=productMeta(canon),price=parseYen(document.getElementById('newUnitPrice')?.value||'');
+  if(price)pm.unitPrice=price;
+  const memo=document.getElementById('newProductMemo')?.value?.trim();
+  if(memo&&!pm.note)pm.note=memo;
+  save();renderAll();openProductEditor(encodeURIComponent(canon));
+ }catch(err){
+  console.error(err);
+  toast('シリーズ編集を開く処理で止まりました');
+ }
 }
 
 function compress(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{const m=760,sc=Math.min(1,m/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=img.width*sc;c.height=img.height*sc;c.getContext('2d').drawImage(img,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.78))};img.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
@@ -4138,8 +4279,8 @@ function loadSeriesImages(){
  if(ow)ow.innerHTML=gallery(series,'owned',x.owned);
 }
 
-function gallery(series,type,arr){return arr.length?arr.map((src,i)=>`<div class="photo"><img src="${src}"><button onclick="removeImage('${encodeURIComponent(series)}','${type}',${i})">✕</button></div>`).join(''):'<span class="small">まだありません</span>'}
-function itemGallery(series,item){const box=((state.images[series]||{}).itemOwned||{}),arr=box[item]||[];return arr.length?`<div class="item-photo-grid">${arr.map((src,i)=>`<div class="photo"><img src="${src}"><button onclick="removeItemImage('${encodeURIComponent(series)}','${encodeURIComponent(item)}',${i})">✕</button></div>`).join('')}</div>`:'<div class="item-photo-note">まだありません</div>'}
+function gallery(series,type,arr){return arr.length?arr.map((src,i)=>`<div class="photo"><img src="${src}"><button onclick="return removeImage('${encodeURIComponent(series)}','${type}',${i})">✕</button></div>`).join(''):'<span class="small">まだありません</span>'}
+function itemGallery(series,item){const box=((state.images[series]||{}).itemOwned||{}),arr=box[item]||[];return arr.length?`<div class="item-photo-grid">${arr.map((src,i)=>`<div class="photo"><img src="${src}"><button onclick="return removeItemImage('${encodeURIComponent(series)}','${encodeURIComponent(item)}',${i})">✕</button></div>`).join('')}</div>`:'<div class="item-photo-note">まだありません</div>'}
 async function saveItemImages(seriesEnc,itemEnc,input){
  const series=decodeURIComponent(seriesEnc),item=decodeURIComponent(itemEnc),files=[...(input.files||[])];if(!files.length)return;
  state.images[series]||={official:[],owned:[],itemOwned:{}};state.images[series].official||=[];state.images[series].owned||=[];state.images[series].itemOwned||={};
@@ -4147,11 +4288,36 @@ async function saveItemImages(seriesEnc,itemEnc,input){
  save();if(document.getElementById('imageSeriesSelect'))loadSeriesImages();openSeries(seriesEnc);toast('所持内訳の写真を保存しました');celebrate('photo','写真ぴこん')
 }
 
-function removeItemImage(seriesEnc,itemEnc,i){const series=decodeURIComponent(seriesEnc),item=decodeURIComponent(itemEnc);const arr=(((state.images[series]||{}).itemOwned||{})[item]||[]);arr.splice(i,1);if(state.images[series]&&state.images[series].itemOwned)state.images[series].itemOwned[item]=arr;save();if(document.getElementById('imageSeriesSelect'))loadSeriesImages();openSeries(seriesEnc)}
-function removeImage(s,type,i){s=decodeURIComponent(s);state.images[s][type].splice(i,1);save();loadSeriesImages()}
+function removeItemImage(seriesEnc,itemEnc,i){
+ stopInlineEvent(window.event);
+ const series=decodeURIComponent(seriesEnc),item=decodeURIComponent(itemEnc);
+ const arr=(((state.images[series]||{}).itemOwned||{})[item]||[]);
+ if(!arr[i]){toast('画像が見つかりません');return false}
+ return openAppConfirm({
+  title:'内訳写真削除',
+  target:`${esc(series)}｜${esc(item)} ${i+1}枚目`,
+  warning:'この内訳写真を削除します。',
+  confirmLabel:'写真を削除する',
+  action:()=>{arr.splice(i,1);if(state.images[series]&&state.images[series].itemOwned)state.images[series].itemOwned[item]=arr;save();closeModal();toast('内訳写真を削除しました');openSeries(seriesEnc)}
+ })
+}
+
+function removeImage(s,type,i){
+ stopInlineEvent(window.event);
+ const series=decodeURIComponent(s);
+ const imgs=state.images?.[series]?.[type]||[];
+ if(!imgs[i]){toast('画像が見つかりません');return false}
+ return openAppConfirm({
+  title:'画像削除',
+  target:`${esc(series)}｜${type==='official'?'商品写真':'げと写真'} ${i+1}枚目`,
+  warning:'この画像を削除します。',
+  confirmLabel:'画像を削除する',
+  action:()=>{state.images[series][type].splice(i,1);save();closeModal();toast('画像を削除しました');openSeries(encodeURIComponent(series))}
+ })
+}
+
 function renderAliases(){const rows=[];for(const type of ['product','store'])for(const [a,b] of Object.entries(state.aliases[type]))rows.push([type,a,b,TENTATIVE_ALIASES.some(x=>x[0]===type&&x[1]===a)]);document.getElementById('aliasList').innerHTML=rows.map(r=>`<div class="alias-row"><span>${r[0]==='product'?'商品':'店舗'}：${esc(r[1])}</span><span>→</span><b>${esc(r[2])}</b><span class="pill ${r[3]?'yellow':'green'}">${r[3]?'暫定統合':'統合'}</span></div>`).join('')}
 function addAlias(){const t=document.getElementById('aliasType').value,a=document.getElementById('aliasFrom').value.trim(),b=document.getElementById('aliasTo').value.trim();if(!a||!b)return;state.aliases[t][a]=b;save();renderAll();toast('別名を追加しました')}
-function openSession(id){const s=sessions().find(x=>x.id===id);if(!s)return;const stateLabel=s.expired?'当日終了・翌日に持ち越しなし':s.orphan?'確認のみ':s.closed?'完了':'進行中';document.getElementById('modalTitle').textContent=s.product;document.getElementById('modalBody').innerHTML=`<div class="note">${rankLineHtml(s.product)}${esc(s.store)}｜${esc(s.area)}｜${s.sessionDate||'日付不明'}｜${stateLabel}${exactDuration(s)!=null?`｜正確 ${exactDuration(s)}分`:'｜正確ペア対象外'}</div><div class="row" style="margin-top:10px"><button class="mini" onclick="openProductEditor('${encodeURIComponent(s.product)}')">この商品を編集</button></div><div class="session-actions">${!s.closed?`<button class="leaf" onclick="openSoldoutModal('${s.id}')">🍂を入力</button><button class="low" onclick="openSessionStatusModal('${s.id}','残少')">残少を追加</button><button class="still" onclick="openSessionStatusModal('${s.id}','まだあり')">まだあり/在庫継続</button>`:''}<button class="anomaly ${isBigStockSession(s)?'active':''}" onclick="toggleBigStockSession('${s.id}');document.getElementById('modal').classList.remove('show')">${isBigStockSession(s)?'🏢異様ON':'🏢異様な在庫'}</button></div><div class="note" style="margin-top:8px">🏢をONにすると、商品ランクの通常集計からは別枠にして、店舗の在庫力情報として残します。</div><div class="list" style="margin-top:12px">${s.events.map(e=>`<div class="item"><div class="thumb">${esc(e.status)}</div><div><div class="item-title">${fmtTs(e.ts)}</div><div class="meta">${esc(e.source)}｜台数 ${esc(e.machines)}｜回数 ${esc(e.limit)}｜並び直し ${esc(e.requeue)}<br>${esc(e.memo)}</div></div></div>`).join('')}${s.expired?'<div class="note">このセッションは日付が変わったため、自動的に観測中から外しています。翌日の確認情報とはつなげません。</div>':''}</div>`;document.getElementById('modal').classList.add('show')}
 
 function collectionExtraHtml(x){
  const rows=[];
@@ -4183,7 +4349,7 @@ function openCollectionItem(seriesEnc,itemEnc){
  <h3>メモ</h3><div class="note">${esc(x.memo||'メモなし')}</div>
  <h3>この子の写真</h3>
  <div class="item-photo-box"><div class="item-photo-head"><strong>${esc(item)} の写真</strong><input class="item-photo-input" type="file" accept="image/*" multiple onchange="saveItemImages('${encodeURIComponent(series)}','${encodeURIComponent(item)}',this)"></div>${itemGallery(series,item)}</div>
- <div class="row between" style="margin-top:14px"><button class="mini danger" onclick="${x.id?`deleteCollectionRecord('${encodeURIComponent(x.id)}')`:'toast(\'この記録はデータ編集室から削除できます\')'}">このげと記録を削除</button><button class="mini" onclick="openSeries('${encodeURIComponent(series)}')">シリーズ全体を見る</button><button class="btn primary" onclick="openProductEditor('${encodeURIComponent(series)}')">このシリーズを編集</button></div>`;
+ <div class="row between" style="margin-top:14px"><button class="mini danger" onclick="${x.id?`return deleteCollectionRecord('${encodeURIComponent(x.id)}')`:'toast(\'この記録はデータ編集室から削除できます\')'}">このげと記録を削除</button><button class="mini" onclick="openSeries('${encodeURIComponent(series)}')">シリーズ全体を見る</button><button class="btn primary" onclick="openProductEditor('${encodeURIComponent(series)}')">このシリーズを編集</button></div>`;
  document.getElementById('modal').classList.add('show')
 }
 function openSeries(encoded){
@@ -4246,7 +4412,7 @@ function renderDataProducts(el){
    <div><label>発売日</label><input id="dpReleaseDate-${enc}" type="date" value="${esc(m.releaseDate||'')}"></div>
    <div style="grid-column:1/-1"><label>商品メモ</label><textarea id="dpNote-${enc}">${esc(m.note||'')}</textarea></div>
   </div>
-  <div class="data-edit-actions"><button class="mini" onclick="openProductEditor('${enc}')">本編集</button><button class="mini" onclick="openProductMergeModal('${enc}')">統合</button><button class="mini danger" onclick="deleteProductSettings('${enc}')">設定リセット</button><button class="mini danger" onclick="deleteProductCompletely('${enc}')">完全削除</button><button class="btn primary" onclick="saveDataProduct('${enc}')">保存</button></div>
+  <div class="data-edit-actions"><button class="mini" onclick="openProductEditor('${enc}')">本編集</button><button class="mini" onclick="openProductMergeModal('${enc}')">統合</button><button class="mini danger" onclick="return deleteProductSettings('${enc}')">設定リセット</button><button class="mini danger" onclick="return deleteProductCompletely('${enc}')">完全削除</button><button class="btn primary" onclick="saveDataProduct('${enc}')">保存</button></div>
  </div></details>`}).join('')||'<div class="empty">商品データはまだありません</div>'}</div>`;
  names.forEach(name=>{const enc=encodeURIComponent(name),m=productMeta(name);const st=document.getElementById(`dpStatus-${enc}`),rk=document.getElementById(`dpRank-${enc}`),mode=document.getElementById(`dpRankMode-${enc}`);if(st)st.value=m.status||'未設定';if(rk)rk.value=m.manualRank||'';if(mode)mode.value=m.rankMode||'auto';const rw=document.getElementById(`dpReleaseWeek-${enc}`);if(rw)rw.value=m.releaseWeek||''});
 }
@@ -4362,19 +4528,33 @@ function pickMergeTarget(targetEnc,sourceEnc){
 }
 function saveProductMerge(sourceEnc){
  const source=decodeURIComponent(sourceEnc);
- const target=document.getElementById('mergeProductTarget')?.value.trim();
+ const target=document.getElementById('mergeTarget')?.value.trim();
  if(!target){toast('統合先の商品名を入れてください');return}
  if(target===source){toast('同じ商品名です');return}
- if(!confirm(`${source} を ${target} に統合しますか？\n観測・げと帳面・写真・設定をまとめます。`))return;
- replaceProductEverywhere(source,target);
- save();renderAll();toast('商品を統合しました');openSeries(encodeURIComponent(target));
+ return openAppConfirm({
+  title:'商品を統合',
+  target:`${esc(source)} → ${esc(target)}`,
+  warning:'観測・げと帳面・写真・設定を統合先へまとめます。統合後、元の商品名は別名として扱います。',
+  confirmLabel:'統合する',
+  danger:false,
+  action:()=>{replaceProductEverywhere(source,target);save();renderAll();closeModal();toast('商品を統合しました');openSeries(encodeURIComponent(target))}
+ })
 }
+
 function deleteProductSettings(enc){
+ stopInlineEvent(window.event);
  const name=decodeURIComponent(enc);
- if(!confirm(`${name} の商品設定をリセットしますか？\n消えるもの：ランク固定・単価・追跡状態・欲しい数・別名・商品メモ\n残るもの：観測ログ・げと帳面・写真・ガチャ活日誌`))return;
- delete state.productMeta[name];
- Object.keys(state.aliases.product||{}).forEach(k=>{if(k===name||state.aliases.product[k]===name)delete state.aliases.product[k]});
- save();renderAll();closeModal();toast('商品設定をリセットしました');
+ return openAppConfirm({
+  title:'商品設定リセット',
+  target:esc(name),
+  warning:'消えるもの：ランク固定・単価・追跡状態・欲しい数・別名・商品メモ。残るもの：観測ログ・げと帳面・写真・ガチャ活日誌。',
+  confirmLabel:'設定だけリセットする',
+  action:()=>{
+   delete state.productMeta[name];
+   Object.keys(state.aliases.product||{}).forEach(k=>{if(k===name||state.aliases.product[k]===name)delete state.aliases.product[k]});
+   save();renderAll();closeModal();toast('商品設定をリセットしました');
+  }
+ })
 }
 
 function normalizedNameForMatch(v){
@@ -4403,9 +4583,10 @@ function countImagesForProductNames(names){
  return n
 }
 function deleteProductCompletely(enc){
+ stopInlineEvent(window.event);
  const name=decodeURIComponent(enc),names=productDeleteNameSet(name);
- const obsCount=state.observations.filter(o=>matchesDeleteProduct(o.product,names)||matchesDeleteProduct(o.productOriginal,names)).length;
- const colCount=state.collection.filter(c=>matchesDeleteProduct(c.series,names)).length;
+ const obs=state.observations.filter(o=>matchesDeleteProduct(o.product,names)||matchesDeleteProduct(o.productOriginal,names));
+ const col=state.collection.filter(c=>matchesDeleteProduct(c.series,names));
  const imgCount=countImagesForProductNames(names);
  let actCount=0;
  const countActivity=a=>{
@@ -4414,26 +4595,32 @@ function deleteProductCompletely(enc){
   actCount+=(a.spins||[]).filter(g=>matchesDeleteProduct(g.series||g.product,names)).length;
  };
  countActivity(state.activeActivity);(state.activityLogs||[]).forEach(countActivity);
- if(!confirm(`${name} を完全削除しますか？\n\n観測ログ：${obsCount}件\nげと帳面：${colCount}件\n画像：${imgCount}件\n日誌内記録：${actCount}件\n\nこの操作は戻せません。先にバックアップ保存推奨です。`))return;
- const word=prompt('完全削除するには「削除」と入力してください');
- if(word!=='削除'){toast('完全削除をキャンセルしました');return}
- state.observations=state.observations.filter(o=>!(matchesDeleteProduct(o.product,names)||matchesDeleteProduct(o.productOriginal,names)));
- state.collection=state.collection.filter(c=>!matchesDeleteProduct(c.series,names));
- [...names].forEach(n=>{delete state.productMeta[n];delete state.images[n]});
- Object.keys(state.productMeta||{}).forEach(k=>{if(matchesDeleteProduct(k,names))delete state.productMeta[k]});
- Object.keys(state.images||{}).forEach(k=>{if(matchesDeleteProduct(k,names))delete state.images[k]});
- Object.keys(state.aliases.product||{}).forEach(k=>{if(names.has(k)||names.has(state.aliases.product[k])||names.has(canonical('product',k))||names.has(canonical('product',state.aliases.product[k])))delete state.aliases.product[k]});
- const filterActivity=a=>{
-  if(!a)return;
-  a.gets=(a.gets||[]).filter(g=>!matchesDeleteProduct(g.series,names));
-  a.spins=(a.spins||[]).filter(g=>!matchesDeleteProduct(g.series||g.product,names));
- };
- filterActivity(state.activeActivity);
- (state.activityLogs||[]).forEach(filterActivity);
- state.productRecent=(state.productRecent||[]).filter(x=>!matchesDeleteProduct(typeof x==='string'?x:x.name,names));
- cleanupSessionFlags();save();renderAll();closeModal();
- const still=allProductNames().filter(n=>matchesDeleteProduct(n,names));
- if(still.length){toast(`一部が残っています：${still.slice(0,2).join('、')}`)}else{toast('商品を完全削除しました')}
+ return openAppConfirm({
+  title:'商品を完全削除',
+  target:`${esc(name)}<br>観測ログ ${obs.length}件｜げと帳面 ${col.length}件｜画像 ${imgCount}件｜日誌内記録 ${actCount}件`,
+  warning:'この商品に関わる観測・げと帳面・画像・商品設定・日誌内のげと/追加回数・最近履歴・別名を削除します。元に戻せません。',
+  details:[...obs.slice(0,6).map(o=>`観測 ${fmtTs(o.ts)}｜${o.store}｜${o.status}`),...col.slice(0,6).map(c=>`帳面 ${c.series}｜${c.item}`)],
+  confirmLabel:'完全削除する',
+  action:()=>{
+   state.observations=state.observations.filter(o=>!(matchesDeleteProduct(o.product,names)||matchesDeleteProduct(o.productOriginal,names)));
+   state.collection=state.collection.filter(c=>!matchesDeleteProduct(c.series,names));
+   [...names].forEach(n=>{delete state.productMeta[n];delete state.images[n]});
+   Object.keys(state.productMeta||{}).forEach(k=>{if(matchesDeleteProduct(k,names))delete state.productMeta[k]});
+   Object.keys(state.images||{}).forEach(k=>{if(matchesDeleteProduct(k,names))delete state.images[k]});
+   Object.keys(state.aliases.product||{}).forEach(k=>{if(names.has(k)||names.has(state.aliases.product[k])||names.has(canonical('product',k))||names.has(canonical('product',state.aliases.product[k])))delete state.aliases.product[k]});
+   const filterActivity=a=>{
+    if(!a)return;
+    a.gets=(a.gets||[]).filter(g=>!matchesDeleteProduct(g.series,names));
+    a.spins=(a.spins||[]).filter(g=>!matchesDeleteProduct(g.series||g.product,names));
+   };
+   filterActivity(state.activeActivity);
+   (state.activityLogs||[]).forEach(filterActivity);
+   state.productRecent=(state.productRecent||[]).filter(x=>!matchesDeleteProduct(typeof x==='string'?x:x.name,names));
+   cleanupSessionFlags();normalizeV66Data();save();renderAll();closeModal();
+   const still=allProductNames().filter(n=>matchesDeleteProduct(n,names));
+   toast(still.length?`一部が残っています：${still.slice(0,2).join('、')}`:'商品を完全削除しました');
+  }
+ })
 }
 
 function renderDataStores(el){
@@ -4466,7 +4653,7 @@ function renderDataCollection(el){
    <div><label>情報源</label><input id="dcSource-${enc}" value="${esc(c.source||'')}"></div>
    <div style="grid-column:1/-1"><label>メモ</label><textarea id="dcMemo-${enc}">${esc(c.memo||'')}</textarea></div>
   </div>
-  <div class="data-edit-actions"><button class="mini" onclick="openCollectionItem('${encodeURIComponent(c.series)}','${encodeURIComponent(c.item)}')">詳細</button><button class="mini danger" onclick="deleteCollectionRecord('${enc}')">削除</button><button class="btn primary" onclick="saveDataCollection('${enc}')">保存</button></div>
+  <div class="data-edit-actions"><button class="mini" onclick="openCollectionItem('${encodeURIComponent(c.series)}','${encodeURIComponent(c.item)}')">詳細</button><button class="mini danger" onclick="return deleteCollectionRecord('${enc}')">削除</button><button class="btn primary" onclick="saveDataCollection('${enc}')">保存</button></div>
  </div></details>`}).join('')||'<div class="empty">げと帳面データはまだありません</div>'}</div>`;
 }
 function saveDataCollection(enc){
@@ -4492,15 +4679,21 @@ function saveDataCollection(enc){
  touchProduct(c.series,'帳面編集');save();renderAll();dataEditTab='collection';renderDataEditor();toast('げと帳面を保存しました');celebrate('get','げと帳面ぴこん');
 }
 function deleteCollectionRecord(enc){
+ stopInlineEvent(window.event);
  const id=decodeURIComponent(enc),c=state.collection.find(x=>(x.id||'')===id);
- if(!c){toast('対象が見つかりません');return}
- if(!confirm(`${c.series}｜${c.item} をげと帳面から削除しますか？`))return;
- state.collection=state.collection.filter(x=>(x.id||'')!==id);
- save();renderAll();dataEditTab='collection';renderDataEditor();toast('げと記録を削除しました');
+ if(!c){toast('対象が見つかりません');return false}
+ return openAppConfirm({
+  title:'げと記録削除',
+  target:`${esc(c.series)}｜${esc(c.item)}`,
+  warning:'この1件をげと帳面から削除します。観測ログは消しません。',
+  confirmLabel:'げと記録を削除する',
+  action:()=>{state.collection=state.collection.filter(x=>(x.id||'')!==id);save();renderAll();dataEditTab='collection';renderDataEditor();closeModal();toast('げと記録を削除しました')}
+ })
 }
+
 function renderDataLogs(el){
  const rows=[...state.observations].sort((a,b)=>(b.ts||'').localeCompare(a.ts||'')).slice(0,30);
- el.innerHTML=`<div class="note">観測ログだけは時系列が大事なので、新しい順です。直近30件をコンパクトに表示します。</div>${dataEditToolbar('直近ログ '+rows.length+'件')}<div class="data-edit-list">${rows.map(o=>`<details class="data-edit-row compact"><summary><div class="data-edit-summary-main"><div class="data-edit-summary-title">${fmtTs(o.ts)}｜${productLinkHtml(canonical('product',o.product))}</div><div class="data-edit-summary-meta">${esc(o.area||'ー')}｜${storeLinkHtml(canonical('store',o.store))}｜${esc(o.status)}｜${esc(o.source||'ー')}</div></div><span class="day-protected-badge">${logProtectionLabel(o)}</span></summary><div class="data-edit-body"><div>${getBadgeHtmlForProductAt(o.product,o.ts)}</div><div class="small">台数 ${esc(o.machines||'ー')}｜回数 ${esc(o.limit||'ー')}｜並び直し ${esc(o.requeue||'ー')}<br>${esc(o.memo||'メモなし')}</div><div class="data-edit-actions"><button class="mini" onclick="openObservationEditor('${esc(o.id)}')">編集</button><button class="mini danger" onclick="deleteObservation('${esc(o.id)}')">削除</button></div></div></details>`).join('')||'<div class="empty">観測ログはまだありません</div>'}</div>`;
+ el.innerHTML=`<div class="note">観測ログだけは時系列が大事なので、新しい順です。直近30件をコンパクトに表示します。</div>${dataEditToolbar('直近ログ '+rows.length+'件')}<div class="data-edit-list">${rows.map(o=>`<details class="data-edit-row compact"><summary><div class="data-edit-summary-main"><div class="data-edit-summary-title">${fmtTs(o.ts)}｜${productLinkHtml(canonical('product',o.product))}</div><div class="data-edit-summary-meta">${esc(o.area||'ー')}｜${storeLinkHtml(canonical('store',o.store))}｜${esc(o.status)}｜${esc(o.source||'ー')}</div></div><span class="day-protected-badge">${logProtectionLabel(o)}</span></summary><div class="data-edit-body"><div>${getBadgeHtmlForProductAt(o.product,o.ts)}</div><div class="small">台数 ${esc(o.machines||'ー')}｜回数 ${esc(o.limit||'ー')}｜並び直し ${esc(o.requeue||'ー')}<br>${esc(o.memo||'メモなし')}</div><div class="data-edit-actions"><button type="button" class="mini" onclick="openObservationEditor('${esc(o.id)}')">編集</button><button type="button" class="mini danger" onclick="return deleteObservation('${esc(o.id)}')">削除</button></div></div></details>`).join('')||'<div class="empty">観測ログはまだありません</div>'}</div>`;
 }
 function weatherSnapshot(){
  const rows=demoWeatherRows(),w=weatherDecision(rows),r=rows[0]||{};
@@ -4664,9 +4857,18 @@ function saveActivityLogEdit(id){
 }
 
 function deleteActivityLog(id){
- state.activityLogs=(state.activityLogs||[]).filter(x=>x.id!==id);
- save();renderAll();toast('ガチャ活ログを削除しました');
+ stopInlineEvent(window.event);
+ const log=(state.activityLogs||[]).find(x=>x.id===id);
+ if(!log){toast('ガチャ活ログが見つかりません');return false}
+ return openAppConfirm({
+  title:'ガチャ活ログ削除',
+  target:`${dateLabel(log.startTs)}｜${esc(log.routeLabel||routeLabelForActivity(log))}`,
+  warning:'このガチャ活日誌だけ削除します。観測ログとげと帳面は消しません。',
+  confirmLabel:'日誌を削除する',
+  action:()=>{state.activityLogs=(state.activityLogs||[]).filter(x=>x.id!==id);save();renderAll();closeModal();toast('ガチャ活ログを削除しました')}
+ })
 }
+
 function activitySummaryCards(logs){
  const totalMin=logs.reduce((a,x)=>a+activityDurationMinutes(x),0);
  const totalSpent=logs.reduce((a,x)=>a+(x.spent||0),0);
@@ -4699,7 +4901,7 @@ function renderActivity(){
   const getHtml=activityGetsLinksHtml(gets);
   const extraCount=spins.reduce((a,g)=>a+(g.count||0),0);
   const route=x.routeLabel||routeLabelForActivity(x);
-  return `<details class="activity-log-card"><summary><div class="activity-log-head"><div><div class="activity-log-title">${dateLabel(x.startTs)}｜<span class="route-pill">${esc(route)}</span></div><div class="small">${activityDurationText(activityDurationMinutes(x))}｜${(x.spent||0).toLocaleString()}円（${esc(x.spentSource||'記録')}）｜疲労 ${esc(x.fatigue||'未設定')}</div></div><span class="activity-weather-pill">${activityWeatherText(x.weather)}</span></div></summary><div class="activity-mini-grid"><div class="activity-mini"><span>関連げと</span><b>${esc(String(activityGetCount(x)))}個</b></div><div class="activity-mini"><span>追加回数</span><b>${extraCount}回</b></div><div class="activity-mini"><span>関連観測</span><b>${obsCount}件</b></div><div class="activity-mini"><span>歩数</span><b>${x.steps?x.steps:'—'}</b></div><div class="activity-mini"><span>開始天気</span><b>${esc(activityWeatherText(x.weather))}</b></div><div class="activity-mini"><span>終了天気</span><b>${esc(activityWeatherText(x.endWeather))}</b></div></div><div class="note" style="margin-top:10px">ルートは「現地で見た」観測だけで作ります。情報だけの新宿・渋谷などは日誌ルートに入れません。<br>げと：${getHtml}${extraCount?`<br>帳面に残さない追加回数：${extraCount}回`:''}<br>自動概算：${(x.estimatedSpent??activityEstimatedSpent(x)).toLocaleString()}円</div><div class="data-edit-actions"><button class="mini" onclick="openEditActivityLog('${esc(x.id)}')">編集</button><button class="mini danger" onclick="deleteActivityLog('${esc(x.id)}')">削除</button></div></details>`
+  return `<details class="activity-log-card"><summary><div class="activity-log-head"><div><div class="activity-log-title">${dateLabel(x.startTs)}｜<span class="route-pill">${esc(route)}</span></div><div class="small">${activityDurationText(activityDurationMinutes(x))}｜${(x.spent||0).toLocaleString()}円（${esc(x.spentSource||'記録')}）｜疲労 ${esc(x.fatigue||'未設定')}</div></div><span class="activity-weather-pill">${activityWeatherText(x.weather)}</span></div></summary><div class="activity-mini-grid"><div class="activity-mini"><span>関連げと</span><b>${esc(String(activityGetCount(x)))}個</b></div><div class="activity-mini"><span>追加回数</span><b>${extraCount}回</b></div><div class="activity-mini"><span>関連観測</span><b>${obsCount}件</b></div><div class="activity-mini"><span>歩数</span><b>${x.steps?x.steps:'—'}</b></div><div class="activity-mini"><span>開始天気</span><b>${esc(activityWeatherText(x.weather))}</b></div><div class="activity-mini"><span>終了天気</span><b>${esc(activityWeatherText(x.endWeather))}</b></div></div><div class="note" style="margin-top:10px">ルートは「現地で見た」観測だけで作ります。情報だけの新宿・渋谷などは日誌ルートに入れません。<br>げと：${getHtml}${extraCount?`<br>帳面に残さない追加回数：${extraCount}回`:''}<br>自動概算：${(x.estimatedSpent??activityEstimatedSpent(x)).toLocaleString()}円</div><div class="data-edit-actions"><button class="mini" onclick="openEditActivityLog('${esc(x.id)}')">編集</button><button class="mini danger" onclick="return deleteActivityLog('${esc(x.id)}')">削除</button></div></details>`
  }).join(''):'<div class="empty">ガチャ活日誌はまだありません。開始ボタンはワンタップです。</div>';
  const summary=document.getElementById('activitySummary');if(summary)summary.innerHTML=activitySummaryCards(logs);
  const charts=document.getElementById('activityCharts');if(charts)charts.innerHTML=activityBarRows([...logs].reverse(),'minutes','直近7回の活動時間','分')+activityBarRows([...logs].reverse(),'spent','直近7回の支出','円')+activityBarRows([...logs].reverse(),'steps','直近7回の歩数','歩');
@@ -4722,10 +4924,19 @@ function deleteCheckedManualLogs(){
  openBulkDeleteConfirm(ids);
 }
 
-function exportData(){const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='gacha-command-v066-backup.json';a.click();URL.revokeObjectURL(a.href)}
+function exportData(){const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='gacha-command-v072-backup.json';a.click();URL.revokeObjectURL(a.href)}
 function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{state=JSON.parse(r.result);normalizeV66Data();save();renderAll();toast('読み込みました')}catch(x){toast('読み込み失敗')}};r.readAsText(f)}
 
-function resetSeed(){if(!confirm('入力内容を消して、内蔵データに戻しますか？'))return;state=seed();save();applyTheme(state.theme);renderAll()}
+function resetSeed(){
+ return openAppConfirm({
+  title:'初期データに戻す',
+  target:'入力内容を消して、内蔵データに戻します',
+  warning:'現在のブラウザ内データを上書きします。必要なら先にJSONを書き出してください。',
+  confirmLabel:'内蔵データに戻す',
+  action:()=>{state=seed();save();applyTheme(state.theme);renderAll();closeModal();toast('内蔵データに戻しました')}
+ })
+}
+
 function updateClock(){const d=new Date();document.getElementById('clock').textContent=`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;document.getElementById('dateMode').textContent=`${dateLabel(d.toISOString())}｜${dayType(d.toISOString())}`;updateActivityTick()}
 function renderAll(){renderMascots();renderHome();renderObserve();renderCollection();renderAnalysis();renderProducts();renderStorePage();renderActivity();renderAliases();renderCleanup();renderDataEditor();document.getElementById('themeSelect').value=state.theme||'system'}
 
