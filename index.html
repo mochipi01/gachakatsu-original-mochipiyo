@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffe8f2">
-<title>ガチャ司令室 v0.73</title>
+<title>ガチャ司令室 v0.80</title>
 <style>
 :root{
  --bg:#fff8fd;--bg2:#f4fbff;--panel:#ffffff;--panel2:#fff2f8;--ink:#443c58;--muted:#7d748b;--line:#eaddea;
@@ -1845,7 +1845,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 }
 
 
-/* v0.73 tabs, tracking, data table */
+/* v0.80 tabs, tracking, data table */
 .nav{display:flex;grid-template-columns:none;overflow-x:auto;scrollbar-width:none;gap:6px;align-items:stretch}
 .nav::-webkit-scrollbar{display:none}
 .nav button{min-width:58px;flex:0 0 auto;line-height:1.25}
@@ -1867,7 +1867,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 .item .thumb.product-icon-thumb{font-size:22px}
 
 
-/* v0.73 fixes */
+/* v0.80 fixes */
 .choice-input-wrap{
  display:flex;
  flex-direction:column;
@@ -1974,13 +1974,243 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 .dark .choice-input-chips button{background:var(--panel2)}
 
 
-/* v0.73 delete safety */
+/* v0.80 delete safety */
 .delete-action-summary{display:grid;gap:10px}
 .delete-action-target{border:1px solid var(--line);border-radius:16px;padding:12px;background:var(--panel2);font-weight:800}
 .delete-action-warning{border:1px solid rgba(255,122,122,.35);border-radius:16px;padding:12px;background:rgba(255,122,122,.08);color:var(--text)}
 .delete-action-list{display:grid;gap:6px;max-height:230px;overflow:auto}
 .delete-action-list .mini-row{border:1px solid var(--line);border-radius:12px;padding:8px;background:var(--card);font-size:12px;color:var(--muted)}
 .item.session-card-safe{cursor:default}
+
+
+/* v0.80 release calendar bars */
+.release-day{min-height:92px}
+.release-range-bar{
+ min-height:19px;
+ align-self:end;
+ margin:0 2px 4px 2px;
+ padding:3px 7px;
+ border-radius:999px;
+ background:linear-gradient(90deg,#ffd3e8,#e9f8ff);
+ border:1px solid #ffc5df;
+ font-size:10px;
+ font-weight:850;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
+ z-index:5;
+ box-shadow:0 2px 8px rgba(255,122,162,.18);
+}
+.release-range-bar.date-range{
+ background:linear-gradient(90deg,#fff0b8,#ffd3e8);
+}
+.calendar-summary-badges{
+ display:flex;
+ gap:4px;
+ flex-wrap:wrap;
+ margin-top:5px;
+}
+.release-badge{
+ display:inline-flex;
+ align-items:center;
+ gap:3px;
+ border:1px solid var(--line);
+ border-radius:999px;
+ padding:2px 6px;
+ font-size:10px;
+ font-weight:850;
+ background:var(--card);
+ color:var(--muted);
+}
+.release-badge.hot{background:#ffe4f1;color:#7e3050;border-color:#ffc5df}
+.release-badge.week{background:#e9f8ff;color:#31576b;border-color:#b9e7ff}
+.release-badge.status{background:#fff6d8;color:#6d5617;border-color:#ffe08a}
+
+
+/* v0.80 get chooser + activity resume */
+.get-series-picker{
+ display:grid;
+ gap:8px;
+ padding:10px;
+ border:1px solid var(--line);
+ border-radius:16px;
+ background:var(--panel2);
+}
+.get-series-chips{display:flex;gap:6px;flex-wrap:wrap}
+.get-series-chips button{font-size:11px}
+.activity-resume-note{
+ border:1px dashed var(--line);
+ border-radius:14px;
+ padding:10px;
+ background:var(--panel2);
+ font-size:12px;
+ line-height:1.5;
+}
+.release-range-bar.month-range{
+ background:linear-gradient(90deg,#e9f8ff,#fff6d8);
+ border-color:#b9e7ff;
+}
+
+
+/* v0.80 release calendar readability */
+.release-range-bar{
+ background:#f2f0ff;
+ color:#241b46;
+ border:1px solid #9b8be8;
+ box-shadow:0 1px 5px rgba(42,32,86,.18);
+ font-weight:900;
+}
+.release-range-bar.date-range{
+ background:#fff0d1;
+ color:#3f2b00;
+ border-color:#c8932d;
+}
+.release-range-bar.month-range{
+ background:#e6f2ff;
+ color:#17304f;
+ border-color:#6ca4d8;
+}
+.release-range-bar .rank-chip{display:none}
+.release-item{
+ background:#f7eef7;
+ color:#2b2030;
+ border-color:#c9a6bf;
+}
+.calendar-summary-group{
+ border:1px solid var(--line);
+ border-radius:16px;
+ background:var(--panel2);
+ overflow:hidden;
+}
+.calendar-summary-group summary{
+ cursor:pointer;
+ padding:11px 12px;
+ display:flex;
+ justify-content:space-between;
+ gap:8px;
+ align-items:center;
+ font-weight:900;
+}
+.calendar-summary-group-body{
+ display:grid;
+ gap:7px;
+ padding:0 10px 10px;
+}
+.calendar-summary-product{
+ border:1px solid var(--line);
+ border-radius:14px;
+ background:var(--card);
+ padding:9px;
+}
+.calendar-summary-product .mini{
+ text-align:left;
+ white-space:normal;
+}
+.release-badge.schedule{
+ background:#f2f0ff;
+ color:#241b46;
+ border-color:#9b8be8;
+}
+.release-badge.rank{
+ background:var(--card);
+ color:var(--text);
+}
+html[data-theme="dark"] .release-range-bar{
+ background:#30274e;
+ color:#f5f0ff;
+ border-color:#9b8be8;
+}
+html[data-theme="dark"] .release-range-bar.date-range{
+ background:#4c3814;
+ color:#fff2d0;
+ border-color:#c8932d;
+}
+html[data-theme="dark"] .release-range-bar.month-range{
+ background:#1d344d;
+ color:#e6f2ff;
+ border-color:#6ca4d8;
+}
+html[data-theme="dark"] .release-item{
+ background:#392b39;
+ color:#fff2fb;
+ border-color:#7a5674;
+}
+
+
+/* v0.80 late get → past activity log */
+.get-activity-link-box{
+ border:1px solid var(--line);
+ border-radius:16px;
+ padding:10px;
+ background:var(--panel2);
+ margin-top:10px;
+}
+.get-activity-link-box select{width:100%}
+.get-activity-link-hint{margin-top:6px;font-size:12px;color:var(--muted);line-height:1.45}
+
+
+/* v0.80 get location picker + real store merge */
+.get-location-box{
+ border:1px solid var(--line);
+ border-radius:16px;
+ padding:10px;
+ background:var(--panel2);
+}
+.get-location-box .choice-chips{margin:7px 0}
+.get-location-box select,.get-location-box input{width:100%}
+.get-route-toggle{
+ display:flex;
+ align-items:flex-start;
+ gap:8px;
+ margin-top:10px;
+ padding:9px;
+ border-radius:12px;
+ background:var(--panel);
+ border:1px solid var(--line);
+}
+.get-route-toggle input{width:auto;margin-top:3px}
+
+
+/* v0.80 release bars inside calendar cells */
+.release-calendar{
+ display:block;
+ position:relative;
+}
+.release-calendar-head,
+.release-month-grid{
+ display:grid;
+ grid-template-columns:repeat(7,minmax(36px,1fr));
+ gap:4px;
+}
+.release-calendar-head{margin-bottom:4px}
+.release-month-grid{
+ position:relative;
+ grid-auto-rows:minmax(112px,auto);
+}
+.release-month-grid .release-day{
+ z-index:1;
+ min-height:112px;
+ padding-bottom:62px;
+}
+.release-month-grid .release-day.blank{
+ min-height:112px;
+ background:transparent;
+ border-color:transparent;
+}
+.release-month-grid .release-range-bar{
+ justify-self:stretch;
+ align-self:end;
+ width:auto;
+ margin:0 3px var(--bar-bottom,4px) 3px;
+ min-height:18px;
+ line-height:1.15;
+ z-index:8;
+ pointer-events:auto;
+ position:relative;
+}
+.release-month-grid .release-range-bar.week-range::before{content:"📅 "}
+.release-month-grid .release-range-bar.date-range::before{content:"🫧 "}
+.release-month-grid .release-range-bar.month-range::before{content:"🗓️ "}
 
 </style>
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
@@ -2007,7 +2237,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 </div>
 <div class="app">
 <header class="top">
- <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.73</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
+ <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.80</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
  <div class="top-actions"><div class="bubble"><div id="clock" class="clock">--:--</div><div id="dateMode" class="small">判定中</div></div><button id="themeQuick" class="btn">🌙 ダーク</button></div>
 </header>
 <main>
@@ -2024,7 +2254,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 
 <section id="page-input" class="page"><div class="grid"><div>
  <div class="card"><div class="row between"><div><div class="kicker">quick observation</div><h2 class="title">状態をぽん</h2></div><div id="observeMascot" class="mascot-small"></div></div><div class="quick"><button onclick="pickStatus('🐜')">🐜<small>在庫ありを開始</small></button><button onclick="pickStatus('補充🐜')">補充🐜<small>補充・再開</small></button></div><div class="note" style="margin-top:10px">🍂・残少・まだありは、進行中カードから追加します。ここは基本「在庫あり開始」用です。</div><div data-cinna-strip></div></div>
- <div class="card"><h2 class="title">観測を追加</h2><div class="form-grid"><div><label>状態</label><select id="oStatus"><option>🐜</option><option>🍂</option><option>残少</option><option>満タン</option><option>まだあり</option><option>補充🐜</option><option>列切り</option><option>未確認</option></select></div><div><label>情報源</label><select id="oSource" onchange="autoObservationVisitType()"><option>もちぴさん現地</option><option>オプチャ</option><option>X通知</option><option>公式</option><option>店員確認</option><option>その他</option></select></div><div class="observe-mode-box"><label>行動記録への扱い</label><select id="oVisitType"><option value="現地">現地で見た</option><option value="情報だけ">情報だけ</option></select><div class="small">現地で見た＝ガチャ活日誌のルートに使います。情報だけ＝分析には使うけど、移動ルートには入れません。</div></div><div class="observation-flag-row"><div class="observation-flag-title">特殊フラグ</div><label class="anomaly-toggle clean"><input id="oBigStock" type="checkbox"><span>🏢 異様な在庫として見る</span></label><div class="small">たくさん積んでいたのに速く🍂した時用。通常ランクとは別に、需要補正として使います。</div></div><div class="picker-block"><div class="row between"><label>商品</label><span class="small">最近使った順＋検索</span></div><div id="oProductRecent" class="choice-chips"></div><input id="oProductSearch" placeholder="商品を検索。よっし/ペコなど別名もOK" oninput="renderProductChoices()"><select id="oProductSelect" onchange="document.getElementById('oProductText').value=''"></select><input id="oProductText" placeholder="候補にない商品を直接入力"></div><div class="picker-block"><div class="row between"><label>いまどこ？</label><span class="small">エリアを押すと店舗候補を絞ります</span></div><div id="oAreaChips" class="choice-chips area-chips"></div><input id="oArea" placeholder="池袋など" oninput="state.quickArea=this.value.trim();renderAreaChips();renderStoreChoices()"></div><div class="picker-block"><div class="row between"><label>店舗</label><span class="small">選んだエリア内を最近順＋50音順</span></div><div id="oStoreRecent" class="choice-chips"></div><input id="oStoreSearch" placeholder="店舗名を検索" oninput="renderStoreChoices()"><select id="oStoreSelect" onchange="document.getElementById('oStoreText').value=''"></select><input id="oStoreText" placeholder="候補にない店舗を直接入力。仮名でもOK"></div><div class="time-now-row"><div><label>時刻</label><input id="oDatetime" type="datetime-local"></div><button type="button" class="mini" onclick="setNowValue('oDatetime')">現在時刻</button></div><div class="choice-input-wrap"><label>台数</label><div class="choice-input-chips"><button type="button" onclick="setChoiceInput('oMachines','1台',this)">1台</button><button type="button" onclick="setChoiceInput('oMachines','2台',this)">2台</button><button type="button" onclick="setChoiceInput('oMachines','3台',this)">3台</button><button type="button" onclick="setChoiceInput('oMachines','4台',this)">4台</button><button type="button" onclick="setChoiceInput('oMachines','5台',this)">5台</button><button type="button" onclick="setChoiceInput('oMachines','6台',this)">6台</button><button type="button" onclick="setChoiceInput('oMachines','8台',this)">8台</button><button type="button" onclick="setChoiceInput('oMachines','10台',this)">10台</button><button type="button" onclick="setChoiceInput('oMachines','11台',this)">11台</button><button type="button" onclick="setChoiceInput('oMachines','複数台',this)">複数台</button><button type="button" onclick="setChoiceInput('oMachines','数台',this)">数台</button><button type="button" onclick="setChoiceInput('oMachines','不明',this)">不明</button><button type="button" onclick="setChoiceInput('oMachines','ー',this)">ー</button></div><input id="oMachines" value="" placeholder="その他はここに入力"></div><div class="choice-input-wrap"><label>回数制限</label><div class="choice-input-chips"><button type="button" onclick="setChoiceInput('oLimit','なし',this)">なし</button><button type="button" onclick="setChoiceInput('oLimit','1回まで',this)">1回まで</button><button type="button" onclick="setChoiceInput('oLimit','2回まで',this)">2回まで</button><button type="button" onclick="setChoiceInput('oLimit','3回まで',this)">3回まで</button><button type="button" onclick="setChoiceInput('oLimit','5回まで',this)">5回まで</button><button type="button" onclick="setChoiceInput('oLimit','10回まで',this)">10回まで</button><button type="button" onclick="setChoiceInput('oLimit','不明',this)">不明</button><button type="button" onclick="setChoiceInput('oLimit','ー',this)">ー</button></div><input id="oLimit" value="" placeholder="その他はここに入力"></div><div class="choice-input-wrap"><label>並び直し</label><div class="choice-input-chips"><button type="button" onclick="setChoiceInput('oRequeue','あり',this)">あり</button><button type="button" onclick="setChoiceInput('oRequeue','不可',this)">不可</button><button type="button" onclick="setChoiceInput('oRequeue','並び直し不可',this)">並び直し不可</button><button type="button" onclick="setChoiceInput('oRequeue','制限あり',this)">制限あり</button><button type="button" onclick="setChoiceInput('oRequeue','不明',this)">不明</button><button type="button" onclick="setChoiceInput('oRequeue','ー',this)">ー</button></div><input id="oRequeue" value="" placeholder="その他はここに入力"></div></div><label>メモ</label><textarea id="oMemo"></textarea><div class="row between" style="margin-top:12px"><span class="small">現地では、状態→商品→いまどこ→店舗の順でぽんぽん保存できます。</span><button class="btn primary save-observation-btn" onclick="saveObservation()">ぽこんと保存</button></div></div>
+ <div class="card"><h2 class="title">観測を追加</h2><div class="form-grid"><div><label>状態</label><select id="oStatus"><option>🐜</option><option>🍂</option><option>残少</option><option>満タン</option><option>まだあり</option><option>補充🐜</option><option>列切り</option><option>未確認</option></select></div><div><label>情報源</label><select id="oSource" onchange="autoObservationVisitType()"><option>もちぴさん現地</option><option>オプチャ</option><option>X通知</option><option>公式</option><option>店員確認</option><option>その他</option></select></div><div class="observe-mode-box"><label>行動記録への扱い</label><select id="oVisitType"><option value="現地">現地で見た</option><option value="情報だけ">情報だけ</option></select><div class="small">現地で見た＝ガチャ活日誌のルートに使います。情報だけ＝分析には使うけど、移動ルートには入れません。</div></div><div class="observation-flag-row"><div class="observation-flag-title">特殊フラグ</div><label class="anomaly-toggle clean"><input id="oBigStock" type="checkbox"><span>🏢 異様な在庫として見る</span></label><div class="small">たくさん積んでいたのに速く🍂した時用。通常ランクとは別に、需要補正として使います。</div></div><div class="picker-block"><div class="row between"><label>商品</label><span class="small">最近使った順＋検索</span></div><div id="oProductRecent" class="choice-chips"></div><input id="oProductSearch" placeholder="商品を検索。よっし/ペコなど別名もOK" oninput="renderProductChoices()"><select id="oProductSelect" onchange="document.getElementById('oProductText').value=''"></select><input id="oProductText" placeholder="候補にない商品を直接入力"></div><div class="picker-block"><div class="row between"><label>いまどこ？</label><span class="small">候補です。押した時だけ入力・反映します</span></div><div id="oAreaChips" class="choice-chips area-chips"></div><input id="oArea" placeholder="池袋など（空欄なら反映しません）" oninput="renderAreaChips();renderStoreChoices()"></div><div class="picker-block"><div class="row between"><label>店舗</label><span class="small">選んだエリア内を最近順＋50音順</span></div><div id="oStoreRecent" class="choice-chips"></div><input id="oStoreSearch" placeholder="店舗名を検索" oninput="renderStoreChoices()"><select id="oStoreSelect" onchange="document.getElementById('oStoreText').value=''"></select><input id="oStoreText" placeholder="候補にない店舗を直接入力。仮名でもOK"></div><div class="time-now-row"><div><label>時刻</label><input id="oDatetime" type="datetime-local"></div><button type="button" class="mini" onclick="setNowValue('oDatetime')">現在時刻</button></div><div class="choice-input-wrap"><label>台数</label><div class="choice-input-chips"><button type="button" onclick="setChoiceInput('oMachines','1台',this)">1台</button><button type="button" onclick="setChoiceInput('oMachines','2台',this)">2台</button><button type="button" onclick="setChoiceInput('oMachines','3台',this)">3台</button><button type="button" onclick="setChoiceInput('oMachines','4台',this)">4台</button><button type="button" onclick="setChoiceInput('oMachines','5台',this)">5台</button><button type="button" onclick="setChoiceInput('oMachines','6台',this)">6台</button><button type="button" onclick="setChoiceInput('oMachines','8台',this)">8台</button><button type="button" onclick="setChoiceInput('oMachines','10台',this)">10台</button><button type="button" onclick="setChoiceInput('oMachines','11台',this)">11台</button><button type="button" onclick="setChoiceInput('oMachines','複数台',this)">複数台</button><button type="button" onclick="setChoiceInput('oMachines','数台',this)">数台</button><button type="button" onclick="setChoiceInput('oMachines','不明',this)">不明</button><button type="button" onclick="setChoiceInput('oMachines','ー',this)">ー</button></div><input id="oMachines" value="" placeholder="その他はここに入力"></div><div class="choice-input-wrap"><label>回数制限</label><div class="choice-input-chips"><button type="button" onclick="setChoiceInput('oLimit','なし',this)">なし</button><button type="button" onclick="setChoiceInput('oLimit','1回まで',this)">1回まで</button><button type="button" onclick="setChoiceInput('oLimit','2回まで',this)">2回まで</button><button type="button" onclick="setChoiceInput('oLimit','3回まで',this)">3回まで</button><button type="button" onclick="setChoiceInput('oLimit','5回まで',this)">5回まで</button><button type="button" onclick="setChoiceInput('oLimit','10回まで',this)">10回まで</button><button type="button" onclick="setChoiceInput('oLimit','不明',this)">不明</button><button type="button" onclick="setChoiceInput('oLimit','ー',this)">ー</button></div><input id="oLimit" value="" placeholder="その他はここに入力"></div><div class="choice-input-wrap"><label>並び直し</label><div class="choice-input-chips"><button type="button" onclick="setChoiceInput('oRequeue','あり',this)">あり</button><button type="button" onclick="setChoiceInput('oRequeue','不可',this)">不可</button><button type="button" onclick="setChoiceInput('oRequeue','並び直し不可',this)">並び直し不可</button><button type="button" onclick="setChoiceInput('oRequeue','制限あり',this)">制限あり</button><button type="button" onclick="setChoiceInput('oRequeue','不明',this)">不明</button><button type="button" onclick="setChoiceInput('oRequeue','ー',this)">ー</button></div><input id="oRequeue" value="" placeholder="その他はここに入力"></div></div><label>メモ</label><textarea id="oMemo"></textarea><div class="row between" style="margin-top:12px"><span class="small">現地では、状態→商品→いまどこ→店舗の順でぽんぽん保存できます。</span><button class="btn primary save-observation-btn" onclick="saveObservation()">ぽこんと保存</button></div></div>
  </div><div>
  <div class="card"><div class="row between"><div><div class="kicker">quick input</div><h2 class="title">入力だけの場所</h2></div><div class="mascot-small">✍️</div></div>
   <div class="note">ここは入力専用です。見るものは「追跡」「帳面」「商品」「店舗」「予定」「分析」に分けました。</div>
@@ -2086,8 +2316,8 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
    <label>商品メモ <span class="small">任意・空欄でOK</span></label><input id="newProductMemo" placeholder="入れなくてOK">
    <h3>発売予定</h3>
    <div class="form-grid">
-    <div><label>発売年</label><input id="newReleaseYear" type="number" min="2020" max="2035" placeholder="2026"></div>
-    <div><label>発売月</label><input id="newReleaseMonth" type="number" min="1" max="12" placeholder="7"></div>
+    <div><label>発売年</label><select id="newReleaseYear"><option value="">未設定</option><option value="2026">2026年</option><option value="2027">2027年</option><option value="2028">2028年</option><option value="2029">2029年</option><option value="2030">2030年</option></select></div>
+    <div><label>発売月</label><select id="newReleaseMonth"><option value="">未設定</option><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></div>
     <div><label>発売週</label><select id="newReleaseWeek"><option value="">未設定</option><option value="1">第1週</option><option value="2">第2週</option><option value="3">第3週</option><option value="4">第4週</option><option value="5">第5週</option></select></div>
     <div><label>発売日</label><input id="newReleaseDate" type="date"></div>
     <div><label>追跡終了目安</label><input id="newTrackEndDate" type="date"></div>
@@ -2134,7 +2364,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
  <div class="card fold-card"><details><summary><div class="fold-title"><div><div class="kicker">appearance</div><h2 class="title">見た目</h2></div></div><div id="nightMascot" class="mascot-small"></div></summary><div class="fold-body"><label>テーマ</label><select id="themeSelect" onchange="applyTheme(this.value,true)"><option value="system">端末に合わせる</option><option value="light">ライト</option><option value="dark">ダーク</option></select></div></details></div>
  <div class="card fold-card lock-card"><details><summary><div class="fold-title"><div><div class="kicker">simple lock</div><h2 class="title">合言葉ロック</h2></div></div><span class="pill green">認証済み端末</span></summary><div class="fold-body"><div class="note">この端末の認証だけ解除します。観測・げと帳面などの記録データは消しません。</div><button class="btn danger" onclick="clearDeviceAuth()">この端末の認証を解除する</button></div></details></div>
  <div class="card fold-card data-editor-card"><details><summary><div class="fold-title"><div><div class="kicker">data edit room</div><h2 class="title">登録情報を編集</h2></div></div><span class="pill blue">整備場</span></summary><div class="fold-body"><div class="note">帳面や分析ではなく、登録情報をデータとして見て直す場所です。まとめて整えたい時に使います。</div><div class="data-edit-tabs"><button type="button" class="active" data-data-edit="products" onclick="setDataEditTab('products')">商品</button><button type="button" data-data-edit="stores" onclick="setDataEditTab('stores')">店舗</button><button type="button" data-data-edit="collection" onclick="setDataEditTab('collection')">げと帳面</button><button type="button" data-data-edit="logs" onclick="setDataEditTab('logs')">観測ログ</button></div><div id="dataEditor"></div></div></details></div>
- <div class="card fold-card"><details><summary><div class="fold-title"><div><div class="kicker">alias</div><h2 class="title">別名・統合</h2></div></div><span class="pill yellow">手動整備</span></summary><div class="fold-body"><div id="aliasList"></div><div class="form-grid"><div><label>元の表記</label><input id="aliasFrom"></div><div><label>統合先</label><input id="aliasTo"></div></div><label>種類</label><select id="aliasType"><option value="product">商品</option><option value="store">店舗</option></select><div class="row" style="margin-top:10px"><button class="btn" onclick="addAlias()">別名を追加</button></div></div></details></div>
+ <div class="card fold-card"><details><summary><div class="fold-title"><div><div class="kicker">alias</div><h2 class="title">別名・統合</h2></div></div><span class="pill yellow">手動整備</span></summary><div class="fold-body"><div class="note">商品は別名としてまとめます。店舗は観測・げと・日誌・店舗情報の表記を実際に統合します。</div><div id="aliasList"></div><div class="form-grid"><div><label>元の表記</label><input id="aliasFrom" list="aliasNameList"></div><div><label>統合先</label><input id="aliasTo" list="aliasNameList"></div></div><datalist id="aliasNameList"></datalist><label>種類</label><select id="aliasType" onchange="renderAliasNameList()"><option value="product">商品</option><option value="store">店舗</option></select><div class="row" style="margin-top:10px"><button class="btn" onclick="addAlias()">統合・別名追加</button></div></div></details></div>
 </div><div>
  <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">バックアップ・復元</h2></div><span class="pill blue">保険</span></summary><div class="fold-body"><div class="note">普段は触らなくてOKです。端末の外へ控えを残したい時だけ使います。</div><div class="row"><button class="btn blue" onclick="exportData()">バックアップを保存</button><label class="btn">バックアップから復元<input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)"></label></div></div></details></div>
  <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">手入力ログの整理</h2></div><span id="cleanupCount" class="pill yellow"></span></summary><div class="fold-body"><div class="note">内蔵ログ・取込ログは残し、画面から手入力した観測ログだけ削除候補に出します。</div><div class="row" style="margin-top:10px"><button class="btn danger" onclick="deleteCheckedManualLogs()">選択した手入力ログを削除</button></div><div id="manualLogList" class="cleanup-list"></div></div></details></div>
@@ -2390,16 +2620,21 @@ function machineCountValue(v){const s=String(v||'').replace(/[０-９]/g,ch=>Str
 function sessionPrimaryValue(s,key){const vals=[...s.events].reverse().map(e=>e[key]).filter(v=>v&&v!=='ー');return vals[0]||s.events.at(-1)?.[key]||'ー'}
 function perMachineLabel(duration,machines){const n=machineCountValue(machines);return duration!=null&&n?`${(duration/n).toFixed(1)}分/台`:'—'}
 function routeLabelForActivity(a){
- const ids=new Set(a.observationIds||[]);
- let rows=state.observations.filter(o=>o.ts&&(!ids.size||ids.has(o.id))&&observationIsOnsite(o)).sort((x,y)=>(x.ts||'').localeCompare(y.ts||''));
- if(!rows.length){
-  rows=activityRelatedObservations(a,a.endTs||new Date()).filter(observationIsOnsite).sort((x,y)=>(x.ts||'').localeCompare(y.ts||''));
- }
- const areas=[];rows.forEach(o=>{const ar=o.area||'';if(ar&&ar!=='ー'&&areas.at(-1)!==ar)areas.push(ar)});
+ const ids=new Set(a?.observationIds||[]);
+ let obs;
+ if(ids.size)obs=state.observations.filter(o=>o.ts&&ids.has(o.id)&&observationIsOnsite(o));
+ else obs=activityRelatedObservations(a,a?.endTs||new Date()).filter(observationIsOnsite);
+ const points=[
+  ...obs.map(o=>({ts:o.ts,area:(o.area||'').trim(),store:o.store||'',source:'観測'})),
+  ...(a?.routePoints||[]).map(r=>({ts:r.ts,area:(r.area||'').trim()||storeArea(r.store),store:r.store||'',source:r.source||'げと登録'}))
+ ].filter(p=>p.area&&p.area!=='ー').sort((x,y)=>(x.ts||'').localeCompare(y.ts||''));
+ const areas=[];
+ points.forEach(p=>{if(areas.at(-1)!==p.area)areas.push(p.area)});
  if(!areas.length)return '現地記録なし';
  if(areas.length===1)return `${areas[0]}のみ`;
  return areas.join('→')
 }
+
 function analysisSessionRows(){
  return sessions().map(s=>{
   const start=sessionStart(s),end=sessionEnd(s),still=sessionLastStill(s),low=sessionLow(s),d=exactDuration(s);
@@ -2840,6 +3075,8 @@ function openStoreDetail(encoded){
  <div class="store-section"><h3>最近の在庫セッション</h3>${recent.length?recent.map(sessionOneHtml).join(''):'<div class="empty">この店舗のセッションはまだありません</div>'}</div>
  <details class="raw-log-details"><summary>元ログも見る</summary><div class="list" style="margin-top:10px">${obs.slice(0,20).map(o=>`<div class="item"><div class="thumb">${esc(o.status)}</div><div><div class="item-title">${fmtTs(o.ts)}　${productLinkHtml(canonical('product',o.product))}</div><div class="meta">${esc(o.area)}｜${esc(o.source)}｜台数 ${esc(o.machines)}｜回数 ${esc(o.limit)}｜並び直し ${esc(o.requeue)}<br>${esc(o.memo)}</div></div></div>`).join('')}${obs.length>20?`<div class="small">ほか ${obs.length-20}件</div>`:''}</div></details>`;
  document.getElementById('modal').classList.add('show');
+ const getTsEl=document.getElementById('getTs');if(getTsEl)getTsEl.addEventListener('change',()=>syncGetActivitySuggestion(true));
+ syncGetActivitySuggestion(true);
 }
 
 
@@ -3448,16 +3685,16 @@ function areaList(){
  return out
 }
 function currentArea(){
- const v=(document.getElementById('oArea')?.value||state.quickArea||'').trim();
- return v||latestNameList(state.observations,'','area')[0]||'全部'
+ const v=(document.getElementById('oArea')?.value||'').trim();
+ return v||'全部'
 }
+
 function renderAreaChips(){
- const wrap=document.getElementById('oAreaChips'); if(!wrap)return;
+ const wrap=document.getElementById('oAreaChips');if(!wrap)return;
  const cur=currentArea();
  wrap.innerHTML=areaList().slice(0,12).map(a=>`<button type="button" class="choice-chip ${a===cur?'active':''}" onclick="selectQuickArea('${encodeURIComponent(a)}')">${esc(a)}</button>`).join('');
- const input=document.getElementById('oArea');
- if(input&&cur&&cur!=='全部'&&input.value!==cur)input.value=cur;
 }
+
 function selectQuickArea(encoded){
  const area=decodeURIComponent(encoded);
  state.quickArea=area==='全部'?'':area;
@@ -3565,14 +3802,50 @@ function releaseWeekStartDate(year,month,week){
  const day=1+(Math.max(1,week)-1)*7-firstDow;
  return new Date(year,month-1,Math.max(1,day));
 }
+
+function releaseSelectNumber(v){
+ const s=String(v??'').replace(/[０-９]/g,ch=>String.fromCharCode(ch.charCodeAt(0)-0xFEE0)).replace(/[年月週第\s]/g,'').trim();
+ const n=parseInt(s||'0',10);
+ return Number.isFinite(n)?n:0
+}
+function releaseYearOptions(val=''){
+ const v=releaseSelectNumber(val);
+ const years=[2026,2027,2028,2029,2030];
+ return `<option value="">未設定</option>${years.map(y=>`<option value="${y}" ${v===y?'selected':''}>${y}年</option>`).join('')}`
+}
+function releaseMonthOptions(val=''){
+ const v=releaseSelectNumber(val);
+ return `<option value="">未設定</option>${Array.from({length:12},(_,i)=>i+1).map(m=>`<option value="${m}" ${v===m?'selected':''}>${m}月</option>`).join('')}`
+}
+function releaseWeekOptions(val=''){
+ const v=releaseSelectNumber(val);
+ return `<option value="">未設定</option>${[1,2,3,4,5].map(w=>`<option value="${w}" ${v===w?'selected':''}>第${w}週</option>`).join('')}`
+}
+function releaseFieldNumberValue(id){
+ const n=releaseSelectNumber(document.getElementById(id)?.value||'');
+ return n?String(n):''
+}
+function releaseScheduleText(r){
+ const info=r.info||productReleaseInfo(r.name);
+ if(info.date)return `発売日 ${info.date}`;
+ if(info.month&&info.week)return `${info.month}月第${info.week}週`;
+ if(info.month)return `${info.month}月発売`;
+ if(info.week)return `第${info.week}週（月未設定）`;
+ return '発売時期未定'
+}
+function releaseSummaryGroup(title,items,open=false){
+ if(!items.length)return '';
+ return `<details class="calendar-summary-group" ${open?'open':''}><summary><span>${esc(title)}</span><span class="release-badge">${items.length}件</span></summary><div class="calendar-summary-group-body">${items.map(r=>`<div class="calendar-summary-product"><button class="mini" onclick="openSeries('${encodeURIComponent(r.name)}')">${esc(r.name)}</button>${releaseBadgesHtml(r)}</div>`).join('')}</div></details>`
+}
 function productReleaseInfo(name){
  const m=productMeta(name);
- const y=parseInt(m.releaseYear||'0',10)||null;
- const mo=parseInt(m.releaseMonth||'0',10)||null;
- const w=parseInt(m.releaseWeek||'0',10)||null;
+ const y=releaseSelectNumber(m.releaseYear)||null;
+ const mo=releaseSelectNumber(m.releaseMonth)||null;
+ const w=releaseSelectNumber(m.releaseWeek)||null;
  const date=m.releaseDate||'';
  return {year:y,month:mo,week:w,date,trackEndDate:m.trackEndDate||'',memo:m.releaseMemo||''}
 }
+
 function productReleaseRows(){
  return allProductNames().map(name=>({name,meta:productMeta(name),info:productReleaseInfo(name)})).filter(x=>x.info.year||x.info.month||x.info.week||x.info.date||x.info.memo)
 }
@@ -3586,18 +3859,30 @@ function renderReleaseCalendar(){
  const first=new Date(year,month-1,1),days=new Date(year,month,0).getDate(),startDow=first.getDay();
  const today=new Date(),todayKey=ymd(today.getFullYear(),today.getMonth()+1,today.getDate());
  const rows=productReleaseRows();
- const dateItems={},monthOnly=[],unknown=[],weekBars=[];
+ const dateItems={},weekItems=[],monthOnly=[],unknown=[],rangeBars=[],groups={},holidayEvents=[];
+ const addGroup=(key,title,r)=>{(groups[key]||={title,items:[]}).items.push(r)};
  rows.forEach(r=>{
   const d=releaseDateParts(r.info.date);
   if(d){
-   if(d.year===year&&d.month===month)(dateItems[d.day]||=[]).push(r);
+   if(d.year===year&&d.month===month){
+    (dateItems[d.day]||=[]).push(r);
+    rangeBars.push({kind:'発売日+7日',item:r,start:d.day,end:Math.min(days,d.day+6),className:'date-range'});
+    addGroup(`date-${d.day}`,`${month}/${d.day} 発売日`,r);
+   }
    return;
   }
   const y=r.info.year||year,mo=r.info.month;
   if(y===year&&mo===month&&r.info.week){
-   weekBars.push(r);
+   const week=Math.max(1,Math.min(5,releaseSelectNumber(r.info.week)||1));
+   weekItems.push(r);
+   const weekDays=[];
+   for(let day=1;day<=days;day++)if(calendarWeekIndex(year,month,day)===week)weekDays.push(day);
+   if(weekDays.length)rangeBars.push({kind:`第${week}週`,item:r,start:weekDays[0],end:weekDays[weekDays.length-1],className:'week-range'});
+   addGroup(`week-${week}`,`${month}月第${week}週`,r);
   }else if(y===year&&mo===month){
    monthOnly.push(r);
+   rangeBars.push({kind:`${month}月発売`,item:r,start:1,end:days,className:'month-range'});
+   addGroup('month',`${month}月発売（日付未定）`,r);
   }else if(!mo&&!r.info.date){
    unknown.push(r);
   }
@@ -3605,14 +3890,16 @@ function renderReleaseCalendar(){
  const monthEvents=[];
  for(let day=1;day<=days;day++){
   const key=ymd(year,month,day),holiday=JP_HOLIDAYS[key]||'',fun=FUN_DAYS[md(month,day)]||'',list=dateItems[day]||[];
-  if(holiday)monthEvents.push({day,type:'祝日',icon:'🌸',title:holiday});
-  if(fun)monthEvents.push({day,type:'記念日',icon:'🎀',title:fun});
-  list.forEach(r=>monthEvents.push({day,type:'発売予定',icon:'🫧',title:r.name,product:r.name}));
+  if(holiday){monthEvents.push({day,type:'祝日',icon:'🌸',title:holiday});holidayEvents.push({day,type:'祝日',icon:'🌸',title:holiday})}
+  if(fun){monthEvents.push({day,type:'記念日',icon:'🎀',title:fun});holidayEvents.push({day,type:'記念日',icon:'🎀',title:fun})}
+  list.forEach(r=>monthEvents.push({day,type:'発売日',icon:'🫧',title:r.name,product:r.name,row:r}));
  }
- const topEvents=monthEvents.filter(e=>{
-  const k=ymd(year,month,e.day); const diff=Math.round((new Date(k)-new Date(todayKey))/86400000);
-  return diff>=0&&diff<=7;
- }).slice(0,6);
+ weekItems.forEach(r=>{
+  const week=Math.max(1,Math.min(5,releaseSelectNumber(r.info.week)||1)),weekDays=[];
+  for(let day=1;day<=days;day++)if(calendarWeekIndex(year,month,day)===week)weekDays.push(day);
+  monthEvents.push({day:weekDays[0]||1,type:'発売週',icon:'📅',title:r.name,product:r.name,row:r});
+ });
+ monthOnly.forEach(r=>monthEvents.push({day:1,type:'発売月',icon:'🗓️',title:r.name,product:r.name,row:r}));
  const topHtml=`<div class="calendar-top-strip">${[['今日',0],['明日',1],['今週',7]].map(([label,span])=>{
   const matched=monthEvents.filter(e=>{
    const k=ymd(year,month,e.day),diff=Math.round((new Date(k)-new Date(todayKey))/86400000);
@@ -3622,24 +3909,34 @@ function renderReleaseCalendar(){
  }).join('')}</div>`;
  const heads=['日','月','火','水','木','金','土'].map(x=>`<div class="release-weekday">${x}</div>`).join('');
  let cells='';
- for(let i=0;i<startDow;i++)cells+=`<div class="release-day blank"></div>`;
- const wd=['日','月','火','水','木','金','土'];
+ for(let i=0;i<startDow;i++)cells+=`<div class="release-day blank" style="grid-column:${i+1};grid-row:1"></div>`;
+ const wdFull=['日','月','火','水','木','金','土'];
  for(let day=1;day<=days;day++){
   const key=ymd(year,month,day),holiday=JP_HOLIDAYS[key]||'',fun=FUN_DAYS[md(month,day)]||'';
   const list=dateItems[day]||[],dateObj=new Date(year,month-1,day);
-  const special=holiday||fun||list.length;
-  cells+=`<div class="release-day ${holiday?'holiday':''} ${key===todayKey?'today':''} ${special?'has-special':''}"><div class="release-day-num">${day}<span class="weekday-mini">${wd[dateObj.getDay()]}</span></div>${holiday?`<span class="calendar-day-tag holiday-tag">祝 ${esc(holiday)}</span>`:''}${fun?`<span class="calendar-day-tag fun-tag">🎀 ${esc(fun)}</span>`:''}${list.slice(0,3).map(r=>`<button class="release-item" onclick="openSeries('${encodeURIComponent(r.name)}')">${rankMiniHtml(r.name)}${esc(r.name)}</button>`).join('')}${list.length>3?`<span class="small">+${list.length-3}</span>`:''}</div>`;
+  const special=holiday||fun||list.length||(day===1&&monthOnly.length);
+  const pos=calendarGridPosition(year,month,day);
+  cells+=`<div class="release-day ${holiday?'holiday':''} ${key===todayKey?'today':''} ${special?'has-special':''}" style="grid-column:${pos.col};grid-row:${pos.row}"><div class="release-day-num">${day}<span class="weekday-mini">${wdFull[dateObj.getDay()]}</span></div>${holiday?`<span class="calendar-day-tag holiday-tag">祝 ${esc(holiday)}</span>`:''}${fun?`<span class="calendar-day-tag fun-tag">🎀 ${esc(fun)}</span>`:''}${list.slice(0,1).map(r=>`<button class="release-item" onclick="openSeries('${encodeURIComponent(r.name)}')">🫧${esc(r.name)}</button>`).join('')}${day===1&&monthOnly.length?`<span class="calendar-day-tag fun-tag">🗓️ 月内 ${monthOnly.length}件</span>`:''}${list.length>1?`<span class="small">+${list.length-1}</span>`:''}</div>`;
  }
- const bars=weekBars.slice(0,12).map((r,i)=>{
-  const week=Math.max(1,Math.min(5,parseInt(r.info.week||'1',10)||1));
-  const startCol=week===1?startDow+1:1;
-  const row=2+week-1;
-  return `<button class="release-week-bar" style="grid-column:${startCol}/8;grid-row:${row};" onclick="openSeries('${encodeURIComponent(r.name)}')">${rankMiniHtml(r.name)}${esc(r.name)}｜第${week}週〜</button>`;
- }).join('');
- const summaryHtml=monthEvents.length?`<div class="calendar-month-summary"><h3>今月の祝日・発売予定</h3>${monthEvents.sort((a,b)=>a.day-b.day||a.type.localeCompare(b.type,'ja')).map(e=>`<div class="calendar-summary-item"><div class="calendar-summary-date">${month}/${e.day}(${wd[new Date(year,month-1,e.day).getDay()]})</div><div class="calendar-summary-body"><b>${e.icon} ${esc(e.type)}</b>${e.product?`<button class="mini" onclick="openSeries('${encodeURIComponent(e.product)}')">${rankMiniHtml(e.product)}${esc(e.title)}</button>`:esc(e.title)}</div></div>`).join('')}</div>`:'<div class="empty">今月の祝日・発売予定はまだありません</div>';
- const monthOnlyHtml=monthOnly.length?`<div class="release-undated-line"><b>${month}月発売・日付未定</b><br>${monthOnly.map(r=>`<button class="mini" onclick="openSeries('${encodeURIComponent(r.name)}')">${rankMiniHtml(r.name)}${esc(r.name)}</button>`).join(' ')}</div>`:'';
+ const trailing=(7-((startDow+days)%7))%7;
+ for(let i=0;i<trailing;i++){const idx=startDow+days+i;cells+=`<div class="release-day blank" style="grid-column:${(idx%7)+1};grid-row:${Math.floor(idx/7)+1}"></div>`;}
+ const laneByRow={};
+ const bars=rangeBars.slice(0,36).map(b=>splitCalendarRange(year,month,b.start,b.end,0).map(seg=>{
+  const lane=laneByRow[seg.row]||0;
+  laneByRow[seg.row]=lane+1;
+  const bottom=Math.min(lane,4)*20+4;
+  return `<button class="release-range-bar ${esc(b.className||'')}" style="grid-column:${seg.startCol}/${seg.endCol};grid-row:${seg.row};--bar-bottom:${bottom}px" onclick="openSeries('${encodeURIComponent(b.item.name)}')">${esc(b.item.name)}｜${esc(b.kind)}</button>`
+ }).join('')).join('');
+ const groupOrder=Object.keys(groups).sort((a,b)=>{
+  const ai=a.startsWith('date-')?parseInt(a.split('-')[1],10):a.startsWith('week-')?100+parseInt(a.split('-')[1],10):a==='month'?200:999;
+  const bi=b.startsWith('date-')?parseInt(b.split('-')[1],10):b.startsWith('week-')?100+parseInt(b.split('-')[1],10):b==='month'?200:999;
+  return ai-bi
+ });
+ const releaseSummary=groupOrder.map((k,i)=>releaseSummaryGroup(groups[k].title,groups[k].items,i<2)).join('');
+ const holidaySummary=holidayEvents.length?`<details class="calendar-summary-group"><summary><span>祝日・記念日</span><span class="release-badge">${holidayEvents.length}件</span></summary><div class="calendar-summary-group-body">${holidayEvents.map(e=>`<div class="calendar-summary-product"><b>${month}/${e.day} ${e.icon} ${esc(e.title)}</b></div>`).join('')}</div></details>`:'';
+ const summaryHtml=releaseSummary||holidaySummary?`<div class="calendar-month-summary"><h3>今月の発売予定</h3>${releaseSummary||'<div class="empty">発売予定はまだありません</div>'}${holidaySummary}</div>`:'<div class="empty">今月の発売予定はまだありません</div>';
  const unknownHtml=unknown.length?`<div class="release-undated-line"><b>発売時期未定</b><br>${unknown.slice(0,20).map(r=>`<button class="mini" onclick="openSeries('${encodeURIComponent(r.name)}')">${rankMiniHtml(r.name)}${esc(r.name)}</button>`).join(' ')}</div>`:'';
- el.innerHTML=`<div class="release-controls"><button class="mini" onclick="setReleaseMonth(-1)">← 前月</button><strong>${year}年${month}月</strong><button class="mini" onclick="setReleaseMonth(1)">翌月 →</button></div>${topHtml}<div class="release-calendar">${heads}${cells}${bars}</div><div class="calendar-legend"><span>🌸 ピンク＝祝日/休日</span><span>🫧 発売予定</span><span>※祝日は2026・2027年対応</span></div>${summaryHtml}<div class="release-undated">${monthOnlyHtml}${unknownHtml||''}</div>`;
+ el.innerHTML=`<div class="release-controls"><button class="mini" onclick="setReleaseMonth(-1)">← 前月</button><strong>${year}年${month}月</strong><button class="mini" onclick="setReleaseMonth(1)">翌月 →</button></div>${topHtml}<div class="release-calendar"><div class="release-calendar-head">${heads}</div><div class="release-month-grid">${cells}${bars}</div></div><div class="calendar-legend"><span>🫧 発売日+7日</span><span>📅 発売週</span><span>🗓️ 月内発売</span><span>※バーは日付枠内を跨ぎます</span></div>${summaryHtml}<div class="release-undated">${unknownHtml||''}</div>`;
 }
 
 function productSessionHistory(series){
@@ -3689,7 +3986,7 @@ function openProductEditor(encoded){
  document.getElementById('modalTitle').textContent='商品情報を編集：'+name;
  document.getElementById('modalBody').innerHTML=`<div class="note">現在ランク：${rankLineHtml(name)}<br>単価：${esc(unitPriceText(name))}。ランクは自動優先です。自動判定が未確定の時だけ、手動ランクを仮表示します。</div><div class="edit-panel"><input type="hidden" id="editOldProductName" value="${esc(name)}">
  <details class="product-subsection" open><summary>基本情報</summary><div class="sub-body"><div class="form-grid"><div><label>商品名・シリーズ名</label><input id="editProductName" value="${esc(name)}"></div><div><label>追跡状態</label><select id="editProductStatus"><option>未設定</option><option>ほしい</option><option>げと済み</option><option>交換待ち</option><option>分析用だけ</option><option>保留</option><option>追わない</option></select></div><div><label>ランク補助</label><select id="editProductRankMode" class="rank-mode-select"><option value="auto">自動優先</option><option value="manual">自動未確定時だけ手動を仮表示</option></select></div><div><label>手動補助ランク</label><select id="editProductRank"><option value="">未設定</option><option>S</option><option>A</option><option>B</option><option>C</option></select></div><div><label>欲しい数</label><input id="editProductWant" type="number" min="0" value="${esc(meta.want||'')}"></div><div>${priceChipsHtml('editProductUnitPrice',meta.unitPrice)}</div></div><label>別名・表記ゆれ</label><input id="editProductAliases" value="${esc(aliasText)}" placeholder="例：よっし、よっしー"><label>商品メモ <span class="small">任意</span></label><textarea id="editProductNote">${esc(meta.note||'')}</textarea></div></details>
- <details class="product-subsection" open><summary>発売予定</summary><div class="sub-body"><div class="note">全部任意です。週まで分からない時は月だけ、日付まで分かる時だけ発売日を入れてください。</div><div class="form-grid"><div><label>発売年</label><input id="editReleaseYear" type="number" min="2020" max="2035" value="${esc(meta.releaseYear||'')}" placeholder="2026"></div><div><label>発売月</label><input id="editReleaseMonth" type="number" min="1" max="12" value="${esc(meta.releaseMonth||'')}" placeholder="7"></div><div><label>発売週</label><select id="editReleaseWeek"><option value="">未設定</option><option value="1">第1週</option><option value="2">第2週</option><option value="3">第3週</option><option value="4">第4週</option><option value="5">第5週</option></select></div><div><label>発売日</label><input id="editReleaseDate" type="date" value="${esc(meta.releaseDate||'')}"></div><div><label>追跡終了目安</label><input id="editTrackEndDate" type="date" value="${esc(meta.trackEndDate||'')}"></div></div><label>発売メモ</label><input id="editReleaseMemo" value="${esc(meta.releaseMemo||'')}" placeholder="週不明、再販、補充ありそう等"></div></details>
+ <details class="product-subsection" open><summary>発売予定</summary><div class="sub-body"><div class="note">全部任意です。週まで分からない時は月だけ、日付まで分かる時だけ発売日を入れてください。</div><div class="form-grid"><div><label>発売年</label><select id="editReleaseYear">${releaseYearOptions(meta.releaseYear)}</select></div><div><label>発売月</label><select id="editReleaseMonth">${releaseMonthOptions(meta.releaseMonth)}</select></div><div><label>発売週</label><select id="editReleaseWeek">${releaseWeekOptions(meta.releaseWeek)}</select></div><div><label>発売日</label><input id="editReleaseDate" type="date" value="${esc(meta.releaseDate||'')}"></div><div><label>追跡終了目安</label><input id="editTrackEndDate" type="date" value="${esc(meta.trackEndDate||'')}"></div></div><label>発売メモ</label><input id="editReleaseMemo" value="${esc(meta.releaseMemo||'')}" placeholder="週不明、再販、補充ありそう等"></div></details>
  <details class="product-subsection" open><summary>画像</summary><div class="sub-body"><div class="product-image-rule">商品写真＝商品アイコン用。げと写真＝帳面・所持用です。編集画面からも直接追加できます。</div><div class="form-grid"><div><label>商品写真を追加</label><input id="editOfficialFiles" type="file" accept="image/*" multiple></div><div><label>げと写真を追加</label><input id="editOwnedFiles" type="file" accept="image/*" multiple></div></div><h3>現在の商品写真</h3><div class="gallery editor-gallery-compact">${gallery(name,'official',(state.images[name]||{}).official||[])}</div><h3>現在のげと写真</h3><div class="gallery editor-gallery-compact">${gallery(name,'owned',(state.images[name]||{}).owned||[])}</div><div class="small">下の「商品情報を保存」で画像も保存されます。</div></div></details>
  <details class="product-subsection" open><summary>所持内訳・内訳写真</summary><div class="sub-body"><div class="note">内訳写真はシリーズ詳細から各内訳ごとに追加できます。この画面では内訳名・所持数を編集します。</div><div id="editItems" class="edit-item-grid">${items.length?items.map((x,i)=>editItemRow(x,i)).join(''):'<div class="empty">所持内訳はまだありません。必要なら下のボタンで追加できます。</div>'}</div><div class="row"><button class="mini" onclick="addEditItemRow()">内訳を追加</button><button class="btn primary" onclick="openGetAddModal('${encodeURIComponent(name)}')">このシリーズのげと追加</button></div></div></details>
  <details class="product-subsection" open><summary>観測履歴</summary><div class="sub-body">${productSessionHistoryHtml(name,12)}</div></details>
@@ -3698,13 +3995,80 @@ function openProductEditor(encoded){
  document.getElementById('editProductStatus').value=meta.status||'未設定';
  document.getElementById('editProductRank').value=meta.manualRank||'';
  document.getElementById('editProductRankMode').value=meta.rankMode||'auto';
- document.getElementById('editReleaseWeek').value=meta.releaseWeek||'';
+ document.getElementById('editReleaseYear').value=String(releaseSelectNumber(meta.releaseYear)||'');
+ document.getElementById('editReleaseMonth').value=String(releaseSelectNumber(meta.releaseMonth)||'');
+ document.getElementById('editReleaseWeek').value=String(releaseSelectNumber(meta.releaseWeek)||'');
  document.getElementById('modal').classList.add('show')
 }
 
 function editItemRow(x={},i=0){return `<div class="edit-item-row" data-edit-row="${i}"><input type="hidden" class="editItemId" value="${esc(x.id||'')}"><div><label>キャラ・種類</label><input class="editItemName" value="${esc(x.item||'')}"></div><div><label>所持</label><input class="editItemOwned" type="number" min="0" value="${esc(x.owned??'')}"></div><div><label>状態</label><input class="editItemStatus" value="${esc(x.status||'所持')}"></div><div><label>備考</label><input class="editItemMemo" value="${esc(x.memo||'')}"></div><button class="mini" onclick="this.closest('.edit-item-row').remove()">削除</button></div>`}
 
 function addEditItemRow(){const box=document.getElementById('editItems');if(box.querySelector('.empty'))box.innerHTML='';const i=box.querySelectorAll('.edit-item-row').length;box.insertAdjacentHTML('beforeend',editItemRow({},i))}
+
+function sameProductName(a,b){return canonical('product',a)===canonical('product',b)}
+function applyProductUnitPriceToExistingRecords(series,unitPrice){
+ unitPrice=parseYen(unitPrice);
+ if(!series||!unitPrice)return {collection:0,activity:0};
+ let collection=0,activity=0;
+ (state.collection||[]).forEach(c=>{
+  if(sameProductName(c.series,series)&&!(parseInt(c.unitPrice||'0',10)||0)){
+   c.unitPrice=unitPrice;
+   collection++;
+  }
+ });
+ const apply=a=>{
+  if(!a||!Array.isArray(a.gets))return;
+  a.gets.forEach(g=>{
+   if(sameProductName(g.series,series)&&!(parseInt(g.unitPrice||'0',10)||0)){
+    g.unitPrice=unitPrice;
+    activity++;
+   }
+  });
+  refreshActivityTotals(a);
+ };
+ apply(state.activeActivity);
+ (state.activityLogs||[]).forEach(apply);
+ return {collection,activity}
+}
+function calendarWeekIndex(year,month,day){
+ const firstDow=new Date(year,month-1,1).getDay();
+ return Math.floor((firstDow+day-1)/7)+1
+}
+function calendarGridPosition(year,month,day){
+ const firstDow=new Date(year,month-1,1).getDay();
+ const idx=firstDow+day-1;
+ return {row:Math.floor(idx/7)+1,col:(idx%7)+1}
+}
+
+function calendarSegmentForDays(year,month,startDay,endDay,barIndex=0){
+ const a=calendarGridPosition(year,month,startDay),b=calendarGridPosition(year,month,endDay);
+ return {row:a.row,startCol:a.col,endCol:b.col+1,offset:Math.min(barIndex||0,4)*20}
+}
+
+function splitCalendarRange(year,month,startDay,endDay,barIndex=0){
+ const out=[];
+ let d=startDay;
+ while(d<=endDay){
+  const row=calendarGridPosition(year,month,d).row;
+  let e=d;
+  while(e+1<=endDay&&calendarGridPosition(year,month,e+1).row===row)e++;
+  out.push(calendarSegmentForDays(year,month,d,e,barIndex));
+  d=e+1;
+ }
+ return out
+}
+function releaseBadgesHtml(r,kind=''){
+ const info=r.info||productReleaseInfo(r.name),m=r.meta||productMeta(r.name);
+ const badges=[];
+ const schedule=releaseScheduleText(r);
+ if(schedule&&schedule!=='発売時期未定')badges.push(`<span class="release-badge schedule">${esc(schedule)}</span>`);
+ const rank=collectionProductRank(r.name);
+ badges.push(`<span class="release-badge rank">ランク ${esc(rank.rank)}</span>`);
+ if(m.status&&m.status!=='未設定')badges.push(`<span class="release-badge status">${esc(m.status)}</span>`);
+ if(m.want)badges.push(`<span class="release-badge status">欲しい${esc(m.want)}</span>`);
+ return `<div class="calendar-summary-badges">${badges.join('')}</div>`
+}
+
 async function saveProductEditor(){
  const oldName=document.getElementById('editOldProductName').value,newName=document.getElementById('editProductName').value.trim()||oldName;
  const meta={
@@ -3715,9 +4079,9 @@ async function saveProductEditor(){
   unitPrice:parseYen(document.getElementById('editProductUnitPrice').value),
   note:document.getElementById('editProductNote').value,
   aliases:document.getElementById('editProductAliases').value,
-  releaseYear:document.getElementById('editReleaseYear')?.value||'',
-  releaseMonth:document.getElementById('editReleaseMonth')?.value||'',
-  releaseWeek:document.getElementById('editReleaseWeek')?.value||'',
+  releaseYear:releaseFieldNumberValue('editReleaseYear'),
+  releaseMonth:releaseFieldNumberValue('editReleaseMonth'),
+  releaseWeek:releaseFieldNumberValue('editReleaseWeek'),
   releaseDate:document.getElementById('editReleaseDate')?.value||'',
   trackEndDate:document.getElementById('editTrackEndDate')?.value||'',
   releaseMemo:document.getElementById('editReleaseMemo')?.value||''
@@ -3746,7 +4110,12 @@ async function saveProductEditor(){
  existing.filter(c=>c.id&&!keptIds.has(c.id)).forEach(c=>removeActivityGetsForCollectionId(c.id));
  if(edited.length)state.collection=[...oldItems,...edited];
  edited.forEach(c=>syncActivityGetFromCollection(c));
- const imgs=await saveProductImageFiles(newName,'editOfficialFiles','editOwnedFiles');touchProduct(newName,'商品編集');save();renderAll();toast(imgs.official||imgs.owned?`商品情報と画像を保存しました（商品写真${imgs.official}枚 / げと写真${imgs.owned}枚）`:'商品情報を保存しました');celebrate('save','保存ぴこん');openSeries(encodeURIComponent(newName))
+ const priceSync=applyProductUnitPriceToExistingRecords(newName,meta.unitPrice);
+ syncAllLinkedActivityGets();
+ const imgs=await saveProductImageFiles(newName,'editOfficialFiles','editOwnedFiles');touchProduct(newName,'商品編集');save();renderAll();
+ const priceMsg=(priceSync.collection||priceSync.activity)?` / 既存単価同期 帳面${priceSync.collection}件・日誌${priceSync.activity}件`:'';
+ toast(imgs.official||imgs.owned?`商品情報と画像を保存しました（商品写真${imgs.official}枚 / げと写真${imgs.owned}枚）${priceMsg}`:`商品情報を保存しました${priceMsg}`);
+ celebrate('save','保存ぴこん');openSeries(encodeURIComponent(newName))
 }
 
 function collectionProductRank(series){
@@ -3823,9 +4192,11 @@ function setProductRankFixed(enc,rank){
 function setProductRankAuto(enc){
  const series=decodeURIComponent(enc),m=productMeta(series);
  m.rankMode='auto';
- save();renderAll();toast(`${series} を自動判定に戻しました`);
+ m.manualRank='';
+ save();renderAll();toast(`${series} の仮ランクを消して自動判定に戻しました`);
  openRankExplain(enc);
 }
+
 function collectionRankTag(series){
  const r=collectionProductRank(series);
  return ['rank',`${r.rank}${rankShortSource(r.source)?rankShortSource(r.source):''}`]
@@ -4066,24 +4437,273 @@ function removeGetItemRow(btn){
  if(box&&box.querySelectorAll('.get-item-row').length<=1){toast('内訳は1行以上必要です');return}
  btn.closest('.get-item-row')?.remove();
 }
+
+function getSeriesSelectOptions(current=''){
+ const recent=(state.productRecent||[]).map(x=>typeof x==='string'?x:x.name).filter(Boolean);
+ const tracked=allProductNames().filter(n=>{
+  const m=productMeta(n);
+  return ['追跡中','ほしい','未げと','未設定'].includes(m.status)||m.want;
+ });
+ const all=allProductNames().sort((a,b)=>a.localeCompare(b,'ja'));
+ const names=[...new Set([current,...recent,...tracked,...all].filter(Boolean))];
+ return `<option value="">選択しない / 新規入力</option>`+names.map(n=>`<option value="${esc(n)}" ${n===current?'selected':''}>${esc(n)}${recent.includes(n)?'｜最近':''}${tracked.includes(n)?'｜追跡/候補':''}</option>`).join('')
+}
+function getSeriesQuickChips(current=''){
+ const names=[...new Set([...(state.productRecent||[]).map(x=>typeof x==='string'?x:x.name),...rankedProductNames(),...allProductNames()].filter(Boolean))].slice(0,12);
+ return names.length?`<div class="get-series-chips">${names.map(n=>`<button type="button" class="mini" onclick="chooseGetSeries('${encodeURIComponent(n)}')">${rankMiniHtml(n)}${esc(n)}</button>`).join('')}</div>`:''
+}
+function chooseGetSeries(enc){
+ const name=decodeURIComponent(enc||'');
+ const input=document.getElementById('getSeries');
+ const sel=document.getElementById('getSeriesSelect');
+ if(input)input.value=name;
+ if(sel)sel.value=name;
+ syncGetUnitPrice();
+}
+function fullProductResiduals(names){
+ const res={observations:0,collection:0,productMeta:0,images:0,aliases:0,productRecent:0,activityGets:0,activitySpins:0,sessionFlags:0,allProducts:0};
+ res.observations=(state.observations||[]).filter(o=>matchesDeleteProduct(o.product,names)||matchesDeleteProduct(o.productOriginal,names)).length;
+ res.collection=(state.collection||[]).filter(c=>matchesDeleteProduct(c.series,names)).length;
+ res.productMeta=Object.keys(state.productMeta||{}).filter(k=>matchesDeleteProduct(k,names)).length;
+ res.images=Object.keys(state.images||{}).filter(k=>matchesDeleteProduct(k,names)).length;
+ res.aliases=Object.entries(state.aliases?.product||{}).filter(([k,v])=>matchesDeleteProduct(k,names)||matchesDeleteProduct(v,names)).length;
+ res.productRecent=(state.productRecent||[]).filter(x=>matchesDeleteProduct(typeof x==='string'?x:x.name,names)).length;
+ const countAct=a=>{if(!a)return;res.activityGets+=(a.gets||[]).filter(g=>matchesDeleteProduct(g.series,names)).length;res.activitySpins+=(a.spins||[]).filter(g=>matchesDeleteProduct(g.series||g.product,names)).length};
+ countAct(state.activeActivity);(state.activityLogs||[]).forEach(countAct);
+ res.allProducts=allProductNames().filter(n=>matchesDeleteProduct(n,names)).length;
+ return res
+}
+function residualTotal(res){return Object.values(res||{}).reduce((a,b)=>a+(parseInt(b||0,10)||0),0)}
+function purgeProductNames(names){
+ const sessionIds=new Set(sessions().filter(s=>matchesDeleteProduct(s.product,names)).map(s=>s.id));
+ state.observations=(state.observations||[]).filter(o=>!(matchesDeleteProduct(o.product,names)||matchesDeleteProduct(o.productOriginal,names)));
+ state.collection=(state.collection||[]).filter(c=>!matchesDeleteProduct(c.series,names));
+ Object.keys(state.productMeta||{}).forEach(k=>{if(matchesDeleteProduct(k,names))delete state.productMeta[k]});
+ Object.keys(state.images||{}).forEach(k=>{if(matchesDeleteProduct(k,names))delete state.images[k]});
+ Object.keys(state.aliases?.product||{}).forEach(k=>{const v=state.aliases.product[k];if(matchesDeleteProduct(k,names)||matchesDeleteProduct(v,names))delete state.aliases.product[k]});
+ const filterActivity=a=>{if(!a)return; a.gets=(a.gets||[]).filter(g=>!matchesDeleteProduct(g.series,names)); a.spins=(a.spins||[]).filter(g=>!matchesDeleteProduct(g.series||g.product,names)); refreshActivityTotals(a)};
+ filterActivity(state.activeActivity);(state.activityLogs||[]).forEach(filterActivity);
+ state.productRecent=(state.productRecent||[]).filter(x=>!matchesDeleteProduct(typeof x==='string'?x:x.name,names));
+ Object.keys(state.sessionFlags||{}).forEach(k=>{if(sessionIds.has(k))delete state.sessionFlags[k]});
+ cleanupSessionFlags();
+}
+
+function activityLogOptionLabel(a){
+ const start=a?.startTs?dateTimeLabel(a.startTs):'日時不明';
+ const end=a?.endTs?dateTimeLabel(a.endTs):'進行中';
+ const route=a?.routeLabel||routeLabelForActivity(a);
+ return `${start}〜${end}｜${route}`
+}
+function getActivityLinkOptions(selected='',ts=''){
+ const opts=[`<option value="">日誌には入れない</option>`];
+ if(state.activeActivity){
+  opts.push(`<option value="active" ${selected==='active'?'selected':''}>進行中のガチャ活へ入れる｜${esc(activityLogOptionLabel(state.activeActivity))}</option>`)
+ }
+ const logs=[...(state.activityLogs||[])].sort((a,b)=>(b.startTs||'').localeCompare(a.startTs||''));
+ logs.forEach(a=>opts.push(`<option value="log:${esc(a.id)}" ${selected===`log:${a.id}`?'selected':''}>過去日誌へ追記｜${esc(activityLogOptionLabel(a))}</option>`));
+ return opts.join('')
+}
+function suggestedActivityLinkForTs(ts){
+ if(state.activeActivity)return 'active';
+ const t=new Date(ts||'').getTime();
+ if(!Number.isFinite(t))return '';
+ const exact=[...(state.activityLogs||[])].find(a=>{
+  const s=new Date(a.startTs||'').getTime(),e=new Date(a.endTs||'').getTime();
+  return Number.isFinite(s)&&Number.isFinite(e)&&t>=s&&t<=e
+ });
+ if(exact)return `log:${exact.id}`;
+ const sameDay=[...(state.activityLogs||[])].filter(a=>(a.startTs||'').slice(0,10)===(ts||'').slice(0,10));
+ return sameDay.length===1?`log:${sameDay[0].id}`:''
+}
+function syncGetActivitySuggestion(force=false){
+ const sel=document.getElementById('getActivityLink'),tsEl=document.getElementById('getTs');
+ if(!sel)return;
+ const current=sel.value;
+ const suggested=suggestedActivityLinkForTs(tsEl?.value?new Date(tsEl.value).toISOString():'');
+ if(force||!current)sel.value=suggested||''
+ const hint=document.getElementById('getActivityLinkHint');
+ if(hint){
+  if(sel.value==='active')hint.textContent='進行中の日誌へ追加します。';
+  else if(sel.value.startsWith('log:'))hint.textContent='選んだ過去日誌の「関連げと」だけに追記します。開始・終了時刻と活動時間は変わりません。';
+  else hint.textContent='げと帳面だけに保存します。あとから過去日誌を選んで紐づけできます。'
+ }
+}
+function activityTargetByValue(value){
+ if(value==='active')return {kind:'active',log:state.activeActivity};
+ if(value?.startsWith('log:')){
+  const id=value.slice(4);
+  return {kind:'log',log:(state.activityLogs||[]).find(a=>a.id===id)||null}
+ }
+ return {kind:'none',log:null}
+}
+function recordGetToActivityTarget(targetValue,series,item,count,method,extra={}){
+ if(!count)return false;
+ const target=activityTargetByValue(targetValue);
+ if(!target.log)return false;
+ target.log.gets||=[];
+ target.log.gets.push({id:'get-'+uid(),ts:extra.ts||new Date().toISOString(),series,item,count,method,unitPrice:(parseInt(extra.unitPrice||'0',10)||productUnitPrice(series)),collectionId:extra.collectionId||'',store:extra.store||'',area:extra.area||'',spent:parseInt(extra.spent||'0',10)||0,relatedSessionId:extra.relatedSessionId||'',addedLater:target.kind==='log'});
+ if(target.kind==='log'){
+  target.log.estimatedSpent=activityEstimatedSpent(target.log);
+  if(target.log.spentSource!=='手動修正'){
+   target.log.spent=target.log.estimatedSpent;
+   target.log.spentSource='自動概算';
+  }
+  target.log.result=(target.log.gets||[]).map(g=>g.item).filter(Boolean).join('、');
+ }
+ return true
+}
+
+function storeAreaCandidates(store){
+ const target=canonical('store',(store||'').trim());
+ if(!target)return [];
+ const counts=new Map(),latest=new Map();
+ (state.observations||[]).forEach(o=>{
+  if(canonical('store',o.store)===target){
+   const a=(o.area||'').trim();
+   if(a&&a!=='ー'){
+    counts.set(a,(counts.get(a)||0)+1);
+    const t=new Date(o.ts||0).getTime();
+    if(!latest.has(a)||t>latest.get(a))latest.set(a,t)
+   }
+  }
+ });
+ const meta=state.storeMeta?.[target]||{};
+ if(meta.area)counts.set(meta.area,(counts.get(meta.area)||0)+1000);
+ return [...counts.keys()].sort((a,b)=>(counts.get(b)-counts.get(a))||((latest.get(b)||0)-(latest.get(a)||0))||a.localeCompare(b,'ja'))
+}
+function storeArea(store){return storeAreaCandidates(store)[0]||''}
+function getAreaChoices(){
+ const set=new Set();
+ (state.observations||[]).forEach(o=>{const a=(o.area||'').trim();if(a&&a!=='ー')set.add(a)});
+ Object.values(state.storeMeta||{}).forEach(m=>{if(m?.area)set.add(m.area)});
+ return [...set].sort((a,b)=>a.localeCompare(b,'ja'))
+}
+function getStoreChoices(area=''){
+ const a=(area||'').trim();
+ return dataStoreNames().filter(s=>!a||storeAreaCandidates(s).includes(a))
+}
+function renderGetLocationChoices(){
+ const areaInput=document.getElementById('getArea');
+ const storeSelect=document.getElementById('getStoreSelect');
+ const storeInput=document.getElementById('getStore');
+ const area=(areaInput?.value||'').trim();
+ const areaWrap=document.getElementById('getAreaChoices');
+ if(areaWrap){
+  const areas=getAreaChoices();
+  areaWrap.innerHTML=areas.length?areas.map(a=>`<button type="button" class="choice-chip ${a===area?'active':''}" onclick="selectGetArea('${encodeURIComponent(a)}')">${esc(a)}</button>`).join(''):'<span class="small">登録済みエリアはまだありません。</span>'
+ }
+ if(storeSelect){
+  const current=(storeInput?.value||'').trim();
+  const stores=getStoreChoices(area);
+  storeSelect.innerHTML=`<option value="">店舗を選ぶ</option>`+stores.map(s=>`<option value="${esc(s)}" ${s===current?'selected':''}>${esc(s)}</option>`).join('');
+ }
+ const storeWrap=document.getElementById('getStoreChoices');
+ if(storeWrap){
+  const stores=getStoreChoices(area).slice(0,12);
+  storeWrap.innerHTML=stores.length?stores.map(s=>`<button type="button" class="choice-chip" onclick="chooseGetStore('${encodeURIComponent(s)}')">${esc(s)}</button>`).join(''):'<span class="small">このエリアの店舗候補はありません。直接入力できます。</span>'
+ }
+ syncGetRouteLocationHint()
+}
+function selectGetArea(encoded){
+ const area=decodeURIComponent(encoded||'');
+ const input=document.getElementById('getArea');
+ if(input)input.value=area;
+ const store=document.getElementById('getStore');
+ if(store&&store.value&&area&&!storeAreaCandidates(store.value).includes(area))store.value='';
+ renderGetLocationChoices()
+}
+function chooseGetStore(encoded){
+ const store=decodeURIComponent(encoded||'');
+ const input=document.getElementById('getStore');
+ if(input)input.value=store;
+ const area=storeArea(store);
+ const areaInput=document.getElementById('getArea');
+ if(areaInput&&area)areaInput.value=area;
+ renderGetLocationChoices()
+}
+function getStoreSelectChanged(){
+ const sel=document.getElementById('getStoreSelect');
+ if(sel?.value)chooseGetStore(encodeURIComponent(sel.value))
+}
+function getStoreTyped(){
+ const store=(document.getElementById('getStore')?.value||'').trim();
+ const area=storeArea(store);
+ const areaInput=document.getElementById('getArea');
+ if(area&&areaInput&&!areaInput.value)areaInput.value=area;
+ renderGetLocationChoices()
+}
+function syncGetRouteLocationHint(){
+ const box=document.getElementById('getRouteLocationWrap');
+ if(!box)return;
+ const linked=!!document.getElementById('getActivityLink')?.value;
+ const hasLocation=!!((document.getElementById('getArea')?.value||'').trim()||(document.getElementById('getStore')?.value||'').trim());
+ box.style.display=linked&&hasLocation?'flex':'none'
+}
+function recordActivityRoutePoint(targetValue,extra={}){
+ const target=activityTargetByValue(targetValue);
+ if(!target.log)return false;
+ const area=(extra.area||'').trim(),store=(extra.store||'').trim();
+ if(!area&&!store)return false;
+ target.log.routePoints||=[];
+ target.log.routePoints.push({id:'route-'+uid(),ts:extra.ts||new Date().toISOString(),area,store,source:'げと登録',addedLater:target.kind==='log'});
+ target.log.routeLabel=routeLabelForActivity(target.log);
+ return true
+}
+function mergeStoreReferences(fromName,toName){
+ const from=(fromName||'').trim(),to=(toName||'').trim();
+ if(!from||!to||from===to)return 0;
+ let changed=0;
+ (state.observations||[]).forEach(o=>{
+  if(canonical('store',o.store)===from||o.store===from){o.store=to;changed++}
+  if(o.storeOriginal===from)o.storeOriginal=to
+ });
+ (state.collection||[]).forEach(c=>{
+  if(canonical('store',c.store)===from||c.store===from){c.store=to;changed++}
+  if(c.storeOriginal===from)c.storeOriginal=to
+ });
+ const mergeActivity=a=>{
+  if(!a)return;
+  (a.gets||[]).forEach(g=>{if(canonical('store',g.store)===from||g.store===from){g.store=to;changed++}});
+  (a.routePoints||[]).forEach(r=>{if(canonical('store',r.store)===from||r.store===from){r.store=to;changed++}});
+  a.routeLabel=routeLabelForActivity(a)
+ };
+ mergeActivity(state.activeActivity);
+ (state.activityLogs||[]).forEach(mergeActivity);
+ state.storeMeta||={};
+ const fm=state.storeMeta[from]||{},tm=state.storeMeta[to]||{};
+ state.storeMeta[to]={...fm,...tm,area:tm.area||fm.area||''};
+ delete state.storeMeta[from];
+ state.aliases.store[from]=to;
+ Object.keys(state.aliases.store).forEach(k=>{if(state.aliases.store[k]===from)state.aliases.store[k]=to});
+ return changed
+}
 function openGetAddModal(seriesEnc='',context={}){
  const series=seriesEnc?decodeURIComponent(seriesEnc):'';
  const price=series?productUnitPrice(series):'';
  const now=localInputValue(context.ts||new Date());
- const seriesOptions=allProductNames().sort((a,b)=>a.localeCompare(b,'ja')).map(n=>`<option value="${esc(n)}"></option>`).join('');
- const storeOptions=dataStoreNames().map(n=>`<option value="${esc(n)}"></option>`).join('');
  document.getElementById('modalTitle').textContent='げと追加';
- document.getElementById('modalBody').innerHTML=`<div class="get-add-note"><b>観測なしでも登録できます。</b><br><span class="small">進行中セッションから開いた時は、商品・店舗・エリアを引き継ぎます。げとしても観測は🍂か日またぎまで続きます。</span></div>
+ document.getElementById('modalBody').innerHTML=`<div class="get-add-note"><b>観測なしでも登録できます。</b><br><span class="small">追跡中ではないげとも、既存シリーズを選ぶか新規シリーズ名を入れて登録できます。</span></div>
  <input type="hidden" id="getRelatedSessionId" value="${esc(context.relatedSessionId||'')}">
- <div class="form-grid">
-  <div><label>シリーズ名</label><input id="getSeries" list="getSeriesList" value="${esc(series)}" placeholder="例：サンリオメンダコ" oninput="syncGetUnitPrice()"><datalist id="getSeriesList">${seriesOptions}</datalist></div>
-  <div><label>入手方法</label><select id="getMethod">${getMethodOptions()}</select></div>
+ <div class="get-series-picker">
+  <div><label>既存シリーズから選ぶ</label><select id="getSeriesSelect" onchange="chooseGetSeries(encodeURIComponent(this.value))">${getSeriesSelectOptions(series)}</select></div>
+  ${getSeriesQuickChips(series)}
+  <div><label>シリーズ名 <span class="small">新規ならここに入力</span></label><input id="getSeries" value="${esc(series)}" placeholder="例：サンリオメンダコ" oninput="syncGetUnitPrice()"></div>
  </div>
+ <div class="form-grid" style="margin-top:10px"><div><label>入手方法</label><select id="getMethod">${getMethodOptions()}</select></div></div>
+ <div class="get-activity-link-box"><label>ガチャ活日誌への反映</label><select id="getActivityLink" onchange="syncGetActivitySuggestion();syncGetRouteLocationHint()">${getActivityLinkOptions(context.activityLink||'',now)}</select><div id="getActivityLinkHint" class="get-activity-link-hint"></div></div>
  <div style="margin-top:10px"><div class="row between"><label>内訳</label><button class="mini" onclick="addGetItemRow()">＋内訳を追加</button></div><div id="getItemRows" class="get-item-lines">${getItemRowHtml(0)}</div></div>
  <details class="get-optional"><summary>任意情報を入れる</summary><div class="get-optional-body">
-  <div class="form-grid">
-   <div><label>店舗</label><input id="getStore" list="getStoreList" value="${esc(context.store||'')}" placeholder="例：池袋ヨドバシ"><datalist id="getStoreList">${storeOptions}</datalist></div>
-   <div><label>エリア</label><input id="getArea" value="${esc(context.area||state.quickArea||'')}" placeholder="例：池袋"></div>
+  <div class="get-location-box">
+   <label>エリア</label>
+   <div id="getAreaChoices" class="choice-chips area-chips"></div>
+   <input id="getArea" value="${esc(context.area||'')}" placeholder="候補を押すか直接入力" oninput="renderGetLocationChoices()">
+   <label style="margin-top:10px">店舗</label>
+   <select id="getStoreSelect" onchange="getStoreSelectChanged()"><option value="">店舗を選ぶ</option></select>
+   <div id="getStoreChoices" class="choice-chips"></div>
+   <input id="getStore" value="${esc(context.store||'')}" placeholder="候補にない店舗は直接入力" oninput="getStoreTyped()">
+   <label id="getRouteLocationWrap" class="get-route-toggle" style="display:none"><input id="getRouteLocation" type="checkbox" checked><span><b>この場所を日誌ルートにも反映</b><br><span class="small">明示的に選んだ店舗・エリアだけを追加します。活動時間は変わりません。</span></span></label>
+  </div>
+  <div class="form-grid" style="margin-top:10px">
    ${timeInputWithNow('getTs','日時',now)}
    <div>${priceChipsHtml('getUnitPrice',price)}</div>
    <div><label>実際に使った金額</label><input id="getSpent" type="number" min="0" placeholder="空欄なら単価×個数"></div>
@@ -4095,7 +4715,12 @@ function openGetAddModal(seriesEnc='',context={}){
  <div class="row between" style="margin-top:14px"><button class="btn" onclick="closeModal()">やめる</button><button class="btn primary" onclick="saveDirectGet()">げと登録</button></div>`;
  if(context.source){const src=document.getElementById('getSource');if(src)src.value=context.source}
  document.getElementById('modal').classList.add('show');
+ const getTsEl=document.getElementById('getTs');if(getTsEl)getTsEl.addEventListener('change',()=>syncGetActivitySuggestion(true));
+ syncGetActivitySuggestion(true);
+ renderGetLocationChoices();
+ if(context.store)chooseGetStore(encodeURIComponent(context.store));
 }
+
 function syncGetUnitPrice(){
  const series=document.getElementById('getSeries')?.value.trim();
  const price=series?productUnitPrice(series):0;
@@ -4103,9 +4728,11 @@ function syncGetUnitPrice(){
  if(input&&!input.value&&price)input.value=price;
 }
 function saveDirectGet(){
- const series=document.getElementById('getSeries').value.trim();
+ const seriesRaw=document.getElementById('getSeries').value.trim();
+ const series=ensureProductKnown(seriesRaw,'げと追加');
  const method=document.getElementById('getMethod').value||'自引き';
  if(!series){toast('シリーズ名を入れてください');return}
+ const pm=productMeta(series);
  const rows=[...document.querySelectorAll('#getItemRows .get-item-row')].map(row=>({
   item:row.querySelector('.getItemName')?.value.trim()||'',
   count:parseInt(row.querySelector('.getItemCount')?.value||'1',10)||1,
@@ -4114,29 +4741,37 @@ function saveDirectGet(){
  })).filter(x=>x.item);
  if(!rows.length){toast('内訳を1つ以上入れてください');return}
  const unitPrice=parseYen(document.getElementById('getUnitPrice')?.value);
- const store=document.getElementById('getStore')?.value.trim()||'';
- const area=document.getElementById('getArea')?.value.trim()||'';
+ const storeRaw=document.getElementById('getStore')?.value.trim()||'';
+ const store=storeRaw?canonical('store',storeRaw):'';
+ const area=document.getElementById('getArea')?.value.trim()||storeArea(store)||'';
  const source=document.getElementById('getSource')?.value||'';
  const memo=document.getElementById('getMemo')?.value.trim()||'';
  const relatedSessionId=document.getElementById('getRelatedSessionId')?.value||'';
+ const activityLink=document.getElementById('getActivityLink')?.value||'';
+ const target=activityTargetByValue(activityLink);
+ if(activityLink&&!target.log){toast('選んだガチャ活日誌が見つかりません');return}
  const tsValue=document.getElementById('getTs')?.value;
  const ts=tsValue?new Date(tsValue).toISOString():new Date().toISOString();
  const spentRaw=document.getElementById('getSpent')?.value.trim()||'';
  const totalCount=rows.reduce((a,x)=>a+x.count,0);
  const autoSpent=method==='自引き'&&unitPrice?unitPrice*totalCount:0;
  const spent=spentRaw?parseYen(spentRaw):autoSpent;
- if(unitPrice)productMeta(series).unitPrice=unitPrice;
+ if(unitPrice)pm.unitPrice=unitPrice;
+ if(pm.status==='未設定'&&rows.some(r=>r.status!=='譲渡済み'))pm.status='げと済み';
  rows.forEach((r,idx)=>{
   const lineMemo=[r.memo,memo].filter(Boolean).join('｜');
-  const rec={id:'get-c-'+uid(),series,item:r.item,cumulative:r.count,cumulativeExact:true,owned:r.status==='譲渡済み'?0:r.count,ownedExact:true,method,status:r.status,memo:lineMemo,createdAt:new Date().toISOString(),getTs:ts,area,storeOriginal:store,store:store||'',source,unitPrice,spent:idx===0?spent:0,relatedSessionId};
+  const rec={id:'get-c-'+uid(),series,item:r.item,cumulative:r.count,cumulativeExact:true,owned:r.status==='譲渡済み'?0:r.count,ownedExact:true,method,status:r.status,memo:lineMemo,createdAt:new Date().toISOString(),getTs:ts,area,storeOriginal:storeRaw,store,source,unitPrice,spent:idx===0?spent:0,relatedSessionId,activityLogId:target.kind==='log'?target.log.id:(target.kind==='active'?target.log.id:'')};
   state.collection.push(rec);
-  recordActivityGet(series,r.item,r.count,method,{unitPrice,collectionId:rec.id,store,area,ts,spent:idx===0?spent:0,relatedSessionId});
+  recordGetToActivityTarget(activityLink,series,r.item,r.count,method,{unitPrice,collectionId:rec.id,store,area,ts,spent:idx===0?spent:0,relatedSessionId});
  });
- touchProduct(series,'げと追加');
+ const addRoute=!!document.getElementById('getRouteLocation')?.checked;
+ if(activityLink&&addRoute&&(area||store))recordActivityRoutePoint(activityLink,{area,store,ts});
+ touchProduct(series,target.log?'げと追加（日誌）':'げと追加');
  if(area)state.quickArea=area;
- save();closeModal();renderAll();toast(`${rows.length}件のげと内訳を追加しました`);celebrate('get','げと！');
+ save();closeModal();renderAll();
+ const msg=target.kind==='log'?`${rows.length}件をげと帳面と過去日誌へ追加しました（活動時間は変更していません）`:target.kind==='active'?`${rows.length}件をげと帳面と進行中の日誌へ追加しました`:`${rows.length}件をげと帳面へ追加しました`;
+ toast(msg);celebrate('get','げと！');
 }
-
 
 function productItemRowHtml(i=0,item='',owned=1,method='自引き'){
  return `<div class="product-item-add-row">
@@ -4171,9 +4806,9 @@ async function quickAddCollectionItem(){
  pm.want=document.getElementById('newWantCount')?.value||pm.want||'';
  if(unitPrice)pm.unitPrice=unitPrice;
  if(memo)pm.note=[pm.note,memo].filter(Boolean).join('\n');
- pm.releaseYear=document.getElementById('newReleaseYear')?.value||pm.releaseYear||'';
- pm.releaseMonth=document.getElementById('newReleaseMonth')?.value||pm.releaseMonth||'';
- pm.releaseWeek=document.getElementById('newReleaseWeek')?.value||pm.releaseWeek||'';
+ pm.releaseYear=releaseFieldNumberValue('newReleaseYear')||pm.releaseYear||'';
+ pm.releaseMonth=releaseFieldNumberValue('newReleaseMonth')||pm.releaseMonth||'';
+ pm.releaseWeek=releaseFieldNumberValue('newReleaseWeek')||pm.releaseWeek||'';
  pm.releaseDate=document.getElementById('newReleaseDate')?.value||pm.releaseDate||'';
  pm.trackEndDate=document.getElementById('newTrackEndDate')?.value||pm.trackEndDate||'';
  pm.releaseMemo=document.getElementById('newReleaseMemo')?.value||pm.releaseMemo||'';
@@ -4330,8 +4965,41 @@ function removeImage(s,type,i){
  })
 }
 
-function renderAliases(){const rows=[];for(const type of ['product','store'])for(const [a,b] of Object.entries(state.aliases[type]))rows.push([type,a,b,TENTATIVE_ALIASES.some(x=>x[0]===type&&x[1]===a)]);document.getElementById('aliasList').innerHTML=rows.map(r=>`<div class="alias-row"><span>${r[0]==='product'?'商品':'店舗'}：${esc(r[1])}</span><span>→</span><b>${esc(r[2])}</b><span class="pill ${r[3]?'yellow':'green'}">${r[3]?'暫定統合':'統合'}</span></div>`).join('')}
-function addAlias(){const t=document.getElementById('aliasType').value,a=document.getElementById('aliasFrom').value.trim(),b=document.getElementById('aliasTo').value.trim();if(!a||!b)return;state.aliases[t][a]=b;save();renderAll();toast('別名を追加しました')}
+
+function renderAliasNameList(){
+ const list=document.getElementById('aliasNameList');if(!list)return;
+ const type=document.getElementById('aliasType')?.value||'product';
+ const names=type==='store'?dataStoreNames():allProductNames();
+ list.innerHTML=names.map(n=>`<option value="${esc(n)}"></option>`).join('')
+}
+function renderAliases(){
+ const rows=[];
+ for(const type of ['product','store'])for(const [a,b] of Object.entries(state.aliases[type]||{}))rows.push([type,a,b,TENTATIVE_ALIASES.some(x=>x[0]===type&&x[1]===a)]);
+ document.getElementById('aliasList').innerHTML=rows.length?rows.map(r=>`<div class="alias-row"><span>${r[0]==='product'?'商品':'店舗'}：${esc(r[1])}</span><span>→</span><b>${esc(r[2])}</b><span class="pill ${r[3]?'yellow':'green'}">${r[3]?'暫定統合':'統合'}</span></div>`).join(''):'<div class="empty">統合・別名はまだありません。</div>';
+ renderAliasNameList()
+}
+
+function addAlias(){
+ const t=document.getElementById('aliasType').value;
+ const a=document.getElementById('aliasFrom').value.trim();
+ const b=document.getElementById('aliasTo').value.trim();
+ if(!a||!b){toast('元の表記と統合先を入れてください');return}
+ if(a===b){toast('同じ名前には統合できません');return}
+ if(t==='store'){
+  return openAppConfirm({
+   title:'店舗を統合',
+   target:`${esc(a)} → ${esc(b)}`,
+   warning:'観測ログ・げと帳面・ガチャ活日誌・店舗情報にある店舗名を統合先へまとめます。元の表記は別名として残ります。',
+   confirmLabel:'店舗を統合する',
+   action:()=>{
+    const changed=mergeStoreReferences(a,b);
+    save();closeModal();renderAll();toast(`店舗を統合しました（${changed}件更新）`)
+   }
+  })
+ }
+ state.aliases[t][a]=b;
+ save();renderAll();toast('商品別名を追加しました')
+}
 
 function collectionExtraHtml(x){
  const rows=[];
@@ -4542,16 +5210,16 @@ function pickMergeTarget(targetEnc,sourceEnc){
 }
 function saveProductMerge(sourceEnc){
  const source=decodeURIComponent(sourceEnc);
- const target=document.getElementById('mergeTarget')?.value.trim();
- if(!target){toast('統合先の商品名を入れてください');return}
- if(target===source){toast('同じ商品名です');return}
+ const target=(document.getElementById('mergeProductTarget')?.value||document.getElementById('mergeTarget')?.value||'').trim();
+ if(!target){toast('統合先の商品名を入れてください');return false}
+ if(target===source){toast('同じ商品名です');return false}
  return openAppConfirm({
   title:'商品を統合',
   target:`${esc(source)} → ${esc(target)}`,
   warning:'観測・げと帳面・写真・設定を統合先へまとめます。統合後、元の商品名は別名として扱います。',
   confirmLabel:'統合する',
   danger:false,
-  action:()=>{replaceProductEverywhere(source,target);save();renderAll();closeModal();toast('商品を統合しました');openSeries(encodeURIComponent(target))}
+  action:()=>{replaceProductEverywhere(source,target);syncAllLinkedActivityGets();save();renderAll();closeModal();toast('商品を統合しました');openSeries(encodeURIComponent(target))}
  })
 }
 
@@ -4616,23 +5284,13 @@ function deleteProductCompletely(enc){
   details:[...obs.slice(0,6).map(o=>`観測 ${fmtTs(o.ts)}｜${o.store}｜${o.status}`),...col.slice(0,6).map(c=>`帳面 ${c.series}｜${c.item}`)],
   confirmLabel:'完全削除する',
   action:()=>{
-   state.observations=state.observations.filter(o=>!(matchesDeleteProduct(o.product,names)||matchesDeleteProduct(o.productOriginal,names)));
-   state.collection=state.collection.filter(c=>!matchesDeleteProduct(c.series,names));
-   [...names].forEach(n=>{delete state.productMeta[n];delete state.images[n]});
-   Object.keys(state.productMeta||{}).forEach(k=>{if(matchesDeleteProduct(k,names))delete state.productMeta[k]});
-   Object.keys(state.images||{}).forEach(k=>{if(matchesDeleteProduct(k,names))delete state.images[k]});
-   Object.keys(state.aliases.product||{}).forEach(k=>{if(names.has(k)||names.has(state.aliases.product[k])||names.has(canonical('product',k))||names.has(canonical('product',state.aliases.product[k])))delete state.aliases.product[k]});
-   const filterActivity=a=>{
-    if(!a)return;
-    a.gets=(a.gets||[]).filter(g=>!matchesDeleteProduct(g.series,names));
-    a.spins=(a.spins||[]).filter(g=>!matchesDeleteProduct(g.series||g.product,names));
-   };
-   filterActivity(state.activeActivity);
-   (state.activityLogs||[]).forEach(filterActivity);
-   state.productRecent=(state.productRecent||[]).filter(x=>!matchesDeleteProduct(typeof x==='string'?x:x.name,names));
-   cleanupSessionFlags();normalizeV66Data();save();renderAll();closeModal();
-   const still=allProductNames().filter(n=>matchesDeleteProduct(n,names));
-   toast(still.length?`一部が残っています：${still.slice(0,2).join('、')}`:'商品を完全削除しました');
+   purgeProductNames(names);
+   normalizeV66Data();
+   purgeProductNames(names);
+   save();renderAll();closeModal();
+   const left=fullProductResiduals(names);
+   if(residualTotal(left))console.warn('product delete residual after purge',left);
+   toast('商品を削除しました');
   }
  })
 }
@@ -4745,14 +5403,23 @@ function activityEventAmount(e){if(!activityChargeable(e))return 0;const explici
 function activityEstimatedSpent(a){return [...(a?.gets||[]),...(a?.spins||[])].reduce((sum,e)=>sum+activityEventAmount(e),0)}
 function activityMissingPrices(a){return [...(a?.gets||[]),...(a?.spins||[])].filter(e=>activityChargeable(e)&&!activityEventPrice(e)).length}
 function activityGetCount(a){return (a?.gets||[]).reduce((sum,e)=>sum+(parseInt(e.count||'0',10)||0),0)}
-function activityObservationCount(a,endTs=null){
- const start=new Date(a?.startTs||0).getTime(),end=endTs?new Date(endTs).getTime():Date.now();
- return state.observations.filter(o=>o.ts&&new Date(o.ts).getTime()>=start&&new Date(o.ts).getTime()<=end).length
-}
+function activityObservationCount(a,endTs=null){return activityRelatedObservations(a,endTs||new Date()).length}
+
 function activityRelatedObservations(a,endTs){
- const start=new Date(a?.startTs||0).getTime(),end=new Date(endTs||new Date()).getTime();
+ const end=new Date(endTs||new Date()).getTime();
+ if(a?.resumedActivity){
+  const ids=new Set(a.observationIds||[]);
+  const resumeStart=new Date(a.resumeTs||a.resumedAt||a.startTs||0).getTime();
+  return state.observations.filter(o=>{
+   if(!o.ts)return false;
+   const t=new Date(o.ts).getTime();
+   return ids.has(o.id)||(t>=resumeStart&&t<=end);
+  })
+ }
+ const start=new Date(a?.startTs||0).getTime();
  return state.observations.filter(o=>o.ts&&new Date(o.ts).getTime()>=start&&new Date(o.ts).getTime()<=end)
 }
+
 function recordActivityObservation(obs){
  if(!state.activeActivity||!obs?.id)return;
  state.activeActivity.observationIds||=[];
@@ -4948,6 +5615,27 @@ function cancelActivity(){
  if(!state.activeActivity)return;
  state.activeActivity=null;save();closeModal();renderAll();toast('開始を取り消しました');
 }
+
+function resumeActivityLog(id){
+ stopInlineEvent(window.event);
+ if(state.activeActivity){toast('すでにガチャ活中です。先に今のガチャ活を終了してください');return false}
+ const log=(state.activityLogs||[]).find(a=>a.id===id);
+ if(!log){toast('日誌が見つかりません');return false}
+ return openAppConfirm({
+  title:'ガチャ活を再開',
+  target:`${dateLabel(log.startTs)}｜${esc(log.routeLabel||routeLabelForActivity(log))}`,
+  warning:'本当に活動を再開する時だけ使います。入れ忘れたげとは、通常の「げと追加」で過去日誌を選んでください。再開すると、この日誌をホームの「ガチャ活中」に戻します。',
+  confirmLabel:'再開する',
+  danger:false,
+  action:()=>{
+   const resumed={...log,resumedActivity:true,resumeTs:new Date().toISOString(),previousEndTs:log.endTs||'',previousEndWeather:log.endWeather||null};
+   delete resumed.endTs; delete resumed.endArea; delete resumed.endWeather; delete resumed.routeLabel; delete resumed.result;
+   state.activityLogs=(state.activityLogs||[]).filter(a=>a.id!==id);
+   state.activeActivity=resumed;
+   save();closeModal();switchPage('home');renderAll();toast('ガチャ活を再開しました');
+  }
+ })
+}
 function openEditActivityLog(id){
  const x=(state.activityLogs||[]).find(a=>a.id===id);if(!x){toast('日誌が見つかりません');return}
  document.getElementById('modalTitle').textContent='ガチャ活日誌を編集';
@@ -5004,7 +5692,7 @@ function activityBarRows(logs,key,label,suffix=''){
  return `<div class="activity-chart"><b>${esc(label)}</b>${rows.length?rows.map((x,i)=>{const v=vals[i];return `<div class="activity-bar-row"><span>${dateLabel(x.startTs)}</span><div class="activity-bar-track"><div class="activity-bar-fill" style="width:${Math.max(3,v/max*100)}%"></div></div><b>${v?esc(String(v)+suffix):'—'}</b></div>`}).join(''):'<div class="empty">グラフ用の日誌はまだありません</div>'}</div>`;
 }
 function activityGetsLinksHtml(gets){
- return gets.length?gets.map(g=>collectionItemLinkHtml(g.series,g.item,`${g.item}×${g.count}`)).join('、'):'なし'
+ return gets.length?gets.map(g=>`${collectionItemLinkHtml(g.series,g.item,`${g.item}×${g.count}`)}${g.addedLater?'<span class="release-badge status">後から追加</span>':''}`).join('、'):'なし'
 }
 function renderActivity(){
  const home=document.getElementById('homeActivityPanel');if(home)home.innerHTML=activityControlHtml(true);
@@ -5017,7 +5705,7 @@ function renderActivity(){
   const getHtml=activityGetsLinksHtml(gets);
   const extraCount=spins.reduce((a,g)=>a+(g.count||0),0);
   const route=x.routeLabel||routeLabelForActivity(x);
-  return `<details class="activity-log-card"><summary><div class="activity-log-head"><div><div class="activity-log-title">${dateLabel(x.startTs)}｜<span class="route-pill">${esc(route)}</span></div><div class="small">${activityDurationText(activityDurationMinutes(x))}｜${(x.spent||0).toLocaleString()}円（${esc(x.spentSource||'記録')}）｜疲労 ${esc(x.fatigue||'未設定')}</div></div><span class="activity-weather-pill">${activityWeatherText(x.weather)}</span></div></summary><div class="activity-mini-grid"><div class="activity-mini"><span>関連げと</span><b>${esc(String(activityGetCount(x)))}個</b></div><div class="activity-mini"><span>追加回数</span><b>${extraCount}回</b></div><div class="activity-mini"><span>関連観測</span><b>${obsCount}件</b></div><div class="activity-mini"><span>歩数</span><b>${x.steps?x.steps:'—'}</b></div><div class="activity-mini"><span>開始天気</span><b>${esc(activityWeatherText(x.weather))}</b></div><div class="activity-mini"><span>終了天気</span><b>${esc(activityWeatherText(x.endWeather))}</b></div></div><div class="note" style="margin-top:10px">ルートは「現地で見た」観測だけで作ります。情報だけの新宿・渋谷などは日誌ルートに入れません。<br>げと：${getHtml}${extraCount?`<br>帳面に残さない追加回数：${extraCount}回`:''}<br>自動概算：${(x.estimatedSpent??activityEstimatedSpent(x)).toLocaleString()}円</div><div class="data-edit-actions"><button class="mini" onclick="openEditActivityLog('${esc(x.id)}')">編集</button><button class="mini danger" onclick="return deleteActivityLog('${esc(x.id)}')">削除</button></div></details>`
+  return `<details class="activity-log-card"><summary><div class="activity-log-head"><div><div class="activity-log-title">${dateLabel(x.startTs)}｜<span class="route-pill">${esc(route)}</span></div><div class="small">${activityDurationText(activityDurationMinutes(x))}｜${(x.spent||0).toLocaleString()}円（${esc(x.spentSource||'記録')}）｜疲労 ${esc(x.fatigue||'未設定')}</div></div><span class="activity-weather-pill">${activityWeatherText(x.weather)}</span></div></summary><div class="activity-mini-grid"><div class="activity-mini"><span>関連げと</span><b>${esc(String(activityGetCount(x)))}個</b></div><div class="activity-mini"><span>追加回数</span><b>${extraCount}回</b></div><div class="activity-mini"><span>関連観測</span><b>${obsCount}件</b></div><div class="activity-mini"><span>歩数</span><b>${x.steps?x.steps:'—'}</b></div><div class="activity-mini"><span>開始天気</span><b>${esc(activityWeatherText(x.weather))}</b></div><div class="activity-mini"><span>終了天気</span><b>${esc(activityWeatherText(x.endWeather))}</b></div></div><div class="note" style="margin-top:10px">ルートは「現地で見た」観測だけで作ります。情報だけの新宿・渋谷などは日誌ルートに入れません。<br>げと：${getHtml}${extraCount?`<br>帳面に残さない追加回数：${extraCount}回`:''}<br>自動概算：${(x.estimatedSpent??activityEstimatedSpent(x)).toLocaleString()}円</div><div class="data-edit-actions"><button class="mini" onclick="openEditActivityLog('${esc(x.id)}')">編集</button><button class="mini blue" onclick="return resumeActivityLog('${esc(x.id)}')">再開</button><button class="mini danger" onclick="return deleteActivityLog('${esc(x.id)}')">削除</button></div></details>`
  }).join(''):'<div class="empty">ガチャ活日誌はまだありません。開始ボタンはワンタップです。</div>';
  const summary=document.getElementById('activitySummary');if(summary)summary.innerHTML=activitySummaryCards(logs);
  const charts=document.getElementById('activityCharts');if(charts)charts.innerHTML=activityBarRows([...logs].reverse(),'minutes','直近7回の活動時間','分')+activityBarRows([...logs].reverse(),'spent','直近7回の支出','円')+activityBarRows([...logs].reverse(),'steps','直近7回の歩数','歩');
@@ -5040,7 +5728,7 @@ function deleteCheckedManualLogs(){
  openBulkDeleteConfirm(ids);
 }
 
-function exportData(){const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='gacha-command-v073-backup.json';a.click();URL.revokeObjectURL(a.href)}
+function exportData(){const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='gacha-command-v080-backup.json';a.click();URL.revokeObjectURL(a.href)}
 function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{state=JSON.parse(r.result);normalizeV66Data();save();renderAll();toast('読み込みました')}catch(x){toast('読み込み失敗')}};r.readAsText(f)}
 
 function resetSeed(){
