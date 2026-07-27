@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffe8f2">
-<title>ガチャ司令室 v0.83</title>
+<title>ガチャ司令室 v0.84</title>
 <style>
 :root{
  --bg:#fff8fd;--bg2:#f4fbff;--panel:#ffffff;--panel2:#fff2f8;--ink:#443c58;--muted:#7d748b;--line:#eaddea;
@@ -1845,7 +1845,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 }
 
 
-/* v0.83 tabs, tracking, data table */
+/* v0.84 tabs, tracking, data table */
 .nav{display:flex;grid-template-columns:none;overflow-x:auto;scrollbar-width:none;gap:6px;align-items:stretch}
 .nav::-webkit-scrollbar{display:none}
 .nav button{min-width:58px;flex:0 0 auto;line-height:1.25}
@@ -1867,7 +1867,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 .item .thumb.product-icon-thumb{font-size:22px}
 
 
-/* v0.83 fixes */
+/* v0.84 fixes */
 .choice-input-wrap{
  display:flex;
  flex-direction:column;
@@ -1974,7 +1974,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 .dark .choice-input-chips button{background:var(--panel2)}
 
 
-/* v0.83 delete safety */
+/* v0.84 delete safety */
 .delete-action-summary{display:grid;gap:10px}
 .delete-action-target{border:1px solid var(--line);border-radius:16px;padding:12px;background:var(--panel2);font-weight:800}
 .delete-action-warning{border:1px solid rgba(255,122,122,.35);border-radius:16px;padding:12px;background:rgba(255,122,122,.08);color:var(--text)}
@@ -1983,7 +1983,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 .item.session-card-safe{cursor:default}
 
 
-/* v0.83 release calendar bars */
+/* v0.84 release calendar bars */
 .release-day{min-height:92px}
 .release-range-bar{
  min-height:19px;
@@ -2027,7 +2027,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 .release-badge.status{background:#fff6d8;color:#6d5617;border-color:#ffe08a}
 
 
-/* v0.83 get chooser + activity resume */
+/* v0.84 get chooser + activity resume */
 .get-series-picker{
  display:grid;
  gap:8px;
@@ -2052,7 +2052,7 @@ html[data-theme="dark"] .calendar-day-tag.fun-tag{background:#253d4a;color:#cdf1
 }
 
 
-/* v0.83 release calendar readability */
+/* v0.84 release calendar readability */
 .release-range-bar{
  background:#f2f0ff;
  color:#241b46;
@@ -2137,7 +2137,7 @@ html[data-theme="dark"] .release-item{
 }
 
 
-/* v0.83 late get → past activity log */
+/* v0.84 late get → past activity log */
 .get-activity-link-box{
  border:1px solid var(--line);
  border-radius:16px;
@@ -2149,7 +2149,7 @@ html[data-theme="dark"] .release-item{
 .get-activity-link-hint{margin-top:6px;font-size:12px;color:var(--muted);line-height:1.45}
 
 
-/* v0.83 get location picker + real store merge */
+/* v0.84 get location picker + real store merge */
 .get-location-box{
  border:1px solid var(--line);
  border-radius:16px;
@@ -2171,7 +2171,7 @@ html[data-theme="dark"] .release-item{
 .get-route-toggle input{width:auto;margin-top:3px}
 
 
-/* v0.83 release bars inside calendar cells */
+/* v0.84 release bars inside calendar cells */
 .release-calendar{
  display:block;
  position:relative;
@@ -2212,6 +2212,7 @@ html[data-theme="dark"] .release-item{
 .release-month-grid .release-range-bar.date-range::before{content:"🫧 "}
 .release-month-grid .release-range-bar.month-range::before{content:"🗓️ "}
 
+.photo-loading{display:grid;place-items:center;min-height:86px;border-radius:14px;background:var(--panel2);color:var(--muted);font-size:12px;border:1px dashed var(--line)}
 </style>
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
@@ -2237,7 +2238,7 @@ html[data-theme="dark"] .release-item{
 </div>
 <div class="app">
 <header class="top">
- <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.83</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
+ <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.84</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
  <div class="top-actions"><div class="bubble"><div id="clock" class="clock">--:--</div><div id="dateMode" class="small">判定中</div></div><button id="themeQuick" class="btn">🌙 ダーク</button></div>
 </header>
 <main>
@@ -2366,7 +2367,7 @@ html[data-theme="dark"] .release-item{
  <div class="card fold-card data-editor-card"><details><summary><div class="fold-title"><div><div class="kicker">data edit room</div><h2 class="title">登録情報を編集</h2></div></div><span class="pill blue">整備場</span></summary><div class="fold-body"><div class="note">帳面や分析ではなく、登録情報をデータとして見て直す場所です。まとめて整えたい時に使います。</div><div class="data-edit-tabs"><button type="button" class="active" data-data-edit="products" onclick="setDataEditTab('products')">商品</button><button type="button" data-data-edit="stores" onclick="setDataEditTab('stores')">店舗</button><button type="button" data-data-edit="collection" onclick="setDataEditTab('collection')">げと帳面</button><button type="button" data-data-edit="logs" onclick="setDataEditTab('logs')">観測ログ</button></div><div id="dataEditor"></div></div></details></div>
  <div class="card fold-card"><details><summary><div class="fold-title"><div><div class="kicker">alias</div><h2 class="title">別名・統合</h2></div></div><span class="pill yellow">手動整備</span></summary><div class="fold-body"><div class="note">商品は別名としてまとめます。店舗は観測・げと・日誌・店舗情報の表記を実際に統合します。</div><div id="aliasList"></div><div class="form-grid"><div><label>元の表記</label><input id="aliasFrom" list="aliasNameList"></div><div><label>統合先</label><input id="aliasTo" list="aliasNameList"></div></div><datalist id="aliasNameList"></datalist><label>種類</label><select id="aliasType" onchange="renderAliasNameList()"><option value="product">商品</option><option value="store">店舗</option></select><div class="row" style="margin-top:10px"><button class="btn" onclick="addAlias()">統合・別名追加</button></div></div></details></div>
 </div><div>
- <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">バックアップ・復元</h2></div><span class="pill blue">保険</span></summary><div class="fold-body"><div class="note">普段は触らなくてOKです。端末の外へ控えを残したい時だけ使います。</div><div class="row"><button class="btn blue" onclick="exportData()">バックアップを保存</button><label class="btn">バックアップから復元<input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)"></label></div></div></details></div>
+ <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">バックアップ・復元</h2></div><span class="pill blue">保険</span></summary><div class="fold-body"><div class="note">普段は触らなくてOKです。端末の外へ控えを残したい時だけ使います。v0.84から画像込みバックアップに対応しています。</div><div id="imageStorageStatus" class="note">画像保存状況を確認中…</div><div class="row"><button class="btn blue" onclick="exportData(this)">画像込みバックアップを保存</button><label class="btn">バックアップから復元<input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)"></label></div></div></details></div>
  <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">手入力ログの整理</h2></div><span id="cleanupCount" class="pill yellow"></span></summary><div class="fold-body"><div class="note">内蔵ログ・取込ログは残し、画面から手入力した観測ログだけ削除候補に出します。</div><div class="row" style="margin-top:10px"><button class="btn danger" onclick="deleteCheckedManualLogs()">選択した手入力ログを削除</button></div><div id="manualLogList" class="cleanup-list"></div></div></details></div>
  <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">初期データ・危険操作</h2></div><span class="pill danger">注意</span></summary><div class="fold-body"><div class="note">観測76行と、げと済み72種類を内蔵しています。押す前にバックアップ推奨です。</div><div data-cinna-strip></div><div class="row" style="margin-top:10px"><button class="btn danger" onclick="resetSeed()">内蔵データに戻す</button></div></div></details></div>
 </div></div></section>
@@ -2801,6 +2802,249 @@ function clearDeviceAuth(){
 let lastGoodStateJson='';
 const uiActionLocks=new Set();
 
+
+const IMAGE_DB_NAME='gachaCommandImageDB';
+const IMAGE_DB_VERSION=1;
+const IMAGE_DB_STORE='images';
+const IMAGE_MAX_SIZE=560;
+const IMAGE_QUALITY=.62;
+let imageDbPromise=null;
+let imageStorageReady=false;
+const imageDataCache=Object.create(null);
+const imageLoadingIds=new Set();
+let imageRefreshTimer=0;
+
+function imageDbAvailable(){return !!window.indexedDB}
+function openImageDb(){
+ if(imageDbPromise)return imageDbPromise;
+ if(!imageDbAvailable())return Promise.reject(new Error('IndexedDB unavailable'));
+ imageDbPromise=new Promise((resolve,reject)=>{
+  const req=indexedDB.open(IMAGE_DB_NAME,IMAGE_DB_VERSION);
+  req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(IMAGE_DB_STORE))db.createObjectStore(IMAGE_DB_STORE,{keyPath:'id'})};
+  req.onsuccess=()=>resolve(req.result);
+  req.onerror=()=>reject(req.error||new Error('IndexedDB open failed'));
+  req.onblocked=()=>reject(new Error('IndexedDB open blocked'))
+ });
+ return imageDbPromise
+}
+function idbReq(req){return new Promise((resolve,reject)=>{req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('IndexedDB request failed'))})}
+function idbDone(tx){return new Promise((resolve,reject)=>{tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error||new Error('IndexedDB transaction failed'));tx.onabort=()=>reject(tx.error||new Error('IndexedDB transaction aborted'))})}
+async function putImageRecord(record){
+ const db=await openImageDb();
+ const tx=db.transaction(IMAGE_DB_STORE,'readwrite');
+ tx.objectStore(IMAGE_DB_STORE).put(record);
+ await idbDone(tx);
+ imageDataCache[record.id]=record.data;
+ return record
+}
+async function getImageRecord(id){
+ if(!id)return null;
+ const db=await openImageDb();
+ const tx=db.transaction(IMAGE_DB_STORE,'readonly');
+ const rec=await idbReq(tx.objectStore(IMAGE_DB_STORE).get(id));
+ return rec||null
+}
+async function deleteImageRecord(id){
+ if(!id)return;
+ delete imageDataCache[id];
+ const db=await openImageDb();
+ const tx=db.transaction(IMAGE_DB_STORE,'readwrite');
+ tx.objectStore(IMAGE_DB_STORE).delete(id);
+ await idbDone(tx)
+}
+async function deleteImageEntries(entries){
+ const ids=[...new Set((entries||[]).map(imageEntryId).filter(Boolean))];
+ if(!ids.length)return 0;
+ for(const id of ids)await deleteImageRecord(id);
+ return ids.length
+}
+function imageEntryId(entry){return entry&&typeof entry==='object'?entry.id:''}
+function imageEntryBytes(entry){return typeof entry==='string'?entry.length:(parseInt(entry?.bytes||'0',10)||0)}
+function imageEntrySrc(entry){
+ if(!entry)return '';
+ if(typeof entry==='string')return entry;
+ if(entry.data)return entry.data;
+ const id=imageEntryId(entry);
+ if(id&&imageDataCache[id])return imageDataCache[id];
+ if(id)queueImageLoad(id);
+ return ''
+}
+function queueImageLoad(id){
+ if(!id||imageLoadingIds.has(id)||imageDataCache[id])return;
+ imageLoadingIds.add(id);
+ getImageRecord(id).then(rec=>{if(rec?.data){imageDataCache[id]=rec.data;scheduleImageRefresh()}}).catch(err=>console.warn('image lazy load failed',err)).finally(()=>imageLoadingIds.delete(id))
+}
+function scheduleImageRefresh(){
+ clearTimeout(imageRefreshTimer);
+ imageRefreshTimer=setTimeout(()=>{try{renderAll()}catch(e){}},180)
+}
+function imageAltText(series,item=''){return esc(item||series||'画像')}
+function imageRefMeta(data,{series='',type='',item='',source=''}={}){
+ return {id:'img-'+uid(),kind:'idb',series,type,item,source,bytes:(data||'').length,createdAt:new Date().toISOString(),maxSize:IMAGE_MAX_SIZE,quality:IMAGE_QUALITY}
+}
+async function storeImageData(data,meta={}){
+ if(!data)throw new Error('image data missing');
+ const ref=imageRefMeta(data,meta);
+ await putImageRecord({...ref,data});
+ return ref
+}
+function compressDataUrl(src,maxSize=IMAGE_MAX_SIZE,quality=IMAGE_QUALITY){
+ return new Promise((resolve,reject)=>{
+  const img=new Image();
+  img.onerror=()=>reject(new Error('image decode failed'));
+  img.onload=()=>{
+   try{
+    const scale=Math.min(1,maxSize/Math.max(img.width||1,img.height||1));
+    const canvas=document.createElement('canvas');
+    canvas.width=Math.max(1,Math.round((img.width||1)*scale));
+    canvas.height=Math.max(1,Math.round((img.height||1)*scale));
+    const ctx=canvas.getContext('2d');
+    if(!ctx)throw new Error('canvas context unavailable');
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    resolve(canvas.toDataURL('image/jpeg',quality))
+   }catch(err){reject(err)}
+  };
+  img.src=src
+ })
+}
+async function compressFileToDataUrl(file){return compress(file)}
+async function saveCompressedImages(files,meta={}){
+ const out=[];
+ for(const file of files){
+  const data=await compressFileToDataUrl(file);
+  out.push(await storeImageData(data,{...meta,source:file?.name||''}))
+ }
+ return out
+}
+function forEachImageArray(callback){
+ state.images||={};
+ Object.entries(state.images).forEach(([series,bucket])=>{
+  const b=normalizeImageBucket(series);
+  callback(b.official,series,'official','');
+  callback(b.owned,series,'owned','');
+  Object.entries(b.itemOwned||{}).forEach(([item,arr])=>callback(arr,series,'itemOwned',item))
+ })
+}
+function collectImageEntriesForState(targetState=state){
+ const out=[];
+ const imgs=targetState.images||{};
+ Object.entries(imgs).forEach(([series,bucket])=>{
+  const b=bucket&&typeof bucket==='object'?bucket:{};
+  (Array.isArray(b.official)?b.official:[]).forEach(x=>out.push({series,type:'official',item:'',entry:x}));
+  (Array.isArray(b.owned)?b.owned:[]).forEach(x=>out.push({series,type:'owned',item:'',entry:x}));
+  Object.entries(b.itemOwned||{}).forEach(([item,arr])=>(Array.isArray(arr)?arr:[]).forEach(x=>out.push({series,type:'itemOwned',item,entry:x})))
+ });
+ return out
+}
+async function preloadImageCache(){
+ const ids=[...new Set(collectImageEntriesForState().map(x=>imageEntryId(x.entry)).filter(id=>id&&!imageDataCache[id]))];
+ for(const id of ids){
+  try{const rec=await getImageRecord(id);if(rec?.data)imageDataCache[id]=rec.data}catch(err){console.warn('image preload failed',err)}
+ }
+ return ids.length
+}
+async function migrateLegacyImagesToIndexedDb(){
+ if(!imageDbAvailable())return false;
+ await openImageDb();
+ let changed=false,migrated=0,failed=0;
+ forEachImageArray((arr,series,type,item)=>{
+  arr.forEach((entry,i)=>{});
+ });
+ for(const {series,type,item,entry} of collectImageEntriesForState()){
+  // actual conversion below uses direct array lookup to write back by index
+ }
+ for (const [series,bucket] of Object.entries(state.images||{})){
+  const b=normalizeImageBucket(series);
+  const convert=async(arr,type,item='')=>{
+   for(let i=0;i<arr.length;i++){
+    const entry=arr[i];
+    if(typeof entry==='string'&&entry.startsWith('data:image/')){
+     try{
+      let data=entry;
+      try{data=await compressDataUrl(entry)}catch(e){console.warn('legacy recompress skipped',e)}
+      arr[i]=await storeImageData(data,{series,type,item,source:'legacy-localStorage'});
+      changed=true;migrated++
+     }catch(err){failed++;console.warn('legacy image migration failed',err)}
+    }else if(entry&&typeof entry==='object'&&entry.data&&entry.id){
+     try{
+      const data=entry.data;
+      delete entry.data;
+      arr[i]=await storeImageData(data,{series:entry.series||series,type:entry.type||type,item:entry.item||item,source:'backup'});
+      changed=true;migrated++
+     }catch(err){failed++;console.warn('backup image migration failed',err)}
+    }else if(entry&&typeof entry==='object'&&entry.data&&!entry.id){
+     try{
+      arr[i]=await storeImageData(entry.data,{series,type,item,source:'backup'});
+      changed=true;migrated++
+     }catch(err){failed++;console.warn('backup image migration failed',err)}
+    }
+   }
+  };
+  await convert(b.official,'official','');
+  await convert(b.owned,'owned','');
+  for(const [item,arr] of Object.entries(b.itemOwned||{}))await convert(arr,'itemOwned',item)
+ }
+ state.imageStorageVersion='idb-v1';
+ state.imageMigrationLast={at:new Date().toISOString(),migrated,failed};
+ if(changed)save();
+ imageStorageReady=true;
+ return changed
+}
+async function initImageStorageAfterLoad(){
+ try{
+  await openImageDb();
+  await migrateLegacyImagesToIndexedDb();
+  await preloadImageCache();
+  imageStorageReady=true
+ }catch(err){
+  console.warn('image storage init failed',err);
+  state.imageStorageVersion='localStorage-fallback';
+  toast('画像用データベースを使えませんでした。画像500枚運用はこの端末では未準備です')
+ }
+ try{
+  applyMigration20260720();
+ }catch(err){
+  console.warn('base migration after image storage failed',err);
+  toast(actionErrorMessage('初期データ',err))
+ }
+ renderAll()
+}
+function imageStorageStats(){
+ const entries=collectImageEntriesForState().map(x=>x.entry);
+ const total=entries.length;
+ const legacy=entries.filter(x=>typeof x==='string').length;
+ const idb=entries.filter(x=>imageEntryId(x)).length;
+ const approx=entries.reduce((a,x)=>a+imageEntryBytes(x),0);
+ return {total,legacy,idb,approx}
+}
+async function renderImageStorageStatus(){
+ const el=document.getElementById('imageStorageStatus');
+ if(!el)return;
+ const st=imageStorageStats();
+ const base=`画像 ${st.total}枚｜DB保存 ${st.idb}枚｜旧方式 ${st.legacy}枚`;
+ let quota='';
+ try{
+  if(navigator.storage?.estimate){
+   const e=await navigator.storage.estimate();
+   if(e?.quota&&e?.usage){
+    const pct=Math.round(e.usage/e.quota*100);
+    quota=`<br>端末内ブラウザ保存：${pct}% 使用中（目安）`;
+   }
+  }
+ }catch(e){}
+ el.innerHTML=`${base}${quota}<br><span class="small">v0.84は画像本体をIndexedDBへ分離します。目標は500枚級の記録運用です。</span>`
+}
+async function hydrateImageBackupState(backup){
+ for(const item of collectImageEntriesForState(backup)){
+  const entry=item.entry;
+  if(typeof entry==='string')continue;
+  const id=imageEntryId(entry);
+  if(!id)continue;
+  const data=imageDataCache[id]||(await getImageRecord(id))?.data;
+  if(data)entry.data=data
+ }
+ return backup
+}
 function load(){
  try{state=JSON.parse(localStorage.getItem(KEY))||seed()}catch(e){state=seed()}
  state.weatherDemo||='rain';
@@ -2823,8 +3067,6 @@ function load(){
  state.aliases.product||={};state.aliases.store||={};
  collectionView=state.collectionView||collectionView||'series';
  normalizeV66Data();
- lastGoodStateJson=JSON.stringify(state);
- applyMigration20260720();
  lastGoodStateJson=JSON.stringify(state)
 }
 
@@ -2833,10 +3075,12 @@ function isStorageQuotaError(err){
  return name==='QuotaExceededError'||name==='NS_ERROR_DOM_QUOTA_REACHED'||/quota|storage.*full|容量/i.test(msg)
 }
 function actionErrorMessage(label,err){
- if(isStorageQuotaError(err))return `${label}を保存できませんでした。端末内の保存容量がいっぱいの可能性があります。画像を減らすか、先にバックアップを保存してください。`;
+ if(isStorageQuotaError(err))return `${label}を保存できませんでした。端末内の保存容量がいっぱいの可能性があります。v0.84では画像をDB分離していますが、端末の空き容量が少ない場合は画像保存だけ失敗することがあります。`;
+ if(/IndexedDB|Quota|storage|database/i.test(String(err?.message||'')))return `${label}を保存できませんでした。画像用データベースの容量または端末空き容量が足りない可能性があります。文字データは壊さないよう戻しています。`;
  if(/image|canvas|decode|FileReader/i.test(String(err?.message||'')))return `${label}を保存できませんでした。選んだ画像を読み込めない可能性があります。画像なしで保存するか、別の画像で試してください。`;
  return `${label}を完了できませんでした。入力内容は画面に残しています。`;
 }
+
 function restoreStateJson(json){
  try{
   if(json)state=JSON.parse(json);
@@ -3875,16 +4119,17 @@ function pickStatus(s){document.getElementById('oStatus').value=s;toast(s+'を�
 function coverImage(series){
  const imgs=state.images?.[series]||{};
  const itemOwned=imgs.itemOwned||{};
- for(const arr of Object.values(itemOwned)){if(arr&&arr.length)return arr[0]}
- if(imgs.owned&&imgs.owned.length)return imgs.owned[0];
- if(imgs.official&&imgs.official.length)return imgs.official[0];
+ for(const arr of Object.values(itemOwned)){if(arr&&arr.length){const src=imageEntrySrc(arr[0]);if(src)return src}}
+ if(imgs.owned&&imgs.owned.length){const src=imageEntrySrc(imgs.owned[0]);if(src)return src}
+ if(imgs.official&&imgs.official.length){const src=imageEntrySrc(imgs.official[0]);if(src)return src}
  return null
 }
 
 function itemImage(series,item){
  const arr=state.images?.[series]?.itemOwned?.[item]||[];
- return arr[0]||null
+ return imageEntrySrc(arr[0])||null
 }
+
 function thumbHtml(series,fallback='🎁',item=null){
  const src=item?itemImage(series,item):coverImage(series);
  return src?`<img src="${src}" alt="${esc(item||series)}">`:fallback
@@ -3905,10 +4150,10 @@ function parseYen(v){
 }
 function productIcon(series){
  const imgs=state.images?.[series]||{};
- if(imgs.official&&imgs.official.length)return imgs.official[0];
- if(imgs.owned&&imgs.owned.length)return imgs.owned[0];
+ if(imgs.official&&imgs.official.length){const src=imageEntrySrc(imgs.official[0]);if(src)return src}
+ if(imgs.owned&&imgs.owned.length){const src=imageEntrySrc(imgs.owned[0]);if(src)return src}
  const itemOwned=imgs.itemOwned||{};
- for(const arr of Object.values(itemOwned)){if(arr&&arr.length)return arr[0]}
+ for(const arr of Object.values(itemOwned)){if(arr&&arr.length){const src=imageEntrySrc(arr[0]);if(src)return src}}
  return null
 }
 
@@ -5046,12 +5291,11 @@ async function quickAddCollectionItem(button){
    recordActivityGet(series,item,owned,method,{unitPrice,collectionId:rec.id});
    const files=[...(row.querySelector('.newItemFiles')?.files||[])];
    if(files.length){
-    const bucket=normalizeImageBucket(series);
-    const data=await Promise.all(files.map(compress));
-    bucket.itemOwned[item]||=[];
-    bucket.itemOwned[item].push(...data);
-    itemImgCount+=files.length
-   }
+     const bucket=normalizeImageBucket(series);
+     bucket.itemOwned[item]||=[];
+     bucket.itemOwned[item].push(...await saveCompressedImages(files,{series,type:'itemOwned',item}));
+     itemImgCount+=files.length
+    }
    added++
   }
   touchProduct(series,added?'商品＋帳面追加':'商品情報追加');
@@ -5125,14 +5369,14 @@ function compress(file){
    img.onerror=()=>reject(new Error('image decode failed'));
    img.onload=()=>{
     try{
-     const maxSize=760,scale=Math.min(1,maxSize/Math.max(img.width||1,img.height||1));
+     const maxSize=IMAGE_MAX_SIZE,scale=Math.min(1,maxSize/Math.max(img.width||1,img.height||1));
      const canvas=document.createElement('canvas');
      canvas.width=Math.max(1,Math.round(img.width*scale));
      canvas.height=Math.max(1,Math.round(img.height*scale));
      const ctx=canvas.getContext('2d');
      if(!ctx)throw new Error('canvas context unavailable');
      ctx.drawImage(img,0,0,canvas.width,canvas.height);
-     resolve(canvas.toDataURL('image/jpeg',.78))
+     resolve(canvas.toDataURL('image/jpeg',IMAGE_QUALITY))
     }catch(err){reject(err)}
    };
    img.src=reader.result
@@ -5159,8 +5403,7 @@ async function saveSeriesOfficialImages(enc,input){
  const files=[...(input?.files||[])];
  if(!files.length)return false;
  const result=await runUiAction(`official-images-${series}`,'商品写真',input,async()=>{
-  const data=await Promise.all(files.map(compress));
-  normalizeImageBucket(series).official.push(...data);
+  normalizeImageBucket(series).official.push(...await saveCompressedImages(files,{series,type:'official'}));
   touchProduct(series,'商品写真追加');save();
   return true
  });
@@ -5174,8 +5417,7 @@ async function saveSeriesOwnedImages(enc,input){
  const files=[...(input?.files||[])];
  if(!files.length)return false;
  const result=await runUiAction(`owned-images-${series}`,'げと写真',input,async()=>{
-  const data=await Promise.all(files.map(compress));
-  normalizeImageBucket(series).owned.push(...data);
+  normalizeImageBucket(series).owned.push(...await saveCompressedImages(files,{series,type:'owned'}));
   touchProduct(series,'げと写真追加');save();
   return true
  });
@@ -5191,10 +5433,8 @@ async function saveProductImageFiles(series,officialInputId,ownedInputId){
  const ownedInput=document.getElementById(ownedInputId);
  const officialFiles=[...(officialInput?.files||[])];
  const ownedFiles=[...(ownedInput?.files||[])];
- const officialData=officialFiles.length?await Promise.all(officialFiles.map(compress)):[];
- const ownedData=ownedFiles.length?await Promise.all(ownedFiles.map(compress)):[];
- bucket.official.push(...officialData);
- bucket.owned.push(...ownedData);
+ if(officialFiles.length)bucket.official.push(...await saveCompressedImages(officialFiles,{series,type:'official'}));
+ if(ownedFiles.length)bucket.owned.push(...await saveCompressedImages(ownedFiles,{series,type:'owned'}));
  return {official:officialFiles.length,owned:ownedFiles.length}
 }
 
@@ -5203,12 +5443,9 @@ async function saveItemImageFilesFromInput(series,item,inputId){
  const input=document.getElementById(inputId);
  const files=[...(input?.files||[])];
  if(!files.length)return 0;
- state.images[series]||={official:[],owned:[],itemOwned:{}};
- state.images[series].official||=[];
- state.images[series].owned||=[];
- state.images[series].itemOwned||={};
- state.images[series].itemOwned[item]||=[];
- state.images[series].itemOwned[item].push(...await Promise.all(files.map(compress)));
+ const bucket=normalizeImageBucket(series);
+ bucket.itemOwned[item]||=[];
+ bucket.itemOwned[item].push(...await saveCompressedImages(files,{series,type:'itemOwned',item}));
  return files.length;
 }
 
@@ -5223,16 +5460,28 @@ function loadSeriesImages(){
  if(ow)ow.innerHTML=gallery(series,'owned',x.owned);
 }
 
-function gallery(series,type,arr){return arr.length?arr.map((src,i)=>`<div class="photo"><img src="${src}"><button onclick="return removeImage('${encodeURIComponent(series)}','${type}',${i})">✕</button></div>`).join(''):'<span class="small">まだありません</span>'}
-function itemGallery(series,item){const box=((state.images[series]||{}).itemOwned||{}),arr=box[item]||[];return arr.length?`<div class="item-photo-grid">${arr.map((src,i)=>`<div class="photo"><img src="${src}"><button onclick="return removeItemImage('${encodeURIComponent(series)}','${encodeURIComponent(item)}',${i})">✕</button></div>`).join('')}</div>`:'<div class="item-photo-note">まだありません</div>'}
+function gallery(series,type,arr){
+ return arr.length?arr.map((entry,i)=>{
+  const src=imageEntrySrc(entry);
+  return `<div class="photo">${src?`<img src="${src}" alt="${imageAltText(series)}">`:'<div class="photo-loading">読込中</div>'}<button onclick="return removeImage('${encodeURIComponent(series)}','${type}',${i})">✕</button></div>`
+ }).join(''):'<span class="small">まだありません</span>'
+}
+
+function itemGallery(series,item){
+ const box=((state.images[series]||{}).itemOwned||{}),arr=box[item]||[];
+ return arr.length?`<div class="item-photo-grid">${arr.map((entry,i)=>{
+  const src=imageEntrySrc(entry);
+  return `<div class="photo">${src?`<img src="${src}" alt="${imageAltText(series,item)}">`:'<div class="photo-loading">読込中</div>'}<button onclick="return removeItemImage('${encodeURIComponent(series)}','${encodeURIComponent(item)}',${i})">✕</button></div>`
+ }).join('')}</div>`:'<div class="item-photo-note">まだありません</div>'
+}
+
 async function saveItemImages(seriesEnc,itemEnc,input){
  const series=decodeURIComponent(seriesEnc),item=decodeURIComponent(itemEnc),files=[...(input?.files||[])];
  if(!files.length)return false;
  const result=await runUiAction(`item-images-${series}-${item}`,'内訳写真',input,async()=>{
-  const data=await Promise.all(files.map(compress));
   const bucket=normalizeImageBucket(series);
   bucket.itemOwned[item]||=[];
-  bucket.itemOwned[item].push(...data);
+  bucket.itemOwned[item].push(...await saveCompressedImages(files,{series,type:'itemOwned',item}));
   save();
   return true
  });
@@ -5252,7 +5501,7 @@ function removeItemImage(seriesEnc,itemEnc,i){
   target:`${esc(series)}｜${esc(item)} ${i+1}枚目`,
   warning:'この内訳写真を削除します。',
   confirmLabel:'写真を削除する',
-  action:()=>{arr.splice(i,1);if(state.images[series]&&state.images[series].itemOwned)state.images[series].itemOwned[item]=arr;save();closeModal();toast('内訳写真を削除しました');openSeries(seriesEnc)}
+  action:async()=>{const entry=arr[i];arr.splice(i,1);if(state.images[series]&&state.images[series].itemOwned)state.images[series].itemOwned[item]=arr;await deleteImageEntries([entry]);save();closeModal();toast('内訳写真を削除しました');openSeries(seriesEnc)}
  })
 }
 
@@ -5266,10 +5515,9 @@ function removeImage(s,type,i){
   target:`${esc(series)}｜${type==='official'?'商品写真':'げと写真'} ${i+1}枚目`,
   warning:'この画像を削除します。',
   confirmLabel:'画像を削除する',
-  action:()=>{state.images[series][type].splice(i,1);save();closeModal();toast('画像を削除しました');openSeries(encodeURIComponent(series))}
+  action:async()=>{const entry=imgs[i];state.images[series][type].splice(i,1);await deleteImageEntries([entry]);save();closeModal();toast('画像を削除しました');openSeries(encodeURIComponent(series))}
  })
 }
-
 
 function renderAliasNameList(){
  const list=document.getElementById('aliasNameList');if(!list)return;
@@ -5600,9 +5848,17 @@ function deleteProductCompletely(enc){
   warning:'この商品に関わる観測・げと帳面・画像・商品設定・日誌内のげと/追加回数・最近履歴・別名を削除します。元に戻せません。',
   details:[...obs.slice(0,6).map(o=>`観測 ${fmtTs(o.ts)}｜${o.store}｜${o.status}`),...col.slice(0,6).map(c=>`帳面 ${c.series}｜${c.item}`)],
   confirmLabel:'完全削除する',
-  action:()=>{
+  action:async()=>{
    const input=document.getElementById('newSeriesName');
    if(input&&names.has((input.value||'').trim()))input.value='';
+   const imageEntries=[];
+   [...names].forEach(k=>{
+    const imgs=state.images?.[k];
+    if(!imgs)return;
+    imageEntries.push(...(imgs.official||[]),...(imgs.owned||[]));
+    Object.values(imgs.itemOwned||{}).forEach(arr=>imageEntries.push(...(arr||[])))
+   });
+   await deleteImageEntries(imageEntries);
    purgeProductNames(names);
    normalizeV66Data();
    purgeProductNames(names);
@@ -6053,19 +6309,36 @@ function deleteCheckedManualLogs(){
  openBulkDeleteConfirm(ids);
 }
 
-function exportData(){const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='gacha-command-v083-backup.json';a.click();URL.revokeObjectURL(a.href)}
+async function exportData(button=null){
+ const result=await runUiAction('export-data','バックアップ',button,async()=>{
+  const backup=JSON.parse(JSON.stringify(state));
+  backup.backupFormat='gacha-command-v084-image-included';
+  backup.backupCreatedAt=new Date().toISOString();
+  await hydrateImageBackupState(backup);
+  const b=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(b);
+  a.download='gacha-command-v084-backup.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  return true
+ });
+ if(result.ok)toast('画像込みバックアップを保存しました');
+}
+
 function importData(e){
  const file=e.target.files?.[0];if(!file)return;
  const before=JSON.stringify(state);
  const reader=new FileReader();
  reader.onerror=()=>toast('バックアップファイルを読み込めませんでした');
- reader.onload=()=>{
+ reader.onload=async()=>{
   try{
    const next=JSON.parse(reader.result);
    if(!next||typeof next!=='object'||!Array.isArray(next.observations)||!Array.isArray(next.collection))throw new Error('invalid backup shape');
    state=next;
    normalizeV66Data();
+   await migrateLegacyImagesToIndexedDb();
    save();
+   await preloadImageCache();
    renderAll();
    toast('バックアップを読み込みました')
   }catch(err){
@@ -6090,24 +6363,17 @@ function resetSeed(){
 }
 
 function updateClock(){const d=new Date();document.getElementById('clock').textContent=`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;document.getElementById('dateMode').textContent=`${dateLabel(d.toISOString())}｜${dayType(d.toISOString())}`;updateActivityTick()}
-function renderAll(){renderMascots();renderHome();renderObserve();renderCollection();renderAnalysis();renderProducts();renderStorePage();renderActivity();renderAliases();renderCleanup();renderDataEditor();document.getElementById('themeSelect').value=state.theme||'system'}
+function renderAll(){renderMascots();renderHome();renderObserve();renderCollection();renderAnalysis();renderProducts();renderStorePage();renderActivity();renderAliases();renderCleanup();renderDataEditor();renderImageStorageStatus();document.getElementById('themeSelect').value=state.theme||'system'}
 
 function startApp(){
  if(appStarted)return;
  appStarted=true;
  load();applyTheme(state.theme||'system');renderAll();updateClock();
+ initImageStorageAfterLoad();
  clockTimer=setInterval(updateClock,1000);
  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(state.theme==='system')applyTheme('system')});
 }
 
-window.addEventListener('error',e=>{
- const err=e.error;
- if(err?.gachaPersistenceError){e.preventDefault?.();toast(actionErrorMessage('データ',err))}
-});
-window.addEventListener('unhandledrejection',e=>{
- const err=e.reason;
- if(err?.gachaPersistenceError){e.preventDefault?.();toast(actionErrorMessage('データ',err))}
-});
 function boot(){
  if(isDeviceAuthed()){showAppGate();startApp()}
  else showAuthGate();
