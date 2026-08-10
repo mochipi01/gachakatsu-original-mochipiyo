@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffe8f2">
-<title>ガチャ司令室 v0.84</title>
+<title>ガチャ司令室 v0.85</title>
 <style>
 :root{
  --bg:#fff8fd;--bg2:#f4fbff;--panel:#ffffff;--panel2:#fff2f8;--ink:#443c58;--muted:#7d748b;--line:#eaddea;
@@ -2238,7 +2238,7 @@ html[data-theme="dark"] .release-item{
 </div>
 <div class="app">
 <header class="top">
- <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.84</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
+ <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.85</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
  <div class="top-actions"><div class="bubble"><div id="clock" class="clock">--:--</div><div id="dateMode" class="small">判定中</div></div><button id="themeQuick" class="btn">🌙 ダーク</button></div>
 </header>
 <main>
@@ -2367,7 +2367,7 @@ html[data-theme="dark"] .release-item{
  <div class="card fold-card data-editor-card"><details><summary><div class="fold-title"><div><div class="kicker">data edit room</div><h2 class="title">登録情報を編集</h2></div></div><span class="pill blue">整備場</span></summary><div class="fold-body"><div class="note">帳面や分析ではなく、登録情報をデータとして見て直す場所です。まとめて整えたい時に使います。</div><div class="data-edit-tabs"><button type="button" class="active" data-data-edit="products" onclick="setDataEditTab('products')">商品</button><button type="button" data-data-edit="stores" onclick="setDataEditTab('stores')">店舗</button><button type="button" data-data-edit="collection" onclick="setDataEditTab('collection')">げと帳面</button><button type="button" data-data-edit="logs" onclick="setDataEditTab('logs')">観測ログ</button></div><div id="dataEditor"></div></div></details></div>
  <div class="card fold-card"><details><summary><div class="fold-title"><div><div class="kicker">alias</div><h2 class="title">別名・統合</h2></div></div><span class="pill yellow">手動整備</span></summary><div class="fold-body"><div class="note">商品は別名としてまとめます。店舗は観測・げと・日誌・店舗情報の表記を実際に統合します。</div><div id="aliasList"></div><div class="form-grid"><div><label>元の表記</label><input id="aliasFrom" list="aliasNameList"></div><div><label>統合先</label><input id="aliasTo" list="aliasNameList"></div></div><datalist id="aliasNameList"></datalist><label>種類</label><select id="aliasType" onchange="renderAliasNameList()"><option value="product">商品</option><option value="store">店舗</option></select><div class="row" style="margin-top:10px"><button class="btn" onclick="addAlias()">統合・別名追加</button></div></div></details></div>
 </div><div>
- <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">バックアップ・復元</h2></div><span class="pill blue">保険</span></summary><div class="fold-body"><div class="note">普段は触らなくてOKです。端末の外へ控えを残したい時だけ使います。v0.84から画像込みバックアップに対応しています。</div><div id="imageStorageStatus" class="note">画像保存状況を確認中…</div><div class="row"><button class="btn blue" onclick="exportData(this)">画像込みバックアップを保存</button><label class="btn">バックアップから復元<input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)"></label></div></div></details></div>
+ <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">バックアップ・復元</h2></div><span class="pill blue">保険</span></summary><div class="fold-body"><div class="note">普段は触らなくてOKです。端末の外へ控えを残したい時だけ使います。v0.85から画像込みバックアップに対応しています。</div><div id="imageStorageStatus" class="note">画像保存状況を確認中…</div><div class="row"><button class="btn blue" onclick="exportData(this)">画像込みバックアップを保存</button><label class="btn">バックアップから復元<input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)"></label></div></div></details></div>
  <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">手入力ログの整理</h2></div><span id="cleanupCount" class="pill yellow"></span></summary><div class="fold-body"><div class="note">内蔵ログ・取込ログは残し、画面から手入力した観測ログだけ削除候補に出します。</div><div class="row" style="margin-top:10px"><button class="btn danger" onclick="deleteCheckedManualLogs()">選択した手入力ログを削除</button></div><div id="manualLogList" class="cleanup-list"></div></div></details></div>
  <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">初期データ・危険操作</h2></div><span class="pill danger">注意</span></summary><div class="fold-body"><div class="note">観測76行と、げと済み72種類を内蔵しています。押す前にバックアップ推奨です。</div><div data-cinna-strip></div><div class="row" style="margin-top:10px"><button class="btn danger" onclick="resetSeed()">内蔵データに戻す</button></div></div></details></div>
 </div></div></section>
@@ -3032,7 +3032,7 @@ async function renderImageStorageStatus(){
    }
   }
  }catch(e){}
- el.innerHTML=`${base}${quota}<br><span class="small">v0.84は画像本体をIndexedDBへ分離します。目標は500枚級の記録運用です。</span>`
+ el.innerHTML=`${base}${quota}<br><span class="small">v0.85は画像本体をIndexedDBへ分離し、複数内訳の支出二重計算を修正しています。目標は500枚級の記録運用です。</span>`
 }
 async function hydrateImageBackupState(backup){
  for(const item of collectImageEntriesForState(backup)){
@@ -3061,6 +3061,7 @@ function load(){
  state.activeActivity||=null;
  if(state.activeActivity){state.activeActivity.gets||=[];state.activeActivity.spins||=[];state.activeActivity.observationIds||=[]}
  state.activityLogs.forEach(a=>{a.gets||=[];a.spins||=[];a.observationIds||=[]});
+ normalizeActivityCostData();
  state.lastJoyCommand||=null;
  state.weatherCache||=null;
  state.aliases||=JSON.parse(JSON.stringify(BASE_ALIASES));
@@ -3075,7 +3076,7 @@ function isStorageQuotaError(err){
  return name==='QuotaExceededError'||name==='NS_ERROR_DOM_QUOTA_REACHED'||/quota|storage.*full|容量/i.test(msg)
 }
 function actionErrorMessage(label,err){
- if(isStorageQuotaError(err))return `${label}を保存できませんでした。端末内の保存容量がいっぱいの可能性があります。v0.84では画像をDB分離していますが、端末の空き容量が少ない場合は画像保存だけ失敗することがあります。`;
+ if(isStorageQuotaError(err))return `${label}を保存できませんでした。端末内の保存容量がいっぱいの可能性があります。v0.85では画像をDB分離していますが、端末の空き容量が少ない場合は画像保存だけ失敗することがあります。`;
  if(/IndexedDB|Quota|storage|database/i.test(String(err?.message||'')))return `${label}を保存できませんでした。画像用データベースの容量または端末空き容量が足りない可能性があります。文字データは壊さないよう戻しています。`;
  if(/image|canvas|decode|FileReader/i.test(String(err?.message||'')))return `${label}を保存できませんでした。選んだ画像を読み込めない可能性があります。画像なしで保存するか、別の画像で試してください。`;
  return `${label}を完了できませんでした。入力内容は画面に残しています。`;
@@ -4991,7 +4992,7 @@ function recordGetToActivityTarget(targetValue,series,item,count,method,extra={}
  const target=activityTargetByValue(targetValue);
  if(!target.log)return false;
  target.log.gets||=[];
- target.log.gets.push({id:'get-'+uid(),ts:extra.ts||new Date().toISOString(),series,item,count,method,unitPrice:(parseInt(extra.unitPrice||'0',10)||productUnitPrice(series)),collectionId:extra.collectionId||'',store:extra.store||'',area:extra.area||'',spent:parseInt(extra.spent||'0',10)||0,relatedSessionId:extra.relatedSessionId||'',addedLater:target.kind==='log'});
+ target.log.gets.push({id:'get-'+uid(),ts:extra.ts||new Date().toISOString(),series,item,count,method,unitPrice:(parseInt(extra.unitPrice||'0',10)||productUnitPrice(series)),collectionId:extra.collectionId||'',store:extra.store||'',area:extra.area||'',spent:parseInt(extra.spent||'0',10)||0,groupId:extra.groupId||'',groupSize:parseInt(extra.groupSize||'0',10)||0,groupTotalSpent:parseInt(extra.groupTotalSpent||'0',10)||0,relatedSessionId:extra.relatedSessionId||'',addedLater:target.kind==='log'});
  refreshActivityTotals(target.log);
  target.log.result=(target.log.gets||[]).map(g=>g.item).filter(Boolean).join('、');
  return true
@@ -5181,6 +5182,23 @@ function syncGetUnitPrice(){
  const input=document.getElementById('getUnitPrice');
  if(input&&!input.value&&price)input.value=price;
 }
+function allocateDirectGetSpents(rows,totalSpent,unitPrice,method,manualSpent){
+ const counts=rows.map(r=>Math.max(0,parseInt(r.count||'0',10)||0));
+ const totalCount=counts.reduce((a,b)=>a+b,0);
+ if(manualSpent){
+  let remaining=Math.max(0,parseInt(totalSpent||'0',10)||0);
+  if(!remaining)return rows.map(()=>0);
+  if(totalCount<=0)return rows.map((_,i)=>i===0?remaining:0);
+  let assigned=0;
+  return rows.map((_,i)=>{
+   const val=i===rows.length-1?remaining-assigned:Math.floor(remaining*counts[i]/totalCount);
+   assigned+=Math.max(0,val);
+   return Math.max(0,val)
+  })
+ }
+ if(method==='自引き'&&unitPrice)return counts.map(c=>unitPrice*c);
+ return rows.map(()=>0)
+}
 async function saveDirectGet(button){
  const result=await runUiAction('save-direct-get','げと記録',button,async()=>{
   const seriesRaw=document.getElementById('getSeries')?.value.trim()||'';
@@ -5211,14 +5229,17 @@ async function saveDirectGet(button){
   const totalCount=rows.reduce((a,x)=>a+x.count,0);
   const autoSpent=method==='自引き'&&unitPrice?unitPrice*totalCount:0;
   const spent=spentRaw?parseYen(spentRaw):autoSpent;
+  const groupId=rows.length>1?'getgrp-'+uid():'';
+  const rowSpents=allocateDirectGetSpents(rows,spent,unitPrice,method,!!spentRaw);
   if(unitPrice)pm.unitPrice=unitPrice;
   if(pm.status==='未設定'&&rows.some(r=>r.status!=='譲渡済み'))pm.status='げと済み';
   let linked=0;
   rows.forEach((r,idx)=>{
    const lineMemo=[r.memo,memo].filter(Boolean).join('｜');
-   const rec={id:'get-c-'+uid(),series,item:r.item,cumulative:r.count,cumulativeExact:true,owned:r.status==='譲渡済み'?0:r.count,ownedExact:true,method,status:r.status,memo:lineMemo,createdAt:new Date().toISOString(),getTs:ts,area,storeOriginal:storeRaw,store,source,unitPrice,spent:idx===0?spent:0,relatedSessionId,activityLogId:target.kind==='log'?target.log.id:(target.kind==='active'?target.log.id:'')};
+   const rowSpent=rowSpents[idx]||0;
+   const rec={id:'get-c-'+uid(),series,item:r.item,cumulative:r.count,cumulativeExact:true,owned:r.status==='譲渡済み'?0:r.count,ownedExact:true,method,status:r.status,memo:lineMemo,createdAt:new Date().toISOString(),getTs:ts,area,storeOriginal:storeRaw,store,source,unitPrice,spent:rowSpent,groupId,groupSize:rows.length,groupTotalSpent:spent,relatedSessionId,activityLogId:target.kind==='log'?target.log.id:(target.kind==='active'?target.log.id:'')};
    state.collection.push(rec);
-   if(recordGetToActivityTarget(activityLink,series,r.item,r.count,method,{unitPrice,collectionId:rec.id,store,area,ts,spent:idx===0?spent:0,relatedSessionId}))linked++;
+   if(recordGetToActivityTarget(activityLink,series,r.item,r.count,method,{unitPrice,collectionId:rec.id,store,area,ts,spent:rowSpent,groupId,groupSize:rows.length,groupTotalSpent:spent,relatedSessionId}))linked++;
   });
   if(activityLink&&linked!==rows.length)throw new Error('activity get link failed');
   const addRoute=!!document.getElementById('getRouteLocation')?.checked;
@@ -5981,8 +6002,33 @@ function activityEventPrice(e){
 }
 function activityChargeable(e){return !e.method||e.method==='自引き'}
 function activityEventAmount(e){if(!activityChargeable(e))return 0;const explicit=parseInt(e.spent||'0',10)||0;return explicit||activityEventPrice(e)*(parseInt(e.count||'0',10)||0)}
-function activityEstimatedSpent(a){return [...(a?.gets||[]),...(a?.spins||[])].reduce((sum,e)=>sum+activityEventAmount(e),0)}
-function activityMissingPrices(a){return [...(a?.gets||[]),...(a?.spins||[])].filter(e=>activityChargeable(e)&&!activityEventPrice(e)).length}
+function activityEventGroupKey(e){
+ if(!e||!activityChargeable(e))return '';
+ if(e.groupId)return `group:${e.groupId}`;
+ if(e.collectionId&&e.ts&&e.series)return ['legacy-v084',e.ts,e.series||'',e.method||'',e.store||'',e.area||'',e.relatedSessionId||''].map(x=>String(x)).join('|');
+ return ''
+}
+function activityEstimatedSpent(a){
+ let sum=0;
+ const groups=new Map();
+ [...(a?.gets||[]),...(a?.spins||[])].forEach(e=>{
+  if(!activityChargeable(e))return;
+  const key=activityEventGroupKey(e);
+  if(key){
+   if(!groups.has(key))groups.set(key,[]);
+   groups.get(key).push(e);
+  }else{
+   sum+=activityEventAmount(e);
+  }
+ });
+ groups.forEach(list=>{
+  const explicit=list.reduce((s,e)=>s+(parseInt(e.spent||'0',10)||0),0);
+  if(explicit>0){sum+=explicit;return}
+  sum+=list.reduce((s,e)=>s+activityEventPrice(e)*(parseInt(e.count||'0',10)||0),0);
+ });
+ return sum
+}
+function activityMissingPrices(a){return [...(a?.gets||[]),...(a?.spins||[])].filter(e=>activityChargeable(e)&&!activityEventPrice(e)&&!(parseInt(e.spent||'0',10)||0)).length}
 function activityGetCount(a){return (a?.gets||[]).reduce((sum,e)=>sum+(parseInt(e.count||'0',10)||0),0)}
 function activityObservationCount(a,endTs=null){return activityRelatedObservations(a,endTs||new Date()).length}
 
@@ -6013,6 +6059,24 @@ function activityCollectionCount(c){
  const cumulative=parseInt(c?.cumulative??'',10);
  return Number.isFinite(cumulative)?Math.max(0,cumulative):0;
 }
+function normalizeActivityCostData(){
+ const byId=new Map((state.collection||[]).filter(c=>c.id).map(c=>[c.id,c]));
+ const apply=a=>{
+  if(!a)return;
+  a.gets||=[];a.spins||=[];
+  a.gets.forEach(g=>{
+   const c=g.collectionId?byId.get(g.collectionId):null;
+   if(c){
+    if(c.groupId&&!g.groupId)g.groupId=c.groupId;
+    if(c.groupSize&&!g.groupSize)g.groupSize=parseInt(c.groupSize||'0',10)||0;
+    if(c.groupTotalSpent&&!g.groupTotalSpent)g.groupTotalSpent=parseInt(c.groupTotalSpent||'0',10)||0;
+   }
+  });
+  refreshActivityTotals(a);
+ };
+ apply(state.activeActivity);
+ (state.activityLogs||[]).forEach(apply);
+}
 function refreshActivityTotals(a){
  if(!a)return;
  a.estimatedSpent=activityEstimatedSpent(a);
@@ -6037,6 +6101,9 @@ function syncActivityGetFromCollection(c){
     g.area=c.area||g.area||'';
     g.ts=c.getTs||g.ts||new Date().toISOString();
     g.spent=parseInt(c.spent||'0',10)||0;
+    g.groupId=c.groupId||g.groupId||'';
+    g.groupSize=parseInt(c.groupSize||g.groupSize||'0',10)||0;
+    g.groupTotalSpent=parseInt(c.groupTotalSpent||g.groupTotalSpent||'0',10)||0;
     g.relatedSessionId=c.relatedSessionId||g.relatedSessionId||'';
     updated++;
    }
@@ -6091,6 +6158,9 @@ function syncAllLinkedActivityGets(){
     g.area=c.area||g.area||'';
     g.ts=c.getTs||g.ts||'';
     g.spent=parseInt(c.spent||'0',10)||0;
+    g.groupId=c.groupId||g.groupId||'';
+    g.groupSize=parseInt(c.groupSize||g.groupSize||'0',10)||0;
+    g.groupTotalSpent=parseInt(c.groupTotalSpent||g.groupTotalSpent||'0',10)||0;
     g.relatedSessionId=c.relatedSessionId||g.relatedSessionId||'';
     updated++;
    }
@@ -6104,7 +6174,7 @@ function syncAllLinkedActivityGets(){
 function recordActivityGet(series,item,count,method,extra={}){
  if(!state.activeActivity||!count)return;
  state.activeActivity.gets||=[];
- state.activeActivity.gets.push({id:'get-'+uid(),ts:extra.ts||new Date().toISOString(),series,item,count,method,unitPrice:(parseInt(extra.unitPrice||'0',10)||productUnitPrice(series)),collectionId:extra.collectionId||'',store:extra.store||'',area:extra.area||'',spent:parseInt(extra.spent||'0',10)||0,relatedSessionId:extra.relatedSessionId||''});
+ state.activeActivity.gets.push({id:'get-'+uid(),ts:extra.ts||new Date().toISOString(),series,item,count,method,unitPrice:(parseInt(extra.unitPrice||'0',10)||productUnitPrice(series)),collectionId:extra.collectionId||'',store:extra.store||'',area:extra.area||'',spent:parseInt(extra.spent||'0',10)||0,groupId:extra.groupId||'',groupSize:parseInt(extra.groupSize||'0',10)||0,groupTotalSpent:parseInt(extra.groupTotalSpent||'0',10)||0,relatedSessionId:extra.relatedSessionId||''});
 }
 function activityProductNames(){
  const recent=rankedProductNames(),all=allProductNames();
@@ -6312,12 +6382,12 @@ function deleteCheckedManualLogs(){
 async function exportData(button=null){
  const result=await runUiAction('export-data','バックアップ',button,async()=>{
   const backup=JSON.parse(JSON.stringify(state));
-  backup.backupFormat='gacha-command-v084-image-included';
+  backup.backupFormat='gacha-command-v085-image-included';
   backup.backupCreatedAt=new Date().toISOString();
   await hydrateImageBackupState(backup);
   const b=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}),a=document.createElement('a');
   a.href=URL.createObjectURL(b);
-  a.download='gacha-command-v084-backup.json';
+  a.download='gacha-command-v085-backup.json';
   a.click();
   URL.revokeObjectURL(a.href);
   return true
@@ -6336,6 +6406,7 @@ function importData(e){
    if(!next||typeof next!=='object'||!Array.isArray(next.observations)||!Array.isArray(next.collection))throw new Error('invalid backup shape');
    state=next;
    normalizeV66Data();
+   normalizeActivityCostData();
    await migrateLegacyImagesToIndexedDb();
    save();
    await preloadImageCache();
