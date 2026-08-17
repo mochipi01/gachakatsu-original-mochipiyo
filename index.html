@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffe8f2">
-<title>ガチャ司令室 v0.85</title>
+<title>ガチャ司令室 v0.87</title>
 <style>
 :root{
  --bg:#fff8fd;--bg2:#f4fbff;--panel:#ffffff;--panel2:#fff2f8;--ink:#443c58;--muted:#7d748b;--line:#eaddea;
@@ -2214,7 +2214,7 @@ html[data-theme="dark"] .release-item{
 
 .photo-loading{display:grid;place-items:center;min-height:86px;border-radius:14px;background:var(--panel2);color:var(--muted);font-size:12px;border:1px dashed var(--line)}
 
-/* v0.85 budget + medals + clean search */
+/* v0.87 budget + medals + clean search */
 .status-medals{display:inline-flex;gap:4px;align-items:center;vertical-align:middle;margin-left:6px;flex-wrap:wrap}
 .series-medal{display:inline-flex;align-items:center;gap:2px;border-radius:999px;padding:2px 6px;font-size:12px;font-weight:900;line-height:1;border:1px solid rgba(0,0,0,.08);background:#fff7d8;color:#6b4b00;white-space:nowrap}
 .series-medal small{font-size:10px;font-weight:800}
@@ -2252,6 +2252,24 @@ html[data-theme="dark"] .budget-status.stop{background:#4c1925;color:#ffc0cb;bor
 .cleaner-result{margin-top:8px;font-size:12px;color:var(--muted)}
 @media(max-width:720px){.budget-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.budget-cell b{font-size:16px}}
 
+
+
+/* v0.87 safety + budget + store updates */
+input[type="checkbox"],input[type="radio"]{width:18px;min-width:18px;height:18px;padding:0;margin:0;accent-color:var(--accent);vertical-align:middle}
+.series-complete-toggle input{width:18px;min-width:18px;height:18px;margin-top:3px;flex:none}
+.series-complete-toggle>span{flex:1;min-width:0;display:block;writing-mode:horizontal-tb}
+.series-complete-button{margin-top:10px;padding:10px;border-radius:16px;background:#fff8dc;border:1px solid #f0d679;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.series-complete-button .btn{box-shadow:none}
+.series-complete-button.active{background:#ffe9a9;border-color:#d4aa25}
+.budget-subtabs{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 14px}
+.budget-subtabs button{border:1px solid var(--line);background:var(--panel2);border-radius:999px;padding:8px 12px;font-weight:900}
+.budget-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:10px}
+.budget-day{min-height:62px;border:1px solid var(--line);border-radius:14px;background:var(--panel2);padding:7px;font-size:11px;display:grid;gap:3px;align-content:start;cursor:pointer}
+.budget-day.blank{opacity:.35;cursor:default}
+.budget-day b{font-size:12px}.budget-day .yen{font-weight:950}.budget-day.safe{background:#f1fff5}.budget-day.caution{background:#fff8dc}.budget-day.danger{background:#ffe7dc}.budget-day.stop{background:#ffe0e8}
+html[data-theme="dark"] .budget-day.safe{background:#1e3a29}html[data-theme="dark"] .budget-day.caution{background:#423516}html[data-theme="dark"] .budget-day.danger{background:#512719}html[data-theme="dark"] .budget-day.stop{background:#4c1925}
+.budget-week-list,.activity-month-list{display:grid;gap:10px;margin-top:12px}.budget-week-list details,.activity-month-list details{border:1px solid var(--line);border-radius:18px;background:var(--panel2);overflow:hidden}.budget-week-list summary,.activity-month-list summary{cursor:pointer;list-style:none;padding:12px;font-weight:950;display:flex;justify-content:space-between;gap:8px;align-items:center}.budget-week-list summary::-webkit-details-marker,.activity-month-list summary::-webkit-details-marker{display:none}.budget-week-body,.activity-month-body{padding:0 10px 10px;display:grid;gap:8px}.budget-detail-row{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:9px;font-size:12px}.store-meta-form{display:grid;gap:8px;margin-top:10px}.store-create-actions{margin-top:10px}.store-detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.activity-week-label{font-size:12px;color:var(--muted);font-weight:900;margin-top:4px}
+
 </style>
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
@@ -2277,7 +2295,7 @@ html[data-theme="dark"] .budget-status.stop{background:#4c1925;color:#ffc0cb;bor
 </div>
 <div class="app">
 <header class="top">
- <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.85</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
+ <div class="brand"><div id="headerMascot" class="mascot-wrap"></div><div><h1>ガチャ司令室 <span class="small">v0.87</span></h1><div class="sub">しなもんたん司令官と、きらきら観測をためて作戦を育てる</div></div></div>
  <div class="top-actions"><div class="bubble"><div id="clock" class="clock">--:--</div><div id="dateMode" class="small">判定中</div></div><button id="themeQuick" class="btn">🌙 ダーク</button></div>
 </header>
 <main>
@@ -2330,14 +2348,14 @@ html[data-theme="dark"] .budget-status.stop{background:#4c1925;color:#ffc0cb;bor
  <div id="collectionList" class="collection-card-grid"></div>
 </div></section>
 
-<section id="page-analysis" class="page"><div class="card"><div class="row between"><div><div class="kicker">visual analysis</div><h2 class="title">分析とグラフ</h2></div><div id="analysisMascot" class="mascot-small"></div></div><div class="tabs"><button class="chip-btn active" data-analysis="product">商品</button><button class="chip-btn" data-analysis="store">店舗</button><button class="chip-btn" data-analysis="area">エリア・時間</button><button class="chip-btn" data-analysis="day">曜日</button><button class="chip-btn" data-analysis="data">🐜🍂データ</button></div><div id="analysisContent"></div><div class="card" style="margin-top:16px"><div class="row between"><div><div class="kicker">daily raw log</div><h2 class="title">日別ログ</h2></div><span class="pill yellow">元ログ</span></div><div class="note">日付ごとに元データを確認します。追跡から消えた🍂済みもここには残ります。</div><div id="dailyLogList" class="daily-log-list"></div></div><div data-cinna-strip></div></div></section>
+<section id="page-analysis" class="page"><div class="card"><div class="row between"><div><div class="kicker">visual analysis</div><h2 class="title">分析とグラフ</h2></div><div id="analysisMascot" class="mascot-small"></div></div><div class="tabs"><button class="chip-btn active" data-analysis="product">商品</button><button class="chip-btn" data-analysis="store">店舗</button><button class="chip-btn" data-analysis="area">エリア・時間</button><button class="chip-btn" data-analysis="day">曜日</button><button class="chip-btn" data-analysis="budget">💰予算</button><button class="chip-btn" data-analysis="data">🐜🍂データ</button></div><div id="analysisContent"></div><div class="card" style="margin-top:16px"><div class="row between"><div><div class="kicker">daily raw log</div><h2 class="title">日別ログ</h2></div><span class="pill yellow">元ログ</span></div><div class="note">日付ごとに元データを確認します。追跡から消えた🍂済みもここには残ります。</div><div id="dailyLogList" class="daily-log-list"></div></div><div data-cinna-strip></div></div></section>
 
 <section id="page-schedule" class="page"><div class="grid"><div>
  <div class="card"><h2 class="title">発売カレンダー</h2><div id="releaseCalendar"></div></div>
 </div><div><div class="card"><div class="row between"><div><div class="kicker">release memo</div><h2 class="title">予定の見方</h2></div><div class="mascot-small">🗓️</div></div><div class="note">発売日・発売週・月だけ・未定をまとめて見ます。商品情報の編集は商品タブからできます。</div><div data-cinna-strip></div></div></div></div></section>
 
 <section id="page-stores" class="page"><div class="grid"><div>
- <div class="card"><div class="row between"><div><div class="kicker">store room</div><h2 class="title">店舗</h2></div><div class="mascot-small">🏬</div></div><div class="note">店舗の扱い、観測履歴、🐜🍂傾向をここで見ます。情報だけ・行かない店舗も分析には残します。</div><input id="storePageSearch" placeholder="店舗を検索" oninput="renderStorePage()"><div id="storePageList" class="store-list-grid" style="margin-top:12px"></div></div>
+ <div class="card"><div class="row between"><div><div class="kicker">store room</div><h2 class="title">店舗</h2></div><div class="mascot-small">🏬</div></div><div class="note">店舗の扱い、観測履歴、🐜🍂傾向をここで見ます。情報だけ・行かない店舗も分析には残します。</div><div class="row" style="margin-top:10px"><button class="btn primary" onclick="openStoreCreateModal()">＋店舗を登録</button></div><input id="storePageSearch" placeholder="店舗を検索" oninput="renderStorePage()"><div id="storePageList" class="store-list-grid" style="margin-top:12px"></div></div>
 </div><div><div class="card"><h2 class="title">店舗の扱い</h2><div class="note">よく行く / 行ける / たまに行く / 情報だけ / 行かない / 遠征 を店舗詳細で設定できます。ホーム推薦だけ出し分け、分析データには残します。</div></div></div></div></section>
 <section id="page-products" class="page"><div class="grid"><div>
  <div class="card"><div class="row between"><div><div class="kicker">product room</div><h2 class="title">商品管理</h2></div><div class="mascot-small">🖼️</div></div><div class="note">発売予定は「予定」タブへ移動しました。ここは商品名・画像・単価・内訳・統合を整える場所です。</div></div>
@@ -2392,23 +2410,22 @@ html[data-theme="dark"] .budget-status.stop{background:#4c1925;color:#ffc0cb;bor
 
 <section id="page-activity" class="page"><div class="grid"><div>
  <div class="card activity-hero"><div class="row between"><div><div class="kicker">gacha outing log</div><h2 class="title">ガチャ活日誌</h2></div><div class="mascot-small">🎒</div></div>
-  <div class="note">開始はワンタップです。ガチャ活中のげと・観測・追加回数を自動で日誌につなぎます。気温・天気はOpen-Meteoの予報を取得して記録します。</div>
+  <div class="note">開始はワンタップです。ガチャ活中のげと・観測・追加回数を自動で日誌につなぎます。天気は既存ログのメモとして残し、現在地取得は使いません。</div>
   <div id="activityStatus"></div>
  </div>
  <div class="card"><div class="row between"><div><div class="kicker">history</div><h2 class="title">ガチャ活ログ</h2></div><span id="activityCountPill" class="pill yellow"></span></div><div id="activityList" class="list"></div></div>
 </div><div>
  <div class="card"><div class="row between"><div><div class="kicker">outing analysis</div><h2 class="title">ガチャ活グラフ</h2></div><span class="pill blue">仮分析</span></div><div id="activitySummary"></div><div id="activityCharts"></div></div>
- <div class="card"><h2 class="title">仮天気連動</h2><div id="activityWeatherNote" class="note"></div><div data-cinna-strip></div></div>
 </div></div></section>
 
 <section id="page-settings" class="page"><div class="grid"><div>
  <div class="card fold-card"><details><summary><div class="fold-title"><div><div class="kicker">appearance</div><h2 class="title">見た目</h2></div></div><div id="nightMascot" class="mascot-small"></div></summary><div class="fold-body"><label>テーマ</label><select id="themeSelect" onchange="applyTheme(this.value,true)"><option value="system">端末に合わせる</option><option value="light">ライト</option><option value="dark">ダーク</option></select></div></details></div>
  <div class="card fold-card lock-card"><details><summary><div class="fold-title"><div><div class="kicker">simple lock</div><h2 class="title">合言葉ロック</h2></div></div><span class="pill green">認証済み端末</span></summary><div class="fold-body"><div class="note">この端末の認証だけ解除します。観測・げと帳面などの記録データは消しません。</div><button class="btn danger" onclick="clearDeviceAuth()">この端末の認証を解除する</button></div></details></div>
- <div class="card fold-card"><details open><summary><div class="fold-title"><div><div class="kicker">budget</div><h2 class="title">週間予算</h2></div></div><span class="pill yellow">ブレーキ</span></summary><div class="fold-body"><div class="note">今日の目安は「週予算÷7」で固定です。使わない日があっても翌日の目安は増えません。</div><div class="form-grid"><div><label>週予算</label><input id="budgetWeeklyLimit" type="number" min="0" step="100" placeholder="10000"></div><div><label>週の開始</label><select id="budgetWeekStart"><option value="1">月曜〜日曜</option><option value="0">日曜〜土曜</option><option value="6">土曜〜金曜</option></select></div></div><div class="row" style="margin-top:10px"><button class="btn primary" onclick="saveBudgetSettings()">予算を保存</button></div><div id="budgetSettingsPreview" class="note" style="margin-top:8px"></div></div></details></div>
+ <div class="card fold-card"><details open><summary><div class="fold-title"><div><div class="kicker">budget</div><h2 class="title">月目標予算</h2></div></div><span class="pill yellow">ブレーキ</span></summary><div class="fold-body"><div class="note">月目標から日目安・週目安を自動計算します。毎月の手入力は不要です。</div><div class="form-grid"><div><label>月目標</label><input id="budgetMonthlyTarget" type="number" min="0" step="1000" placeholder="30000"></div><div><label>週の開始</label><select id="budgetWeekStart"><option value="1">月曜〜日曜</option><option value="0">日曜〜土曜</option><option value="6">土曜〜金曜</option></select></div></div><div class="row" style="margin-top:10px"><button class="mini" onclick="setBudgetPreset(20000)">2万円</button><button class="mini" onclick="setBudgetPreset(30000)">3万円</button><button class="mini" onclick="setBudgetPreset(35000)">3.5万円</button><button class="btn primary" onclick="saveBudgetSettings()">予算を保存</button></div><div id="budgetSettingsPreview" class="note" style="margin-top:8px"></div></div></details></div>
  <div class="card fold-card data-editor-card"><details><summary><div class="fold-title"><div><div class="kicker">data edit room</div><h2 class="title">登録情報を編集</h2></div></div><span class="pill blue">整備場</span></summary><div class="fold-body"><div class="note">帳面や分析ではなく、登録情報をデータとして見て直す場所です。まとめて整えたい時に使います。</div><div class="data-edit-tabs"><button type="button" class="active" data-data-edit="products" onclick="setDataEditTab('products')">商品</button><button type="button" data-data-edit="stores" onclick="setDataEditTab('stores')">店舗</button><button type="button" data-data-edit="collection" onclick="setDataEditTab('collection')">げと帳面</button><button type="button" data-data-edit="logs" onclick="setDataEditTab('logs')">観測ログ</button></div><div id="dataEditor"></div></div></details></div>
  <div class="card fold-card"><details><summary><div class="fold-title"><div><div class="kicker">alias</div><h2 class="title">別名・統合</h2></div></div><span class="pill yellow">手動整備</span></summary><div class="fold-body"><div class="note">商品は別名としてまとめます。店舗は観測・げと・日誌・店舗情報の表記を実際に統合します。</div><div id="aliasList"></div><div class="form-grid"><div><label>元の表記</label><input id="aliasFrom" list="aliasNameList"></div><div><label>統合先</label><input id="aliasTo" list="aliasNameList"></div></div><datalist id="aliasNameList"></datalist><label>種類</label><select id="aliasType" onchange="renderAliasNameList()"><option value="product">商品</option><option value="store">店舗</option></select><div class="row" style="margin-top:10px"><button class="btn" onclick="addAlias()">統合・別名追加</button></div></div></details></div>
 </div><div>
- <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">バックアップ・復元</h2></div><span class="pill blue">保険</span></summary><div class="fold-body"><div class="note">普段は触らなくてOKです。端末の外へ控えを残したい時だけ使います。v0.85から画像込みバックアップに対応しています。</div><div id="imageStorageStatus" class="note">画像保存状況を確認中…</div><div class="row"><button class="btn blue" onclick="exportData(this)">画像込みバックアップを保存</button><label class="btn">バックアップから復元<input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)"></label></div></div></details></div>
+ <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">バックアップ・復元</h2></div><span class="pill blue">保険</span></summary><div class="fold-body"><div class="note">普段は触らなくてOKです。端末の外へ控えを残したい時だけ使います。v0.87から画像込みバックアップに対応しています。</div><div id="imageStorageStatus" class="note">画像保存状況を確認中…</div><div class="row"><button class="btn blue" onclick="exportData(this)">画像込みバックアップを保存</button><label class="btn">バックアップから復元<input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)"></label></div></div></details></div>
  <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">手入力ログの整理</h2></div><span id="cleanupCount" class="pill yellow"></span></summary><div class="fold-body"><div class="note">内蔵ログ・取込ログは残し、画面から手入力した観測ログだけ削除候補に出します。</div><div class="row" style="margin-top:10px"><button class="btn danger" onclick="deleteCheckedManualLogs()">選択した手入力ログを削除</button></div><div id="manualLogList" class="cleanup-list"></div></div></details></div>
  <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">候補履歴の掃除</h2></div><span class="pill green">整える</span></summary><div class="fold-body"><div class="note">入力途中で残った「さ」「さん」「さんり」のような未確定候補を掃除します。観測・げと帳面・画像は触りません。</div><div class="row" style="margin-top:10px"><button class="btn" onclick="cleanupDraftProductArtifacts()">候補履歴を掃除</button></div><div id="draftCleanupResult" class="cleaner-result"></div></div></details></div>
  <div class="card fold-card"><details><summary><div class="fold-title"><h2 class="title">初期データ・危険操作</h2></div><span class="pill danger">注意</span></summary><div class="fold-body"><div class="note">観測76行と、げと済み72種類を内蔵しています。押す前にバックアップ推奨です。</div><div data-cinna-strip></div><div class="row" style="margin-top:10px"><button class="btn danger" onclick="resetSeed()">内蔵データに戻す</button></div></div></details></div>
@@ -2606,6 +2623,7 @@ function normalizeV66Data(){
   if(!o.kind)o.kind=statusKind(o.status||'',o.memo||'');
   if(!o.dayType&&o.ts)o.dayType=dayType(o.ts);
   if(o.product)productMeta(canonical('product',o.product));
+  if(o.store)ensureStoreKnown(o.store,o.area||'','観測ログ');
  });
  state.activityLogs||=[];
  state.activityLogs.forEach(a=>{a.gets||=[];a.spins||=[];a.observationIds||=[];a.routeLabel=routeLabelForActivity(a)});
@@ -2709,7 +2727,10 @@ function analysisDataHtml(){
 }
 
 function storeAreaForName(store){
- const obs=state.observations.filter(o=>canonical('store',o.store)===store&&!o.excluded).sort((a,b)=>(b.ts||'').localeCompare(a.ts||''));
+ const st=canonical('store',store||'');
+ const meta=state.storeMeta?.[st]||{};
+ if(meta.area)return meta.area;
+ const obs=state.observations.filter(o=>canonical('store',o.store)===st&&!o.excluded).sort((a,b)=>(b.ts||'').localeCompare(a.ts||''));
  const area=obs.find(o=>o.area&&o.area!=='ー')?.area;
  return area||'その他'
 }
@@ -3074,7 +3095,7 @@ async function renderImageStorageStatus(){
    }
   }
  }catch(e){}
- el.innerHTML=`${base}${quota}<br><span class="small">v0.85は画像本体をIndexedDBへ分離し、複数内訳の支出二重計算を修正しています。目標は500枚級の記録運用です。</span>`
+ el.innerHTML=`${base}${quota}<br><span class="small">v0.87は画像本体をIndexedDBへ分離し、複数内訳の支出二重計算を修正しています。目標は500枚級の記録運用です。</span>`
 }
 async function hydrateImageBackupState(backup){
  for(const item of collectImageEntriesForState(backup)){
@@ -3096,10 +3117,12 @@ function load(){
  state.productMeta||={};
  Object.values(state.productMeta).forEach(m=>{if(m&&typeof m==='object'){if(!m.rankMode)m.rankMode='auto';if(m.unitPrice==null)m.unitPrice='';if(m.seriesComplete==null)m.seriesComplete=false;if(m.seriesCompleteAt==null)m.seriesCompleteAt='';if(m.seriesCompleteMemo==null)m.seriesCompleteMemo=''}});
  state.storeMeta||={};
+ Object.keys(state.storeMeta).forEach(k=>{const m=state.storeMeta[k]||{};if(m.role==null)m.role='';if(m.area==null)m.area='';if(m.memo==null)m.memo='';state.storeMeta[k]=m});
  state.sessionFlags||={};
  state.migrations||={};
  state.productRecent||=[];
- state.budgetWeeklyLimit=state.budgetWeeklyLimit||10000;
+ state.monthlyBudgetTarget=state.monthlyBudgetTarget||30000;
+ state.budgetWeeklyLimit=state.budgetWeeklyLimit||Math.round((state.monthlyBudgetTarget/31)*7);
  if(state.budgetWeekStart==null)state.budgetWeekStart=1;
  state.activityLogs||=[];
  state.activeActivity||=null;
@@ -3120,7 +3143,7 @@ function isStorageQuotaError(err){
  return name==='QuotaExceededError'||name==='NS_ERROR_DOM_QUOTA_REACHED'||/quota|storage.*full|容量/i.test(msg)
 }
 function actionErrorMessage(label,err){
- if(isStorageQuotaError(err))return `${label}を保存できませんでした。端末内の保存容量がいっぱいの可能性があります。v0.85では画像をDB分離していますが、端末の空き容量が少ない場合は画像保存だけ失敗することがあります。`;
+ if(isStorageQuotaError(err))return `${label}を保存できませんでした。端末内の保存容量がいっぱいの可能性があります。v0.87では画像をDB分離していますが、端末の空き容量が少ない場合は画像保存だけ失敗することがあります。`;
  if(/IndexedDB|Quota|storage|database/i.test(String(err?.message||'')))return `${label}を保存できませんでした。画像用データベースの容量または端末空き容量が足りない可能性があります。文字データは壊さないよう戻しています。`;
  if(/image|canvas|decode|FileReader/i.test(String(err?.message||'')))return `${label}を保存できませんでした。選んだ画像を読み込めない可能性があります。画像なしで保存するか、別の画像で試してください。`;
  return `${label}を完了できませんでした。入力内容は画面に残しています。`;
@@ -3203,7 +3226,32 @@ function switchPage(name){document.querySelectorAll('.page').forEach(x=>x.classL
 
 function dateKey(ts){if(!ts)return '日付不明';const d=new Date(ts);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
 function sessionId(product,store,day,firstId){return 'session-'+btoa(unescape(encodeURIComponent(product+'|'+store+'|'+day+'|'+(firstId||'')))).replace(/[^a-zA-Z0-9]/g,'').slice(0,36)}
-function sessions(){const obs=[...state.observations].filter(o=>!o.excluded&&o.kind!=='reference').sort((a,b)=>(a.ts||'').localeCompare(b.ts||''));const open={},out=[],today=dateKey(new Date().toISOString());for(const o of obs){const product=canonical('product',o.product),store=canonical('store',o.store),day=dateKey(o.ts),key=product+'|'+store+'|'+day;if(['available','restock_start'].includes(o.kind)){if(!open[key])open[key]={id:sessionId(product,store,day,o.id),product,store,area:o.area,sessionDate:day,events:[],closed:false};open[key].events.push(o)}else if(open[key]){open[key].events.push(o);if(['soldout','final_soldout'].includes(o.kind)){open[key].closed=true;open[key].closeReason='soldout';out.push(open[key]);delete open[key]}}else if(['soldout','final_soldout'].includes(o.kind)){out.push({id:sessionId(product,store,day,o.id),product,store,area:o.area,sessionDate:day,events:[o],closed:true,orphan:true,closeReason:'confirmation_only'})}}Object.values(open).forEach(s=>{if(s.sessionDate===today){out.push(s)}else{s.closed=true;s.expired=true;s.closeReason='day_end';out.push(s)}});return out.sort((a,b)=>(b.events.at(-1)?.ts||'').localeCompare(a.events.at(-1)?.ts||''))}
+function observationSessionKey(o,product,store,day){
+ return o.sessionUid||`${product}|${store}|${day}`
+}
+function sessionObjectId(key,product,store,day,firstId){
+ return String(key||'').startsWith('sess-')||String(key||'').startsWith('session-')?String(key):sessionId(product,store,day,firstId)
+}
+function sessions(){
+ const obs=[...state.observations].filter(o=>!o.excluded&&o.kind!=='reference').sort((a,b)=>(a.ts||'').localeCompare(b.ts||''));
+ const open={},out=[],today=dateKey(new Date().toISOString());
+ for(const o of obs){
+  const product=canonical('product',o.product),store=canonical('store',o.store),day=dateKey(o.ts),key=observationSessionKey(o,product,store,day);
+  if(['available','restock_start'].includes(o.kind)){
+   const id=sessionObjectId(key,product,store,day,o.id);
+   if(!open[key])open[key]={id,sessionUid:key,product,store,area:o.area,sessionDate:day,events:[],closed:false};
+   open[key].events.push(o)
+  }else if(open[key]){
+   open[key].events.push(o);
+   if(['soldout','final_soldout'].includes(o.kind)){open[key].closed=true;open[key].closeReason='soldout';out.push(open[key]);delete open[key]}
+  }else if(['soldout','final_soldout'].includes(o.kind)){
+   const id=sessionObjectId(key,product,store,day,o.id);
+   out.push({id,sessionUid:key,product,store,area:o.area,sessionDate:day,events:[o],closed:true,orphan:true,closeReason:'confirmation_only'})
+  }
+ }
+ Object.values(open).forEach(s=>{if(s.sessionDate===today){out.push(s)}else{s.closed=true;s.expired=true;s.closeReason='day_end';out.push(s)}});
+ return out.sort((a,b)=>(b.events.at(-1)?.ts||'').localeCompare(a.events.at(-1)?.ts||''))
+}
 function exactDuration(s){if(!s.closed||s.expired||s.orphan)return null;const a=s.events.find(e=>['available','restock_start'].includes(e.kind));const z=[...s.events].reverse().find(e=>['soldout','final_soldout'].includes(e.kind));if(!a?.ts||!z?.ts||a.approx||z.approx||/正確な枯れ時刻ではなく|報告遅れ/.test(a.memo+z.memo))return null;return Math.round((new Date(z.ts)-new Date(a.ts))/60000)}
 function fmtTs(ts){if(!ts)return '時刻不明';const d=new Date(ts);return `${d.getMonth()+1}/${d.getDate()}(${weekdayName(ts)}) ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`}
 
@@ -3238,7 +3286,23 @@ function productStats(){
  }).sort((a,b)=>(a.median??a.bigMedian??9999)-(b.median??b.bigMedian??9999)||a.name.localeCompare(b.name,'ja'))
 }
 
-function storeMeta(name){state.storeMeta||={};state.storeMeta[name]||={role:''};return state.storeMeta[name]}
+function storeMeta(name){
+ const st=canonical('store',String(name||'').trim());
+ state.storeMeta||={};
+ state.storeMeta[st]||={role:'',area:'',memo:''};
+ const m=state.storeMeta[st];
+ if(m.role==null)m.role=''; if(m.area==null)m.area=''; if(m.memo==null)m.memo='';
+ return m
+}
+function ensureStoreKnown(name,area='',reason='登録'){
+ const st=canonical('store',String(name||'').trim());
+ if(!st||st==='ー')return '';
+ const m=storeMeta(st);
+ if(area&&area!=='ー')m.area=area;
+ if(reason)m.lastReason=reason;
+ m.lastTouchedAt=new Date().toISOString();
+ return st
+}
 function storeRole(name){return storeMeta(name).role||''}
 function storeRoleLabel(role){return role||'未設定'}
 function storeRoleClass(role){return role==='よく行く'?'best':(['行ける','たまに行く','遠征'].includes(role)?'go':role==='情報だけ'?'info':role==='行かない'?'no':'')}
@@ -3318,13 +3382,7 @@ function fetchWeatherNow(useGeo=false){
  weatherFetchInFlight=true;
  const done=()=>{weatherFetchInFlight=false};
  const fail=(msg)=>{state.weatherCache={...(state.weatherCache||{}),updatedAt:state.weatherCache?.updatedAt||0,error:msg};save();renderWeatherWidget();toast(msg);done()};
- if(useGeo&&navigator.geolocation){
-  navigator.geolocation.getCurrentPosition(pos=>{
-   fetchWeatherForCoords(pos.coords.latitude,pos.coords.longitude,'現在地').catch(e=>fail(e.message||'天気取得に失敗しました')).finally(done)
-  },()=>{fetchWeatherForCoords(DEFAULT_WEATHER_LOCATION.lat,DEFAULT_WEATHER_LOCATION.lon,DEFAULT_WEATHER_LOCATION.label).catch(e=>fail(e.message||'天気取得に失敗しました')).finally(done)},{enableHighAccuracy:false,timeout:8000,maximumAge:30*60*1000});
- }else{
-  fetchWeatherForCoords(DEFAULT_WEATHER_LOCATION.lat,DEFAULT_WEATHER_LOCATION.lon,DEFAULT_WEATHER_LOCATION.label).catch(e=>fail(e.message||'天気取得に失敗しました')).finally(done)
- }
+ fetchWeatherForCoords(DEFAULT_WEATHER_LOCATION.lat,DEFAULT_WEATHER_LOCATION.lon,DEFAULT_WEATHER_LOCATION.label).catch(e=>fail(e.message||'天気取得に失敗しました')).finally(done)
 }
 function maybeAutoFetchWeather(){
  if(weatherAutoRequested||weatherCacheFresh())return;
@@ -3435,9 +3493,39 @@ function renderWeatherWidget(){
  const el=document.getElementById('weatherWidget'); if(!el)return;
  maybeAutoFetchWeather();
  const rows=demoWeatherRows(),d=weatherDecision(rows),fresh=weatherCacheFresh(),c=state.weatherCache||{};
- el.innerHTML=`<div class="weather-hero"><div class="weather-main">${esc(d.title)}</div><div class="weather-sub">${esc(d.sub)}<br><span class="small">${fresh?'実天気取得済み':'未取得時は安全側の表示です。東京の天気を自動取得します。'}</span></div></div><div class="weather-hours">${rows.map(r=>`<div class="weather-hour ${r.mm>0||r.pop>=55?'alert':''}"><b>${String(r.hour).padStart(2,'0')}:00</b><div class="icon">${r.icon}</div><div>${r.temp}℃</div><div class="rain">${r.mm?`${r.mm}mm｜${r.pop}%`:`雨なし｜${r.pop}%`}</div></div>`).join('')}</div><div class="weather-route">${esc(d.route)}</div><div class="weather-source-line"><span class="pill ${fresh?'green':'yellow'}">${esc(weatherStatusText())}</span><span class="pill blue">${esc(c.source||'Open-Meteo')}</span></div><div class="weather-demo-buttons"><button class="mini" onclick="fetchWeatherNow(false)">東京で更新</button><button class="mini" onclick="fetchWeatherNow(true)">現在地で更新</button></div><div class="weather-live-note">天気取得では位置情報または東京駅付近の座標だけを天気APIへ送ります。観測・げと帳面・日誌の記録データは送りません。</div>`;
+ el.innerHTML=`<div class="weather-hero"><div class="weather-main">${esc(d.title)}</div><div class="weather-sub">${esc(d.sub)}<br><span class="small">${fresh?'実天気取得済み':'未取得時は安全側の表示です。東京の天気を自動取得します。'}</span></div></div><div class="weather-hours">${rows.map(r=>`<div class="weather-hour ${r.mm>0||r.pop>=55?'alert':''}"><b>${String(r.hour).padStart(2,'0')}:00</b><div class="icon">${r.icon}</div><div>${r.temp}℃</div><div class="rain">${r.mm?`${r.mm}mm｜${r.pop}%`:`雨なし｜${r.pop}%`}</div></div>`).join('')}</div><div class="weather-route">${esc(d.route)}</div><div class="weather-source-line"><span class="pill ${fresh?'green':'yellow'}">${esc(weatherStatusText())}</span><span class="pill blue">${esc(c.source||'Open-Meteo')}</span></div><div class="weather-demo-buttons"><button class="mini" onclick="fetchWeatherNow(false)">東京で更新</button></div><div class="weather-live-note">天気取得は東京駅付近の固定座標だけを使います。現在地の位置情報は取得しません。</div>`;
 }
 
+
+
+function openStoreCreateModal(){
+ document.getElementById('modalTitle').textContent='店舗を登録';
+ document.getElementById('modalBody').innerHTML=`<div class="note">観測やげと前でも、店舗だけ先に登録できます。</div><div class="store-meta-form"><div><label>店舗名</label><input id="newStoreName" placeholder="例：池袋〇〇店"></div><div><label>エリア</label><input id="newStoreArea" placeholder="例：池袋"></div><div><label>店舗の扱い</label><select id="newStoreRole">${storeRoleOptions('')}</select></div><div><label>メモ</label><textarea id="newStoreMemo" placeholder="駅近、寄りやすい、情報だけ等"></textarea></div></div><div class="row between store-create-actions"><button class="btn" onclick="closeModal()">やめる</button><button class="btn primary" onclick="saveNewStore()">店舗を保存</button></div>`;
+ document.getElementById('modal').classList.add('show');
+}
+function saveNewStore(){
+ const name=document.getElementById('newStoreName')?.value.trim()||'';
+ if(!name){toast('店舗名を入れてください');return}
+ const area=document.getElementById('newStoreArea')?.value.trim()||'';
+ const st=ensureStoreKnown(name,area,'店舗登録');
+ const m=storeMeta(st);m.area=area||m.area||'';m.role=document.getElementById('newStoreRole')?.value||m.role||'';m.memo=document.getElementById('newStoreMemo')?.value.trim()||m.memo||'';
+ save();renderAll();closeModal();switchPage('stores');toast('店舗を登録しました');celebrate('save','店舗ぴこん');
+}
+function openStoreRenameModal(encoded){
+ const oldName=decodeURIComponent(encoded);
+ document.getElementById('modalTitle').textContent='店舗名を修正';
+ document.getElementById('modalBody').innerHTML=`<div class="note">店舗名を修正すると、観測ログ・げと帳面・ガチャ活日誌・ルート地点・店舗情報をまとめて更新します。元の名前は別名として残します。</div><label>現在の店舗名</label><input value="${esc(oldName)}" disabled><label>新しい店舗名</label><input id="renameStoreTo" value="${esc(oldName)}"><div class="row between" style="margin-top:12px"><button class="btn" onclick="openStoreDetail('${encodeURIComponent(oldName)}')">戻る</button><button class="btn primary" onclick="saveStoreRename('${encodeURIComponent(oldName)}')">店舗名を修正</button></div>`;
+ document.getElementById('modal').classList.add('show')
+}
+function saveStoreRename(encoded){
+ const oldName=decodeURIComponent(encoded),next=document.getElementById('renameStoreTo')?.value.trim()||'';
+ if(!next){toast('新しい店舗名を入れてください');return}
+ const to=canonical('store',next);
+ if(to===oldName){toast('店舗名は変更されていません');return}
+ const changed=mergeStoreReferences(oldName,to);
+ ensureStoreKnown(to,storeMeta(to).area||'','店舗名修正');
+ save();renderAll();toast(`店舗名を修正しました（${changed}件更新）`);openStoreDetail(encodeURIComponent(to));
+}
 
 function openStoreDetail(encoded){
  const store=decodeURIComponent(encoded);
@@ -3446,15 +3534,16 @@ function openStoreDetail(encoded){
  const exact=sess.map(exactDuration).filter(x=>x!=null);
  const active=sess.filter(s=>!s.closed);
  const areas=[...new Set(obs.map(o=>o.area).filter(x=>x&&x!=='ー'))];
+ const meta=storeMeta(store);
  const products=[...new Set(sess.map(s=>s.product).filter(Boolean))];
  const recent=sess.slice().sort((a,b)=>(b.events.at(-1)?.ts||'').localeCompare(a.events.at(-1)?.ts||'')).slice(0,8);
  const role=storeRole(store),policy=storeRecommendationPolicy(store);
  document.getElementById('modalTitle').textContent=`店舗詳細：${store}`;
  document.getElementById('modalBody').innerHTML=`<div class="note">この店舗の情報は、商品ランク・商品人気の分析には使います。店舗の扱いを設定すると、ホーム推薦だけ出し分けできます。</div>
- <div class="store-role-panel"><label>店舗の扱い</label><select id="storeRoleSelect" onchange="saveStoreRole('${encodeURIComponent(store)}')">${storeRoleOptions(role)}</select><div class="small" style="margin-top:7px">未設定のままでOKです。${esc(policy.reason)}。情報だけ・行かないはホーム候補から外しますが、商品ランク分析には残します。</div></div>
+ <div class="store-role-panel"><label>店舗の扱い</label><select id="storeRoleSelect" onchange="saveStoreRole('${encodeURIComponent(store)}')">${storeRoleOptions(role)}</select><div class="small" style="margin-top:7px">未設定のままでOKです。${esc(policy.reason)}。情報だけ・行かないはホーム候補から外しますが、商品ランク分析には残します。</div><div class="store-detail-actions"><button class="mini" onclick="openStoreRenameModal('${encodeURIComponent(store)}')">店舗名を修正</button></div></div>
  <div class="store-detail-grid">
   <div class="store-detail-metric"><span>扱い</span><b>${esc(storeRoleLabel(role))}</b></div>
-  <div class="store-detail-metric"><span>エリア</span><b>${esc(areas[0]||'不明')}</b></div>
+  <div class="store-detail-metric"><span>エリア</span><b>${esc(meta.area||areas[0]||'不明')}</b></div>
   <div class="store-detail-metric"><span>観測ログ</span><b>${obs.length}</b></div>
   <div class="store-detail-metric"><span>進行中</span><b>${active.length}</b></div>
   <div class="store-detail-metric"><span>正確ペア</span><b>${exact.length}</b></div>
@@ -3624,9 +3713,12 @@ async function saveObservation(button){
   const ts=new Date(tsValue).toISOString();
   state.quickArea=area==='ー'?'':area;
   const visitType=document.getElementById('oVisitType')?.value||visitTypeFromSource(source);
-  const obs={id:uid(),date:'追加',time:fmtTs(ts),area,storeOriginal:store||'ー',store:store||'ー',productOriginal:productRaw,product,status,kind:statusKind(status,memo),source,visitType,machines:document.getElementById('oMachines')?.value||'ー',limit:document.getElementById('oLimit')?.value||'ー',requeue:document.getElementById('oRequeue')?.value||'ー',memo,ts,dayType:dayType(ts),approx:/確認|報告遅れ|頃|約|以内/.test(status+memo),excluded:false};
+  const obsKind=statusKind(status,memo);
+  const sessionUid=['available','restock_start'].includes(obsKind)?'sess-'+uid():'';
+  if(store)ensureStoreKnown(store,area,'観測');
+  const obs={id:uid(),date:'追加',time:fmtTs(ts),area,storeOriginal:store||'ー',store:store||'ー',productOriginal:productRaw,product,status,kind:obsKind,source,visitType,machines:document.getElementById('oMachines')?.value||'ー',limit:document.getElementById('oLimit')?.value||'ー',requeue:document.getElementById('oRequeue')?.value||'ー',memo,ts,dayType:dayType(ts),approx:/確認|報告遅れ|頃|約|以内/.test(status+memo),excluded:false,sessionUid};
   state.observations.push(obs);recordActivityObservation(obs);
-  if(document.getElementById('oBigStock')?.checked&&['available','restock_start'].includes(obs.kind)){const sid=sessionId(canonical('product',obs.product),canonical('store',obs.store),dateKey(obs.ts),obs.id);const f=sessionFlag(sid);f.bigStock=true;f.memo='🐜入力時に異様な在庫として登録'}
+  if(document.getElementById('oBigStock')?.checked&&['available','restock_start'].includes(obs.kind)){const sid=obs.sessionUid||sessionId(canonical('product',obs.product),canonical('store',obs.store),dateKey(obs.ts),obs.id);const f=sessionFlag(sid);f.bigStock=true;f.memo='🐜入力時に異様な在庫として登録'}
   save();
   return {obs}
  });
@@ -3759,9 +3851,14 @@ function openDataSummary(type){
  document.getElementById('modal').classList.add('show');
 }
 
-function budgetLimit(){return Math.max(0,parseInt(state.budgetWeeklyLimit||10000,10)||10000)}
+function budgetMonthlyTarget(){return Math.max(0,parseInt(state.monthlyBudgetTarget||30000,10)||30000)}
 function budgetWeekStart(){const v=parseInt(state.budgetWeekStart??1,10);return Number.isFinite(v)?v:1}
 function localDateKey(d=new Date()){const x=new Date(d);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`}
+function daysInMonth(date=new Date()){const d=new Date(date);return new Date(d.getFullYear(),d.getMonth()+1,0).getDate()}
+function startOfMonth(date=new Date()){const d=new Date(date);return new Date(d.getFullYear(),d.getMonth(),1)}
+function endOfMonth(date=new Date()){const d=new Date(date);return new Date(d.getFullYear(),d.getMonth()+1,1)}
+function budgetDailyForMonth(date=new Date()){return Math.floor(budgetMonthlyTarget()/daysInMonth(date))}
+function budgetLimit(date=new Date()){return Math.floor(budgetDailyForMonth(date)*7)}
 function startOfBudgetWeek(date=new Date(),start=budgetWeekStart()){
  const d=new Date(date);d.setHours(0,0,0,0);
  const diff=(d.getDay()-start+7)%7;
@@ -3803,35 +3900,48 @@ function budgetSpentBetween(start,end){
  return total;
 }
 function budgetSnapshot(date=new Date()){
- const limit=budgetLimit(),start=budgetWeekStart();
+ const monthlyTarget=budgetMonthlyTarget(),start=budgetWeekStart();
+ const monthStart=startOfMonth(date),monthEnd=endOfMonth(date),monthDays=daysInMonth(date),daily=budgetDailyForMonth(date),limit=budgetLimit(date);
  const weekStart=startOfBudgetWeek(date,start),weekEnd=endOfBudgetWeek(date,start);
  const dayStart=new Date(date);dayStart.setHours(0,0,0,0);const dayEnd=new Date(dayStart);dayEnd.setDate(dayEnd.getDate()+1);
- const weekSpent=budgetSpentBetween(weekStart,weekEnd),todaySpent=budgetSpentBetween(dayStart,dayEnd);
- const daily=Math.floor(limit/7);
- const status=weekSpent>limit?'stop':todaySpent>daily*1.5?'danger':todaySpent>daily?'caution':'safe';
+ const weekSpent=budgetSpentBetween(weekStart,weekEnd),todaySpent=budgetSpentBetween(dayStart,dayEnd),monthSpent=budgetSpentBetween(monthStart,monthEnd);
+ const elapsed=Math.max(1,Math.min(monthDays,new Date(date).getDate()));
+ const monthPace=Math.round(monthSpent/elapsed*monthDays);
+ const monthToDate=daily*elapsed;
+ const status=monthSpent>monthlyTarget?'stop':weekSpent>limit?'danger':todaySpent>daily*1.5?'danger':todaySpent>daily?'caution':'safe';
  const label=status==='stop'?'STOP':status==='danger'?'DANGER':status==='caution'?'CAUTION':'SAFE';
- return {limit,weekStart,weekEnd,weekSpent,todaySpent,daily,status,label,weekLeft:limit-weekSpent,todayLeft:daily-todaySpent};
+ return {monthlyTarget,monthStart,monthEnd,monthDays,monthSpent,monthLeft:monthlyTarget-monthSpent,monthPace,monthToDate,limit,weekStart,weekEnd,weekSpent,todaySpent,daily,status,label,weekLeft:limit-weekSpent,todayLeft:daily-todaySpent};
 }
 function budgetStatusText(snap){
- if(snap.status==='stop')return '今週予算を超えています。今日は〆推奨です。';
- if(snap.status==='danger')return '今日の目安の1.5倍超えです。追加回しは一旦停止推奨です。';
+ if(snap.status==='stop')return '月目標を超えています。今日は〆推奨です。';
+ if(snap.status==='danger')return '週または今日の目安を大きく超えています。追加回しは一旦停止推奨です。';
  if(snap.status==='caution')return '今日の目安を超えました。ここからは勝ち逃げ寄りです。';
- return '今日の目安内です。残額は参考、ブレーキは日次目安です。';
+ return '月3万円ペース内です。日目安をブレーキにします。';
 }
 function renderBudgetCard(){
  const el=document.getElementById('budgetCard');if(!el)return;
- const b=budgetSnapshot(new Date()),pct=b.limit?Math.min(100,Math.round(b.weekSpent/b.limit*100)):0;
- el.innerHTML=`<div class="card budget-card"><div class="budget-head"><div><div class="kicker">weekly budget</div><h2 class="title">今週のガチャ予算</h2></div><span class="budget-status ${b.status}">${b.label}</span></div><div class="budget-grid"><div class="budget-cell"><span>今日の目安</span><b>${b.daily.toLocaleString()}円</b></div><div class="budget-cell"><span>今日使用済</span><b>${b.todaySpent.toLocaleString()}円</b></div><div class="budget-cell"><span>今日の残り目安</span><b>${b.todayLeft.toLocaleString()}円</b></div><div class="budget-cell"><span>今週残額（参考）</span><b>${b.weekLeft.toLocaleString()}円</b></div></div><div class="budget-meter"><span style="width:${pct}%"></span></div><div class="budget-note">週上限 ${b.limit.toLocaleString()}円｜今週使用済 ${b.weekSpent.toLocaleString()}円｜${budgetStatusText(b)}<br>使わない日があっても、翌日の目安は増えません。</div></div>`;
+ const b=budgetSnapshot(new Date()),pct=b.monthlyTarget?Math.min(100,Math.round(b.monthSpent/b.monthlyTarget*100)):0;
+ el.innerHTML=`<div class="card budget-card"><div class="budget-head"><div><div class="kicker">monthly budget</div><h2 class="title">今月のガチャ予算</h2></div><span class="budget-status ${b.status}">${b.label}</span></div><div class="budget-grid"><div class="budget-cell"><span>月目標</span><b>${b.monthlyTarget.toLocaleString()}円</b></div><div class="budget-cell"><span>今日の目安</span><b>${b.daily.toLocaleString()}円</b></div><div class="budget-cell"><span>今月使用済</span><b>${b.monthSpent.toLocaleString()}円</b></div><div class="budget-cell"><span>月末予測</span><b>${b.monthPace.toLocaleString()}円</b></div></div><div class="budget-meter"><span style="width:${pct}%"></span></div><div class="budget-note">今週目安 ${b.limit.toLocaleString()}円｜今週使用済 ${b.weekSpent.toLocaleString()}円｜今日時点の目安 ${b.monthToDate.toLocaleString()}円｜${budgetStatusText(b)}<br>月目標から自動計算します。毎月の手入力は不要です。</div></div>`;
+}
+function setBudgetPreset(v){
+ const el=document.getElementById('budgetMonthlyTarget');if(el)el.value=v;
+ const prev=document.getElementById('budgetSettingsPreview');
+ if(prev){
+  const old=state.monthlyBudgetTarget;state.monthlyBudgetTarget=v;
+  const b=budgetSnapshot(new Date());state.monthlyBudgetTarget=old;
+  prev.textContent=`月目標 ${b.monthlyTarget.toLocaleString()}円 / 今日の目安 ${b.daily.toLocaleString()}円 / 今週目安 ${b.limit.toLocaleString()}円 / 月末予測 ${b.monthPace.toLocaleString()}円`;
+ }
 }
 function renderBudgetSettings(){
- const limit=document.getElementById('budgetWeeklyLimit');if(limit)limit.value=budgetLimit();
+ const target=document.getElementById('budgetMonthlyTarget');if(target)target.value=budgetMonthlyTarget();
  const start=document.getElementById('budgetWeekStart');if(start)start.value=String(budgetWeekStart());
- const prev=document.getElementById('budgetSettingsPreview');if(prev){const b=budgetSnapshot(new Date());prev.textContent=`今日の目安 ${b.daily.toLocaleString()}円 / 今週残り ${b.weekLeft.toLocaleString()}円（残額は参考）`;}
+ const prev=document.getElementById('budgetSettingsPreview');if(prev){const b=budgetSnapshot(new Date());prev.textContent=`月目標 ${b.monthlyTarget.toLocaleString()}円 / 今日の目安 ${b.daily.toLocaleString()}円 / 今週目安 ${b.limit.toLocaleString()}円 / 月末予測 ${b.monthPace.toLocaleString()}円`;}
 }
 function saveBudgetSettings(){
- state.budgetWeeklyLimit=Math.max(0,parseInt(document.getElementById('budgetWeeklyLimit')?.value||'10000',10)||10000);
+ state.monthlyBudgetTarget=Math.max(0,parseInt(document.getElementById('budgetMonthlyTarget')?.value||'30000',10)||30000);
+ state.budgetWeeklyLimit=Math.round((state.monthlyBudgetTarget/daysInMonth(new Date()))*7);
  state.budgetWeekStart=parseInt(document.getElementById('budgetWeekStart')?.value||'1',10)||0;
- save();renderAll();toast('週間予算を保存しました');
+ save();renderAll();toast('月目標予算を保存しました');
 }
 function estimateGetModalSpend(){
  const rows=[...document.querySelectorAll('#getItemRows .get-item-row')].map(row=>({count:parseInt(row.querySelector('.getItemCount')?.value||'1',10)||1,status:row.querySelector('.getItemStatus')?.value||'所持'}));
@@ -3846,20 +3956,59 @@ function syncGetBudgetHint(){
  const box=document.getElementById('getBudgetHint');if(!box)return;
  const add=estimateGetModalSpend();
  const tsVal=document.getElementById('getTs')?.value;const date=tsVal?new Date(tsVal):new Date();
- const b=budgetSnapshot(date),afterToday=b.todaySpent+add,afterWeek=b.weekSpent+add;
- const status=afterWeek>b.limit?'stop':afterToday>b.daily*1.5?'danger':afterToday>b.daily?'caution':'safe';
+ const b=budgetSnapshot(date),afterToday=b.todaySpent+add,afterWeek=b.weekSpent+add,afterMonth=b.monthSpent+add;
+ const status=afterMonth>b.monthlyTarget?'stop':afterWeek>b.limit?'danger':afterToday>b.daily*1.5?'danger':afterToday>b.daily?'caution':'safe';
  box.className=`get-budget-hint ${status==='safe'?'':status}`;
  const label=status==='stop'?'🛑 STOP':status==='danger'?'🚨 DANGER':status==='caution'?'⚠️ CAUTION':'✅ SAFE';
- box.innerHTML=`${label}｜この登録後の今日使用：${afterToday.toLocaleString()}円 / 目安 ${b.daily.toLocaleString()}円<br>今週残り見込み：${(b.limit-afterWeek).toLocaleString()}円（参考）`;
+ box.innerHTML=`${label}｜この登録後の今日使用：${afterToday.toLocaleString()}円 / 目安 ${b.daily.toLocaleString()}円<br>今週残り：${(b.limit-afterWeek).toLocaleString()}円｜今月残り：${(b.monthlyTarget-afterMonth).toLocaleString()}円`;
 }
 function budgetNoticeForSpend(spent,ts=''){
  if(!spent)return '';
  const b=budgetSnapshot(ts?new Date(ts):new Date());
- const afterToday=b.todaySpent,afterWeek=b.weekSpent;
- if(afterWeek>b.limit)return '🛑STOP：今週予算超え';
- if(afterToday>b.daily*1.5)return '🚨DANGER：今日の目安1.5倍超え';
- if(afterToday>b.daily)return '⚠️CAUTION：今日の目安超え';
+ if(b.monthSpent>b.monthlyTarget)return '🛑STOP：月目標超え';
+ if(b.weekSpent>b.limit)return '🚨DANGER：今週目安超え';
+ if(b.todaySpent>b.daily*1.5)return '🚨DANGER：今日の目安1.5倍超え';
+ if(b.todaySpent>b.daily)return '⚠️CAUTION：今日の目安超え';
  return '';
+}
+function budgetDayStatus(amount,daily){return amount>daily*1.5?'stop':amount>daily?'caution':'safe'}
+function budgetCalendarHtml(date=new Date()){
+ const y=date.getFullYear(),m=date.getMonth(),first=new Date(y,m,1),days=daysInMonth(date),pad=first.getDay();
+ const daily=budgetDailyForMonth(date),cells=[];
+ for(let i=0;i<pad;i++)cells.push('<div class="budget-day blank"></div>');
+ for(let d=1;d<=days;d++){
+  const s=new Date(y,m,d),e=new Date(y,m,d+1),amt=budgetSpentBetween(s,e),st=budgetDayStatus(amt,daily);
+  cells.push(`<div class="budget-day ${st}" onclick="openBudgetDayDetail('${localDateKey(s)}')"><b>${d}</b><span class="yen">${amt?amt.toLocaleString()+'円':'0円'}</span><span>${amt>daily?'目安超え':'目安内'}</span></div>`)
+ }
+ return `<div class="budget-calendar">${['日','月','火','水','木','金','土'].map(x=>`<div class="small" style="text-align:center;font-weight:900">${x}</div>`).join('')}${cells.join('')}</div>`
+}
+function budgetWeekRowsHtml(date=new Date()){
+ const b=budgetSnapshot(date),monthStart=startOfMonth(date),monthEnd=endOfMonth(date),rows=[];
+ let cur=startOfBudgetWeek(monthStart,budgetWeekStart());
+ while(cur<monthEnd){
+  const ws=new Date(cur),we=endOfBudgetWeek(ws,budgetWeekStart());
+  const rangeStart=new Date(Math.max(ws.getTime(),monthStart.getTime())),rangeEnd=new Date(Math.min(we.getTime(),monthEnd.getTime()));
+  const amt=budgetSpentBetween(rangeStart,rangeEnd),limit=b.daily*Math.round((rangeEnd-rangeStart)/(24*60*60*1000));
+  rows.push({ws,rangeStart,rangeEnd,amt,limit});cur=we;
+ }
+ return `<div class="budget-week-list">${rows.map((r,i)=>`<details ${i===rows.length-1?'open':''}><summary><span>${dateLabel(r.rangeStart.toISOString())}〜${dateLabel(new Date(r.rangeEnd-1).toISOString())}</span><span class="pill ${r.amt>r.limit?'yellow':'green'}">${r.amt.toLocaleString()} / ${r.limit.toLocaleString()}円</span></summary><div class="budget-week-body">${budgetDailyRowsHtml(r.rangeStart,r.rangeEnd)}</div></details>`).join('')}</div>`
+}
+function budgetDailyRowsHtml(start,end){
+ const rows=[];let cur=new Date(start);while(cur<end){const next=new Date(cur);next.setDate(next.getDate()+1);const amt=budgetSpentBetween(cur,next);rows.push(`<div class="budget-detail-row"><b>${dateLabel(cur.toISOString())}</b>｜${amt.toLocaleString()}円</div>`);cur=next}
+ return rows.join('')||'<div class="empty">明細はありません</div>'
+}
+function budgetAnalysisHtml(){
+ const b=budgetSnapshot(new Date());
+ return summaryCards([{label:'今日',value:`${b.todaySpent.toLocaleString()}円`,sub:`目安 ${b.daily.toLocaleString()}円`},{label:'今週',value:`${b.weekSpent.toLocaleString()}円`,sub:`目安 ${b.limit.toLocaleString()}円`},{label:'今月',value:`${b.monthSpent.toLocaleString()}円`,sub:`目標 ${b.monthlyTarget.toLocaleString()}円`},{label:'月末予測',value:`${b.monthPace.toLocaleString()}円`,sub:`今日時点目安 ${b.monthToDate.toLocaleString()}円`}])+`<div class="analysis-card-grid"><div class="soft-card" style="grid-column:1/-1"><h3>日別支出カレンダー</h3>${budgetCalendarHtml(new Date())}</div><div class="soft-card" style="grid-column:1/-1"><h3>週ごとの支出</h3>${budgetWeekRowsHtml(new Date())}</div></div>`
+}
+function openBudgetDayDetail(key){
+ const parts=String(key||'').split('-').map(Number);const start=parts.length===3?new Date(parts[0],parts[1]-1,parts[2]):new Date(key);start.setHours(0,0,0,0);const end=new Date(start);end.setDate(end.getDate()+1);
+ const rows=[];
+ (state.collection||[]).forEach(c=>{const t=new Date(c.getTs||c.createdAt||0);if(t>=start&&t<end){const amt=budgetEventAmountFromCollection(c);rows.push(`げと帳面｜${esc(c.series)}｜${esc(c.item)}｜${amt.toLocaleString()}円`)}});
+ (state.activityLogs||[]).forEach(a=>{const t=new Date(a.endTs||a.startTs||0);if(t>=start&&t<end)rows.push(`日誌｜${dateLabel(a.startTs)}｜${(a.spent||0).toLocaleString()}円`)});
+ document.getElementById('modalTitle').textContent=`支出明細：${dateLabel(start.toISOString())}`;
+ document.getElementById('modalBody').innerHTML=rows.length?`<div class="list">${rows.map(x=>`<div class="budget-detail-row">${x}</div>`).join('')}</div>`:'<div class="empty">この日の支出明細はありません</div>';
+ document.getElementById('modal').classList.add('show')
 }
 function cleanupDraftProductArtifacts(){
  const beforeMeta=Object.keys(state.productMeta||{}).length,beforeRecent=(state.productRecent||[]).length;
@@ -3938,6 +4087,7 @@ function saveSoldoutToSession(id){
   limit:document.getElementById('soldoutLimit').value||'ー',
   requeue:document.getElementById('soldoutRequeue').value||'ー',
   memo,
+  sessionUid:s.sessionUid||s.id,
   ts,dayType:dayType(ts),approx:/確認|報告遅れ|頃|約|以内/.test(status+memo),excluded:false
  });
  recordActivityObservation(state.observations.at(-1));save();renderAll();document.getElementById('modal').classList.remove('show');toast('🍂をこのセッションに追加しました');celebrate('soldout','🍂完了');
@@ -4014,6 +4164,7 @@ function saveSessionStatus(id){
   limit:document.getElementById('checkpointLimit').value||'ー',
   requeue:document.getElementById('checkpointRequeue').value||'ー',
   memo,
+  sessionUid:s.sessionUid||s.id,
   ts,dayType:dayType(ts),approx:/確認|報告遅れ|頃|約|以内/.test(status+memo),excluded:false
  });
  recordActivityObservation(state.observations.at(-1));save();renderAll();document.getElementById('modal').classList.remove('show');toast(status+'をこのセッションに追加しました');celebrate('observe','追加ぽこん');
@@ -5015,6 +5166,8 @@ function renderAnalysis(){
   html=`<div class="cute-banner"><span class="sparkle">🗺️</span><span>色が濃いほど在庫セッションが多い時間帯です。🐜と🍂は別枠にせず、各マスに開始→終了時刻を出します。タップすると詳細を見られます。</span></div><div class="soft-card"><h3>エリア×時間帯の在庫セッション</h3>${heatmap()}</div>`
  }else if(analysisTab==='day'){
   const types=['平日','土日','祝日'];const rows=types.map(name=>{const vals=sessions().filter(s=>s.events[0]?.dayType===name).map(exactDuration).filter(x=>x!=null);const med=median(vals);return{entityType:'plain',name,median:med||0,count:vals.length,rank:rankFromMedian(med||null)}}).filter(x=>x.count);html=summaryCards(rows.map(r=>({label:r.name,value:r.median+'分',sub:`${r.count}セッション・${r.rank}目安`})))+`<div class="analysis-card-grid"><div class="soft-card"><h3>曜日区分のランク</h3>${rankBoardHtml(rows)}</div><div class="soft-card"><h3>平日・土日・祝日の枯れ時間</h3>${bars(rows)}</div></div>`
+ }else if(analysisTab==='budget'){
+  html=budgetAnalysisHtml();
  }else{
   html=analysisDataHtml();
  }
@@ -5022,7 +5175,10 @@ function renderAnalysis(){
 }
 document.querySelectorAll('[data-analysis]').forEach(b=>b.addEventListener('click',()=>{analysisTab=b.dataset.analysis;renderAnalysis()}));
 function allSeriesNames(){
- return [...new Set([...Object.keys(collectionSeries()),...state.observations.map(o=>canonical('product',o.product)).filter(Boolean),...Object.keys(state.productMeta||{}),...(state.productRecent||[]).map(x=>canonical('product',typeof x==='string'?x:x.name)).filter(Boolean)])].filter(Boolean);
+ const set=new Set([...Object.keys(collectionSeries()),...state.observations.map(o=>canonical('product',o.product)).filter(Boolean)]);
+ Object.entries(state.productMeta||{}).forEach(([k,m])=>{const n=canonical('product',k);if(n&&productMetaHasMeaningfulData(n,m))set.add(n)});
+ (state.productRecent||[]).forEach(x=>{const n=canonical('product',typeof x==='string'?x:x.name);if(n&&productHasRealRecord(n))set.add(n)});
+ return [...set].filter(Boolean);
 }
 function recentSeriesNames(series){
  const allowed=new Set(series);
@@ -5364,7 +5520,7 @@ function mergeStoreReferences(fromName,toName){
  (state.activityLogs||[]).forEach(mergeActivity);
  state.storeMeta||={};
  const fm=state.storeMeta[from]||{},tm=state.storeMeta[to]||{};
- state.storeMeta[to]={...fm,...tm,area:tm.area||fm.area||''};
+ state.storeMeta[to]={...fm,...tm,area:tm.area||fm.area||'',memo:tm.memo||fm.memo||''};
  delete state.storeMeta[from];
  state.aliases.store[from]=to;
  Object.keys(state.aliases.store).forEach(k=>{if(state.aliases.store[k]===from)state.aliases.store[k]=to});
@@ -5390,7 +5546,7 @@ function openGetAddModal(seriesEnc='',context={}){
   <div>${priceChipsHtml('getUnitPrice',price)}</div>
   <div><label>実際に使った金額</label><input id="getSpent" type="number" min="0" placeholder="空欄なら単価×個数" oninput="syncGetBudgetHint()"></div>
  </div>
- <label class="series-complete-toggle"><input id="getSeriesComplete" type="checkbox"><span><b>🥇 この登録でシリーズコンプ</b><br><span class="small">自動判定はしません。ここにチェックした時だけコンプバッジを付けます。</span></span></label>
+ <div id="getSeriesCompleteBox" class="series-complete-button"><input id="getSeriesComplete" type="hidden" value="0"><div><b>🥇 シリーズコンプ</b><br><span class="small">押した時だけコンプ予定にします。スマホで崩れないボタン式です。</span></div><button type="button" id="getSeriesCompleteBtn" class="btn" onclick="toggleGetSeriesComplete()">🥇 シリーズコンプにする</button></div>
  <div id="getBudgetHint" class="get-budget-hint"></div>
  <div class="get-activity-link-box"><label>ガチャ活日誌への反映</label><select id="getActivityLink" onchange="syncGetActivitySuggestion(false);syncGetRouteLocationHint()">${getActivityLinkOptions(selectedLink,now)}</select><div id="getActivityLinkHint" class="get-activity-link-hint"></div></div>
  <div style="margin-top:10px"><div class="row between"><label>内訳</label><button class="mini" onclick="addGetItemRow()">＋内訳を追加</button></div><div id="getItemRows" class="get-item-lines">${getItemRowHtml(0)}</div></div>
@@ -5452,6 +5608,15 @@ function allocateDirectGetSpents(rows,totalSpent,unitPrice,method,manualSpent){
  if(method==='自引き'&&unitPrice)return counts.map(c=>unitPrice*c);
  return rows.map(()=>0)
 }
+
+function toggleGetSeriesComplete(){
+ const input=document.getElementById('getSeriesComplete'),btn=document.getElementById('getSeriesCompleteBtn'),box=document.getElementById('getSeriesCompleteBox');
+ const on=input?.value==='1';
+ if(input)input.value=on?'0':'1';
+ if(btn)btn.textContent=on?'🥇 シリーズコンプにする':'🥇 コンプ予定';
+ if(box)box.classList.toggle('active',!on);
+}
+
 async function saveDirectGet(button){
  const result=await runUiAction('save-direct-get','げと記録',button,async()=>{
   const seriesRaw=document.getElementById('getSeries')?.value.trim()||'';
@@ -5470,6 +5635,7 @@ async function saveDirectGet(button){
   const storeRaw=document.getElementById('getStore')?.value.trim()||'';
   const store=storeRaw?canonical('store',storeRaw):'';
   const area=document.getElementById('getArea')?.value.trim()||storeArea(store)||'';
+  if(store)ensureStoreKnown(store,area,'げと追加');
   const source=document.getElementById('getSource')?.value||'';
   const memo=document.getElementById('getMemo')?.value.trim()||'';
   const relatedSessionId=document.getElementById('getRelatedSessionId')?.value||'';
@@ -5486,7 +5652,7 @@ async function saveDirectGet(button){
   const rowSpents=allocateDirectGetSpents(rows,spent,unitPrice,method,!!spentRaw);
   if(unitPrice)pm.unitPrice=unitPrice;
   if(pm.status==='未設定'&&rows.some(r=>r.status!=='譲渡済み'))pm.status='げと済み';
-  if(document.getElementById('getSeriesComplete')?.checked)markSeriesComplete(series,ts);
+  if(document.getElementById('getSeriesComplete')?.value==='1')markSeriesComplete(series,ts);
   let linked=0;
   rows.forEach((r,idx)=>{
    const lineMemo=[r.memo,memo].filter(Boolean).join('｜');
@@ -5893,7 +6059,8 @@ function closeDataEditorRows(){document.querySelectorAll('#dataEditor details.da
 function dataStoreNames(){
  const set=new Set();
  state.observations.forEach(o=>{const st=canonical('store',o.store);if(st&&st!=='ー')set.add(st)});
- Object.keys(state.storeMeta||{}).forEach(x=>{if(x&&x!=='ー')set.add(x)});
+ state.collection.forEach(c=>{const st=canonical('store',c.store);if(st&&st!=='ー')set.add(st)});
+ Object.keys(state.storeMeta||{}).forEach(x=>{const st=canonical('store',x);if(st&&st!=='ー')set.add(st)});
  return [...set].sort((a,b)=>a.localeCompare(b,'ja'));
 }
 function dataAreasForStore(store){
@@ -6153,14 +6320,20 @@ function deleteProductCompletely(enc){
 
 function renderDataStores(el){
  const names=dataStoreNames();
- el.innerHTML=`<div class="note">店舗名の五十音順です。扱いだけを素早く整えます。</div>${dataEditToolbar('店舗 '+names.length+'件')}<div class="data-edit-list">${names.map(name=>{const enc=encodeURIComponent(name),obs=state.observations.filter(o=>canonical('store',o.store)===name),exact=sessions().filter(s=>s.store===name).map(exactDuration).filter(x=>x!=null),role=storeRole(name);return `<details class="data-edit-row compact"><summary><div class="data-edit-summary-main"><div class="data-edit-summary-title">🏬 ${esc(name)}</div><div class="data-edit-summary-meta">${esc(dataAreasForStore(name))}｜扱い ${esc(role||'未設定')}｜観測${obs.length}件${exact.length?`｜中央値 ${median(exact)}分`:''}</div></div></summary><div class="data-edit-body">
-  <div class="data-edit-grid"><div><label>店舗の扱い</label><select id="dsRole-${enc}">${storeRoleOptions(role)}</select></div></div>
-  <div class="data-edit-actions"><button class="mini" onclick="openStoreDetail('${enc}')">店舗詳細</button><button class="btn primary" onclick="saveDataStore('${enc}')">保存</button></div>
+ el.innerHTML=`<div class="note">店舗名・エリア・扱いを整えます。店舗名を変えると、観測・げと帳面・日誌ルートもまとめて更新します。</div>${dataEditToolbar('店舗 '+names.length+'件')}<div class="data-edit-list">${names.map(name=>{const enc=encodeURIComponent(name),obs=state.observations.filter(o=>canonical('store',o.store)===name),exact=sessions().filter(s=>s.store===name).map(exactDuration).filter(x=>x!=null),m=storeMeta(name),role=m.role||'';return `<details class="data-edit-row compact"><summary><div class="data-edit-summary-main"><div class="data-edit-summary-title">🏬 ${esc(name)}</div><div class="data-edit-summary-meta">${esc(m.area||dataAreasForStore(name))}｜扱い ${esc(role||'未設定')}｜観測${obs.length}件${exact.length?`｜中央値 ${median(exact)}分`:''}</div></div></summary><div class="data-edit-body">
+  <div class="data-edit-grid"><div><label>店舗名</label><input id="dsName-${enc}" value="${esc(name)}"></div><div><label>エリア</label><input id="dsArea-${enc}" value="${esc(m.area||'')}"></div><div><label>店舗の扱い</label><select id="dsRole-${enc}">${storeRoleOptions(role)}</select></div><div style="grid-column:1/-1"><label>メモ</label><textarea id="dsMemo-${enc}">${esc(m.memo||'')}</textarea></div></div>
+  <div class="data-edit-actions"><button class="mini" onclick="openStoreDetail('${enc}')">店舗詳細</button><button class="mini" onclick="openStoreRenameModal('${enc}')">店舗名を修正</button><button class="btn primary" onclick="saveDataStore('${enc}')">保存</button></div>
  </div></details>`}).join('')||'<div class="empty">店舗データはまだありません</div>'}</div>`;
 }
 function saveDataStore(enc){
- const name=decodeURIComponent(enc);
- storeMeta(name).role=document.getElementById(`dsRole-${enc}`)?.value||'';
+ const oldName=decodeURIComponent(enc);
+ const nextRaw=document.getElementById(`dsName-${enc}`)?.value.trim()||oldName;
+ const next=canonical('store',nextRaw);
+ if(next!==oldName)mergeStoreReferences(oldName,next);
+ const m=storeMeta(next);
+ m.area=document.getElementById(`dsArea-${enc}`)?.value.trim()||m.area||'';
+ m.role=document.getElementById(`dsRole-${enc}`)?.value||'';
+ m.memo=document.getElementById(`dsMemo-${enc}`)?.value.trim()||'';
  save();renderAll();dataEditTab='stores';renderDataEditor();toast('店舗データを保存しました');celebrate('save','保存ぴこん');
 }
 function renderDataCollection(el){
@@ -6197,6 +6370,7 @@ function saveDataCollection(enc){
  c.status=document.getElementById(`dcStatus-${enc}`)?.value.trim()||'未設定';
  c.store=document.getElementById(`dcStore-${enc}`)?.value.trim()||'';
  c.area=document.getElementById(`dcArea-${enc}`)?.value.trim()||'';
+ if(c.store)ensureStoreKnown(c.store,c.area,'げと帳面編集');
  const tsVal=document.getElementById(`dcTs-${enc}`)?.value||'';
  c.getTs=tsVal?new Date(tsVal).toISOString():'';
  c.unitPrice=parseInt(document.getElementById(`dcUnitPrice-${enc}`)?.value||'0',10)||0;
@@ -6601,24 +6775,31 @@ function activityBarRows(logs,key,label,suffix=''){
 function activityGetsLinksHtml(gets){
  return gets.length?gets.map(g=>`${collectionItemLinkHtml(g.series,g.item,`${g.item}×${g.count}`)}${g.addedLater?'<span class="release-badge status">後から追加</span>':''}`).join('、'):'なし'
 }
+function activityLogCardHtml(x){
+ const gets=x.gets||[],spins=x.spins||[],obsCount=(x.observationIds||[]).length;
+ const getHtml=activityGetsLinksHtml(gets);
+ const extraCount=spins.reduce((a,g)=>a+(g.count||0),0);
+ const route=x.routeLabel||routeLabelForActivity(x);
+ return `<details class="activity-log-card"><summary><div class="activity-log-head"><div><div class="activity-log-title">${dateLabel(x.startTs)}｜<span class="route-pill">${esc(route)}</span></div><div class="small">${activityDurationText(activityDurationMinutes(x))}｜${(x.spent||0).toLocaleString()}円（${esc(x.spentSource||'記録')}）｜疲労 ${esc(x.fatigue||'未設定')}</div></div><span class="activity-weather-pill">${activityWeatherText(x.weather)}</span></div></summary><div class="activity-mini-grid"><div class="activity-mini"><span>関連げと</span><b>${esc(String(activityGetCount(x)))}個</b></div><div class="activity-mini"><span>追加回数</span><b>${extraCount}回</b></div><div class="activity-mini"><span>関連観測</span><b>${obsCount}件</b></div><div class="activity-mini"><span>歩数</span><b>${x.steps?x.steps:'—'}</b></div><div class="activity-mini"><span>開始天気</span><b>${esc(activityWeatherText(x.weather))}</b></div><div class="activity-mini"><span>終了天気</span><b>${esc(activityWeatherText(x.endWeather))}</b></div></div><div class="note" style="margin-top:10px">ルートは「現地で見た」観測だけで作ります。情報だけの新宿・渋谷などは日誌ルートに入れません。<br>げと：${getHtml}${extraCount?`<br>帳面に残さない追加回数：${extraCount}回`:''}<br>自動概算：${(x.estimatedSpent??activityEstimatedSpent(x)).toLocaleString()}円</div><div class="data-edit-actions"><button class="mini" onclick="openEditActivityLog('${esc(x.id)}')">編集</button><button class="mini blue" onclick="return resumeActivityLog('${esc(x.id)}')">再開</button><button class="mini danger" onclick="return deleteActivityLog('${esc(x.id)}')">削除</button></div></details>`
+}
+function activityMonthKey(a){const d=new Date(a.startTs||a.endTs||new Date());return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`}
+function activityMonthLabel(key){const [y,m]=key.split('-');return `${y}年${Number(m)}月`}
+function activityWeekKey(a){const s=startOfBudgetWeek(new Date(a.startTs||a.endTs||new Date()),budgetWeekStart());return s.toISOString().slice(0,10)}
+function renderActivityLogGrouped(logs){
+ if(!logs.length)return '<div class="empty">ガチャ活日誌はまだありません。開始ボタンはワンタップです。</div>';
+ const months={};logs.forEach(x=>{const k=activityMonthKey(x);(months[k]||=[]).push(x)});
+ const keys=Object.keys(months).sort((a,b)=>b.localeCompare(a));
+ return `<div class="activity-month-list">${keys.map((mk,idx)=>{const rows=months[mk];const totalSpent=rows.reduce((a,x)=>a+(x.spent||0),0),totalMin=rows.reduce((a,x)=>a+activityDurationMinutes(x),0),totalSteps=rows.reduce((a,x)=>a+(x.steps||0),0),getCount=rows.reduce((a,x)=>a+activityGetCount(x),0);const weeks={};rows.forEach(x=>{const wk=activityWeekKey(x);(weeks[wk]||=[]).push(x)});const weekHtml=Object.keys(weeks).sort((a,b)=>b.localeCompare(a)).map(wk=>{const wr=weeks[wk],ws=new Date(wk),we=new Date(ws);we.setDate(we.getDate()+6);return `<details ${idx===0?'open':''}><summary><span>${dateLabel(ws.toISOString())}〜${dateLabel(we.toISOString())}</span><span class="pill">${wr.length}回</span></summary><div class="activity-month-body">${wr.map(activityLogCardHtml).join('')}</div></details>`}).join('');return `<details ${idx===0?'open':''}><summary><span>${activityMonthLabel(mk)}</span><span class="pill yellow">${rows.length}回｜${totalSpent.toLocaleString()}円</span></summary><div class="activity-month-body"><div class="note">総時間 ${activityDurationText(totalMin)}｜げと ${getCount}個｜歩数 ${totalSteps?totalSteps.toLocaleString()+'歩':'未入力'}</div>${weekHtml}</div></details>`}).join('')}</div>`
+}
 function renderActivity(){
  const home=document.getElementById('homeActivityPanel');if(home)home.innerHTML=activityControlHtml(true);
  const status=document.getElementById('activityStatus');if(status)status.innerHTML=activityControlHtml(false);
  const logs=[...(state.activityLogs||[])].sort((a,b)=>(b.startTs||'').localeCompare(a.startTs||''));
  const count=document.getElementById('activityCountPill');if(count)count.textContent=`${logs.length}件`;
- const list=document.getElementById('activityList');
- if(list)list.innerHTML=logs.length?logs.map(x=>{
-  const gets=x.gets||[],spins=x.spins||[],obsCount=(x.observationIds||[]).length;
-  const getHtml=activityGetsLinksHtml(gets);
-  const extraCount=spins.reduce((a,g)=>a+(g.count||0),0);
-  const route=x.routeLabel||routeLabelForActivity(x);
-  return `<details class="activity-log-card"><summary><div class="activity-log-head"><div><div class="activity-log-title">${dateLabel(x.startTs)}｜<span class="route-pill">${esc(route)}</span></div><div class="small">${activityDurationText(activityDurationMinutes(x))}｜${(x.spent||0).toLocaleString()}円（${esc(x.spentSource||'記録')}）｜疲労 ${esc(x.fatigue||'未設定')}</div></div><span class="activity-weather-pill">${activityWeatherText(x.weather)}</span></div></summary><div class="activity-mini-grid"><div class="activity-mini"><span>関連げと</span><b>${esc(String(activityGetCount(x)))}個</b></div><div class="activity-mini"><span>追加回数</span><b>${extraCount}回</b></div><div class="activity-mini"><span>関連観測</span><b>${obsCount}件</b></div><div class="activity-mini"><span>歩数</span><b>${x.steps?x.steps:'—'}</b></div><div class="activity-mini"><span>開始天気</span><b>${esc(activityWeatherText(x.weather))}</b></div><div class="activity-mini"><span>終了天気</span><b>${esc(activityWeatherText(x.endWeather))}</b></div></div><div class="note" style="margin-top:10px">ルートは「現地で見た」観測だけで作ります。情報だけの新宿・渋谷などは日誌ルートに入れません。<br>げと：${getHtml}${extraCount?`<br>帳面に残さない追加回数：${extraCount}回`:''}<br>自動概算：${(x.estimatedSpent??activityEstimatedSpent(x)).toLocaleString()}円</div><div class="data-edit-actions"><button class="mini" onclick="openEditActivityLog('${esc(x.id)}')">編集</button><button class="mini blue" onclick="return resumeActivityLog('${esc(x.id)}')">再開</button><button class="mini danger" onclick="return deleteActivityLog('${esc(x.id)}')">削除</button></div></details>`
- }).join(''):'<div class="empty">ガチャ活日誌はまだありません。開始ボタンはワンタップです。</div>';
+ const list=document.getElementById('activityList');if(list)list.innerHTML=renderActivityLogGrouped(logs);
  const summary=document.getElementById('activitySummary');if(summary)summary.innerHTML=activitySummaryCards(logs);
  const charts=document.getElementById('activityCharts');if(charts)charts.innerHTML=activityBarRows([...logs].reverse(),'minutes','直近7回の活動時間','分')+activityBarRows([...logs].reverse(),'spent','直近7回の支出','円')+activityBarRows([...logs].reverse(),'steps','直近7回の歩数','歩');
- const note=document.getElementById('activityWeatherNote');if(note)note.innerHTML=`今の天気：${activityWeatherText(weatherSnapshot())}<br>単価×げと数と、必要な時だけ押す「被り・未登録分＋1」で支出を自動概算します。`;
 }
-
 function updateActivityTick(){
  document.querySelectorAll('.activity-live-duration').forEach(el=>{if(state.activeActivity)el.textContent=activityDurationText(activityDurationMinutes(state.activeActivity))});
 }
@@ -6638,12 +6819,12 @@ function deleteCheckedManualLogs(){
 async function exportData(button=null){
  const result=await runUiAction('export-data','バックアップ',button,async()=>{
   const backup=JSON.parse(JSON.stringify(state));
-  backup.backupFormat='gacha-command-v085-image-included';
+  backup.backupFormat='gacha-command-v087-image-included';
   backup.backupCreatedAt=new Date().toISOString();
   await hydrateImageBackupState(backup);
   const b=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}),a=document.createElement('a');
   a.href=URL.createObjectURL(b);
-  a.download='gacha-command-v085-backup.json';
+  a.download='gacha-command-v087-backup.json';
   a.click();
   URL.revokeObjectURL(a.href);
   return true
